@@ -5,12 +5,12 @@ import { X, ChevronRight, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, 
 import { BrandLogo } from "./brand-logo"
 
 const links = [
-  { label: "Products", icon: PackageOpen },
-  { label: "Why EcoGlass", icon: Sparkles },
-  { label: "Our Process", icon: Route },
-  { label: "Financing", icon: Wallet },
-  { label: "Gallery", icon: Images },
-  { label: "Contact", icon: Mail },
+  { label: "Products", icon: PackageOpen, href: "#products" },
+  { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
+  { label: "Our Process", icon: Route, href: "#process" },
+  { label: "Financing", icon: Wallet, href: "#financing" },
+  { label: "Gallery", icon: Images, href: "#products" },
+  { label: "Contact", icon: Mail, href: "#estimate" },
 ]
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -30,7 +30,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
   return (
     <div
-      className={`fixed inset-0 z-50 mx-auto max-w-[440px] ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-50 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
       aria-hidden={!open}
     >
       {/* Overlay */}
@@ -65,10 +65,10 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         </div>
 
         <nav className="flex flex-col px-3 py-2">
-          {links.map(({ label, icon: Icon }) => (
+          {links.map(({ label, icon: Icon, href }) => (
             <a
               key={label}
-              href="#"
+              href={href}
               onClick={onClose}
               className="flex items-center gap-3 border-b border-border/70 px-2 py-3.5 text-[15px] font-semibold text-forest transition-colors active:bg-muted"
             >
