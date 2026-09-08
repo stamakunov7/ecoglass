@@ -1,11 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
-import { X, ChevronRight, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail } from "lucide-react"
+import { useEffect, useState } from "react"
+import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 
 const links = [
-  { label: "Products", icon: PackageOpen, href: "#products" },
   { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
   { label: "Our Process", icon: Route, href: "#process" },
   { label: "Financing", icon: Wallet, href: "#financing" },
@@ -13,7 +12,20 @@ const links = [
   { label: "Contact", icon: Mail, href: "#estimate" },
 ]
 
+const productGroups = [
+  {
+    heading: "Windows",
+    items: ["Awning", "Bay & Bow", "Casement", "Double & Single-Hung", "Sliding", "Pass-Through", "Picture", "Specialty"],
+  },
+  {
+    heading: "Doors",
+    items: ["Big Doors", "Entry Doors", "French & Hinged Patio Doors", "Sliding Doors", "Storm & Screen Doors"],
+  },
+]
+
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [productsOpen, setProductsOpen] = useState(false)
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose()
@@ -64,7 +76,43 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           </button>
         </div>
 
-        <nav className="flex flex-col px-3 py-2">
+        <nav className="flex flex-col overflow-y-auto px-3 py-2">
+          {/* Products accordion */}
+          <button
+            type="button"
+            onClick={() => setProductsOpen((v) => !v)}
+            aria-expanded={productsOpen}
+            className="flex items-center gap-3 border-b border-border/70 px-2 py-3.5 text-[15px] font-semibold text-forest transition-colors active:bg-muted"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sage text-forest">
+              <PackageOpen className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <span className="flex-1 text-left">Products</span>
+            <ChevronDown
+              className={`h-4 w-4 text-muted-foreground transition-transform ${productsOpen ? "rotate-180" : ""}`}
+              aria-hidden="true"
+            />
+          </button>
+          {productsOpen ? (
+            <div className="border-b border-border/70 bg-offwhite px-2 py-3">
+              {productGroups.map((group) => (
+                <div key={group.heading} className="mb-3 last:mb-0">
+                  <p className="px-2 pb-1 text-xs font-bold uppercase tracking-wide text-cta">{group.heading}</p>
+                  {group.items.map((item) => (
+                    <a
+                      key={item}
+                      href="#products"
+                      onClick={onClose}
+                      className="block rounded-md px-2 py-2 text-sm font-medium text-ink/80 transition-colors active:bg-sage"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : null}
+
           {links.map(({ label, icon: Icon, href }) => (
             <a
               key={label}
