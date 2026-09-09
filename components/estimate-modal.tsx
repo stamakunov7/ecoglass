@@ -127,7 +127,7 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
 
   function selectRole(value: Role) {
     setRole(value)
-    setStep(2)
+    setStep(value === "trade" ? 3 : 2)
   }
 
   function selectProject(value: ProjectType) {
@@ -325,7 +325,7 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
                       </p>
 
                       <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <PreviousButton onClick={() => setStep(2)} />
+                        <PreviousButton onClick={() => setStep(role === "trade" ? 1 : 2)} />
                         <button
                           type="submit"
                           className="flex h-12 items-center justify-center gap-2 rounded-full bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark"
