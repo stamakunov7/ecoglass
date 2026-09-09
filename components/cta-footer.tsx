@@ -1,5 +1,8 @@
+"use client"
+
 import { ArrowRight, Phone, MapPin, Mail, Clock } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
+import { useEstimate } from "./estimate-modal"
 
 const quickLinks = [
   { label: "Products", href: "#products" },
@@ -13,6 +16,8 @@ const quickLinks = [
 const productLinks = ["Windows", "Sliding Doors", "Entry Doors", "Smart Glass & Built-In Blinds"]
 
 export function CtaFooter() {
+  const { open: openEstimate } = useEstimate()
+
   return (
     <>
       {/* Final CTA */}
@@ -25,13 +30,14 @@ export function CtaFooter() {
             Schedule your free, no-obligation in-home estimate today with your local window and door experts.
           </p>
           <div className="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
-            <a
-              href="#estimate"
+            <button
+              type="button"
+              onClick={openEstimate}
               className="flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-lg shadow-forest-deep/40 transition-colors hover:bg-cta-dark active:bg-cta-dark"
             >
               Get a Free Estimate
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </button>
             <a
               href="tel:+13212070507"
               className="flex h-12 items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/5 px-7 text-[15px] font-semibold text-white transition-colors hover:bg-white/15 active:bg-white/15"
@@ -113,13 +119,14 @@ export function CtaFooter() {
               <p className="text-base font-bold text-white">Serving Central Florida</p>
               <p className="mt-1 text-[13px] text-white/70">Let&apos;s talk about your window and door project.</p>
             </div>
-            <a
-              href="#estimate"
+            <button
+              type="button"
+              onClick={openEstimate}
               className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-dark sm:w-auto"
             >
               Get a Free Estimate
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </button>
           </div>
 
           <p className="mt-8 border-t border-white/10 pt-6 text-center text-[11px] text-white/40 sm:text-xs">

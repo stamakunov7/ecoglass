@@ -10,23 +10,26 @@ import { ProcessSection } from "@/components/process-section"
 import { FinancingSection } from "@/components/financing-section"
 import { CtaFooter } from "@/components/cta-footer"
 import { MobileMenu } from "@/components/mobile-menu"
+import { EstimateProvider } from "@/components/estimate-modal"
 
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-background">
-      <SiteHeader onOpenMenu={() => setMenuOpen(true)} />
-      <main>
-        <HeroSection />
-        <TrustRow />
-        <ProductsSection />
-        <WhySection />
-        <ProcessSection />
-        <FinancingSection />
-        <CtaFooter />
-      </main>
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-    </div>
+    <EstimateProvider>
+      <div className="relative min-h-screen w-full overflow-x-clip bg-background">
+        <SiteHeader onOpenMenu={() => setMenuOpen(true)} />
+        <main>
+          <HeroSection />
+          <TrustRow />
+          <ProductsSection />
+          <WhySection />
+          <ProcessSection />
+          <FinancingSection />
+          <CtaFooter />
+        </main>
+        <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      </div>
+    </EstimateProvider>
   )
 }

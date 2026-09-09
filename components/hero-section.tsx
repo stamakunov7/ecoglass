@@ -1,6 +1,11 @@
+"use client"
+
 import { ArrowRight } from "lucide-react"
+import { useEstimate } from "./estimate-modal"
 
 export function HeroSection() {
+  const { open: openEstimate } = useEstimate()
+
   return (
     <section className="relative overflow-hidden">
       <img
@@ -23,13 +28,14 @@ export function HeroSection() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <a
-              href="#estimate"
+            <button
+              type="button"
+              onClick={openEstimate}
               className="flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-[15px] font-semibold text-white shadow-lg shadow-forest-deep/40 transition-colors hover:bg-cta-dark active:bg-cta-dark sm:h-13"
             >
               Get a Free Estimate
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </button>
             <a
               href="#products"
               className="flex h-12 items-center justify-center rounded-xl border border-white/40 bg-white/5 px-6 text-[15px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/15 active:bg-white/15 sm:h-13"

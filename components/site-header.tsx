@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Menu, Phone, MapPin, CalendarCheck, CreditCard, ChevronDown } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { ProductsMegaMenu } from "./products-mega-menu"
+import { useEstimate } from "./estimate-modal"
 
 type NavItem = {
   label: string
@@ -27,6 +28,7 @@ const simpleNav: NavItem[] = [
 
 export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
   const [mega, setMega] = useState(false)
+  const { open: openEstimate } = useEstimate()
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -140,12 +142,13 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
             </nav>
 
             <div className="flex items-center gap-3">
-              <a
-                href="#estimate"
+              <button
+                type="button"
+                onClick={openEstimate}
                 className="hidden h-11 items-center justify-center rounded-xl bg-cta px-5 text-sm font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark md:flex"
               >
                 Get a Free Estimate
-              </a>
+              </button>
               <button
                 type="button"
                 onClick={onOpenMenu}

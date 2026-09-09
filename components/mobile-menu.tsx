@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
+import { useEstimate } from "./estimate-modal"
 
 const links = [
   { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
@@ -25,6 +26,7 @@ const productGroups = [
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [productsOpen, setProductsOpen] = useState(false)
+  const { open: openEstimate } = useEstimate()
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -130,14 +132,17 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         </nav>
 
         <div className="mt-auto flex flex-col gap-2.5 px-4 pb-5 pt-3">
-          <a
-            href="#estimate"
-            onClick={onClose}
+          <button
+            type="button"
+            onClick={() => {
+              onClose()
+              openEstimate()
+            }}
             className="flex h-12 items-center justify-center gap-2 rounded-xl bg-cta text-[15px] font-semibold text-white shadow-md shadow-cta/30 transition-colors active:bg-cta-dark"
           >
             Get a Free Estimate
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </button>
           <a
             href="tel:+13212070507"
             className="flex h-12 items-center justify-center gap-2 rounded-xl border border-cta/40 bg-card text-[15px] font-semibold text-cta transition-colors active:bg-sage/60"
