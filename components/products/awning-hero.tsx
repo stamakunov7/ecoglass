@@ -26,7 +26,7 @@ export function AwningHero() {
     }`
 
   return (
-    <section className="relative flex min-h-[calc(100vh-8.25rem)] items-center overflow-hidden bg-offwhite">
+    <section className="relative flex min-h-[32rem] items-center overflow-hidden bg-offwhite sm:min-h-[36rem]">
       {/* Background image */}
       <Image
         src="/images/awning-hero.png"
@@ -43,7 +43,7 @@ export function AwningHero() {
       />
 
       {/* Centered content */}
-      <div className="relative mx-auto w-full max-w-[760px] px-5 py-20 text-center sm:px-6 sm:py-24">
+      <div className="relative mx-auto w-full max-w-[760px] px-5 py-14 text-center sm:px-6 sm:py-16">
         <p className={`text-xs font-semibold uppercase tracking-[0.25em] text-cta ${reveal(0)}`}>Windows</p>
         <h1
           className={`mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-forest text-balance sm:text-6xl ${reveal(1)}`}
@@ -65,7 +65,7 @@ export function AwningHero() {
           <button
             type="button"
             onClick={scrollToBrands}
-            className="group mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-lg shadow-forest-deep/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-dark hover:shadow-xl hover:shadow-forest-deep/30"
+            className="group mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-lg shadow-forest-deep/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-dark hover:shadow-xl hover:shadow-forest-deep/30"
           >
             Explore Brands
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
@@ -77,7 +77,7 @@ export function AwningHero() {
           type="button"
           onClick={scrollToBrands}
           aria-label="Scroll to explore brands"
-          className={`mx-auto mt-12 flex flex-col items-center gap-2 text-muted-foreground transition-all duration-700 ease-out motion-reduce:transition-none ${
+          className={`mx-auto mt-8 flex flex-col items-center gap-2 text-muted-foreground transition-all duration-700 ease-out motion-reduce:transition-none ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
           style={{ transitionDelay: mounted ? "520ms" : "0ms" }}

@@ -44,21 +44,21 @@ export function BrandCatalogRow({ brand, index }: { brand: Brand; index: number 
   return (
     <article
       ref={ref}
-      className={`grid grid-cols-1 items-center gap-8 border-t border-border py-14 transition-all duration-[600ms] ease-out sm:gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,2.1fr)_minmax(0,1.6fr)] md:gap-12 md:py-20 lg:py-24 motion-reduce:transition-none ${
+      className={`grid grid-cols-1 items-center gap-6 border-t border-border py-9 transition-all duration-[600ms] ease-out sm:gap-8 md:grid-cols-[7rem_minmax(0,2.1fr)_minmax(0,1.6fr)] md:gap-10 md:py-12 motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
       }`}
       style={{ transitionDelay: visible ? `${index * 60}ms` : "0ms" }}
     >
-      {/* Logo */}
+      {/* Logo — fixed-width column keeps every mark aligned to the same position */}
       <div className="flex justify-center md:justify-start">{brand.logo}</div>
 
       {/* Text content */}
       <div className="flex flex-col items-start text-left">
         <h2 className="font-display text-2xl font-extrabold tracking-tight text-forest sm:text-3xl">{brand.name}</h2>
-        <p className="mt-3 max-w-[46ch] text-[15px] leading-relaxed text-muted-foreground">{brand.description}</p>
+        <p className="mt-2 max-w-[46ch] text-[15px] leading-relaxed text-muted-foreground">{brand.description}</p>
         <Link
           href={brand.href}
-          className="group mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-sm font-semibold text-white shadow-sm shadow-cta/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-dark hover:shadow-md hover:shadow-cta/30"
+          className="group mt-5 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-sm font-semibold text-white shadow-sm shadow-cta/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-dark hover:shadow-md hover:shadow-cta/30"
         >
           View more
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

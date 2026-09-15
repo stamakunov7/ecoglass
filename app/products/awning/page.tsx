@@ -65,8 +65,8 @@ export default function AwningWindowsPage() {
           </div>
         </section>
 
-        {/* Intentional editorial breathing space before the footer */}
-        <div aria-hidden="true" className="h-20 bg-background sm:h-28 lg:h-44" />
+        {/* Editorial breathing space before the footer */}
+        <div aria-hidden="true" className="h-10 bg-background sm:h-14 lg:h-16" />
       </main>
       <SiteFooter />
     </SiteShell>
