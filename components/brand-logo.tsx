@@ -1,14 +1,28 @@
-import { Leaf } from "lucide-react"
+import Image from "next/image"
 
-export function BrandLogo({ className = "" }: { className?: string }) {
-  return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <span className="flex h-8 w-8 items-center justify-center rounded-md bg-cta/10 text-cta">
-        <Leaf className="h-5 w-5" aria-hidden="true" />
-      </span>
-      <span className="font-display text-xl font-extrabold tracking-tight text-forest">
-        ECO<span className="text-cta">GLASS</span>
-      </span>
-    </div>
+export function BrandLogo({
+  className = "",
+  variant = "light",
+}: {
+  className?: string
+  variant?: "light" | "dark"
+}) {
+  const logo = (
+    <Image
+      src="/images/ecoglass-logo.png"
+      alt="EcoGlass Windows & Doors"
+      width={220}
+      height={64}
+      priority
+      className="h-9 w-auto object-contain sm:h-10"
+    />
   )
+
+  if (variant === "dark") {
+    return (
+      <div className={`inline-flex items-center rounded-lg bg-white px-3 py-2 ${className}`}>{logo}</div>
+    )
+  }
+
+  return <div className={`flex items-center ${className}`}>{logo}</div>
 }

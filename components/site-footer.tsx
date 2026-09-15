@@ -24,7 +24,7 @@ export function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <BrandLogo className="[&_span:last-child]:text-white" />
+            <BrandLogo variant="dark" />
             <p className="mt-3 max-w-[38ch] text-[13px] leading-relaxed text-white/55">
               Custom windows and doors manufactured, supplied, and installed in Central Florida.
             </p>
