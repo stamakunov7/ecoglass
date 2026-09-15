@@ -22,7 +22,7 @@ import {
 type Item = { label: string; href: string; icon?: LucideIcon }
 
 const windows: Item[] = [
-  { label: "Awning", href: "/windows/awning", icon: PanelTop },
+  { label: "Awning", href: "/products/awning", icon: PanelTop },
   { label: "Bay & Bow", href: "#products", icon: Frame },
   { label: "Casement", href: "#products", icon: RectangleVertical },
   { label: "Double & Single-Hung", href: "#products", icon: Rows2 },

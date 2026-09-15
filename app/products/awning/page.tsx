@@ -18,7 +18,7 @@ const brands: Brand[] = [
       "Clean, modern windows with slim profiles and dependable ventilation. A great fit for contemporary spaces that need energy efficiency and fresh air.",
     image: "/images/awning-nova.png",
     alt: "NOVA awning window",
-    href: "/windows/awning/nova",
+    href: "/products/awning/nova",
     logo: <NovaLogo />,
   },
   {
@@ -27,7 +27,7 @@ const brands: Brand[] = [
       "Elegant awning windows that combine designer aesthetics with advanced performance. Ideal for homeowners who want a premium finish.",
     image: "/images/awning-prestige.png",
     alt: "PRESTIGE awning window",
-    href: "/windows/awning/prestige",
+    href: "/products/awning/prestige",
     logo: <PrestigeLogo />,
   },
   {
@@ -36,7 +36,7 @@ const brands: Brand[] = [
       "Strong, practical windows built for long-lasting everyday performance. Designed to combine durability, low maintenance, and efficient airflow.",
     image: "/images/awning-duroplast.png",
     alt: "DURO PLAST awning window",
-    href: "/windows/awning/duro-plast",
+    href: "/products/awning/duro-plast",
     logo: <DuroPlastLogo />,
   },
   {
@@ -45,7 +45,7 @@ const brands: Brand[] = [
       "Enhanced window systems with a sleek appearance and upgraded performance. Perfect for projects that need style, functionality, and premium details.",
     image: "/images/awning-prestige-plus.png",
     alt: "PRESTIGE+ awning window",
-    href: "/windows/awning/prestige-plus",
+    href: "/products/awning/prestige-plus",
     logo: <PrestigePlusLogo />,
   },
 ]

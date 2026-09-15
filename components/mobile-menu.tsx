@@ -7,7 +7,7 @@ import { BrandLogo } from "./brand-logo"
 import { useEstimate } from "./estimate-modal"
 
 const productHrefs: Record<string, string> = {
-  Awning: "/windows/awning",
+  Awning: "/products/awning",
 }
 
 const links = [
