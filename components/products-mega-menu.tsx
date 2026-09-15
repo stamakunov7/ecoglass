@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import {
   PanelTop,
   Frame,
@@ -21,7 +22,7 @@ import {
 type Item = { label: string; href: string; icon?: LucideIcon }
 
 const windows: Item[] = [
-  { label: "Awning", href: "#products", icon: PanelTop },
+  { label: "Awning", href: "/windows/awning", icon: PanelTop },
   { label: "Bay & Bow", href: "#products", icon: Frame },
   { label: "Casement", href: "#products", icon: RectangleVertical },
   { label: "Double & Single-Hung", href: "#products", icon: Rows2 },
@@ -62,7 +63,7 @@ function ColumnHeading({ children }: { children: React.ReactNode }) {
 function ProductLink({ item, onNavigate }: { item: Item; onNavigate: () => void }) {
   const Icon = item.icon
   return (
-    <a
+    <Link
       href={item.href}
       onClick={onNavigate}
       className="group flex items-center gap-3 rounded-lg py-1.5 text-[15px] text-ink/80 transition-colors hover:text-cta"
@@ -73,7 +74,7 @@ function ProductLink({ item, onNavigate }: { item: Item; onNavigate: () => void 
         </span>
       ) : null}
       <span className="font-medium">{item.label}</span>
-    </a>
+    </Link>
   )
 }
 

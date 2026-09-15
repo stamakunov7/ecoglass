@@ -1,9 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { useEstimate } from "./estimate-modal"
+
+const productHrefs: Record<string, string> = {
+  Awning: "/windows/awning",
+}
 
 const links = [
   { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
@@ -101,14 +106,14 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 <div key={group.heading} className="mb-3 last:mb-0">
                   <p className="px-2 pb-1 text-xs font-bold uppercase tracking-wide text-cta">{group.heading}</p>
                   {group.items.map((item) => (
-                    <a
+                    <Link
                       key={item}
-                      href="#products"
+                      href={productHrefs[item] ?? "/#products"}
                       onClick={onClose}
                       className="block rounded-md px-2 py-2 text-sm font-medium text-ink/80 transition-colors active:bg-sage"
                     >
                       {item}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               ))}
