@@ -23,13 +23,13 @@ type Item = { label: string; href: string; icon?: LucideIcon }
 
 const windows: Item[] = [
   { label: "Awning", href: "/products/awning", icon: PanelTop },
-  { label: "Bay & Bow", href: "#products", icon: Frame },
-  { label: "Casement", href: "#products", icon: RectangleVertical },
-  { label: "Double & Single-Hung", href: "#products", icon: Rows2 },
-  { label: "Sliding", href: "#products", icon: Columns2 },
-  { label: "Pass-Through", href: "#products", icon: AppWindow },
-  { label: "Picture", href: "#products", icon: Square },
-  { label: "Specialty", href: "#products", icon: Sparkles },
+  { label: "Bay & Bow", href: "/products/bay-bow", icon: Frame },
+  { label: "Casement", href: "/products/casement", icon: RectangleVertical },
+  { label: "Double & Single-Hung", href: "/products/double-single-hung", icon: Rows2 },
+  { label: "Sliding", href: "/products/sliding", icon: Columns2 },
+  { label: "Pass-Through", href: "/products/pass-through", icon: AppWindow },
+  { label: "Picture", href: "/products/picture", icon: Square },
+  { label: "Specialty", href: "/products/specialty", icon: Sparkles },
 ]
 
 const windowsLinks: Item[] = [
@@ -38,11 +38,11 @@ const windowsLinks: Item[] = [
 ]
 
 const doors: Item[] = [
-  { label: "Big Doors", href: "#products", icon: LayoutGrid },
-  { label: "Entry Doors", href: "#products", icon: DoorClosed },
-  { label: "French & Hinged Patio Doors", href: "#products", icon: DoorOpen },
-  { label: "Sliding Doors", href: "#products", icon: Columns2 },
-  { label: "Storm & Screen Doors", href: "#products", icon: Grid2x2 },
+  { label: "Big Doors", href: "/products/big-doors", icon: LayoutGrid },
+  { label: "Entry Doors", href: "/products/entry-doors", icon: DoorClosed },
+  { label: "French & Hinged Patio Doors", href: "/products/french-hinged-patio-doors", icon: DoorOpen },
+  { label: "Sliding Doors", href: "/products/sliding-doors", icon: Columns2 },
+  { label: "Storm & Screen Doors", href: "/products/storm-screen-doors", icon: Grid2x2 },
 ]
 
 const doorsLinks: Item[] = [{ label: "Replacement Doors", href: "#products" }]

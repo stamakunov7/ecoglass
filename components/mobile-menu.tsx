@@ -8,6 +8,18 @@ import { useEstimate } from "./estimate-modal"
 
 const productHrefs: Record<string, string> = {
   Awning: "/products/awning",
+  "Bay & Bow": "/products/bay-bow",
+  Casement: "/products/casement",
+  "Double & Single-Hung": "/products/double-single-hung",
+  Sliding: "/products/sliding",
+  "Pass-Through": "/products/pass-through",
+  Picture: "/products/picture",
+  Specialty: "/products/specialty",
+  "Big Doors": "/products/big-doors",
+  "Entry Doors": "/products/entry-doors",
+  "French & Hinged Patio Doors": "/products/french-hinged-patio-doors",
+  "Sliding Doors": "/products/sliding-doors",
+  "Storm & Screen Doors": "/products/storm-screen-doors",
 }
 
 const links = [
