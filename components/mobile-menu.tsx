@@ -129,6 +129,14 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                   ))}
                 </div>
               ))}
+              <Link
+                href="/products"
+                onClick={onClose}
+                className="mt-1 flex items-center gap-1 rounded-md px-2 py-2 text-sm font-bold text-cta transition-colors active:bg-sage"
+              >
+                See All Windows &amp; Doors
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           ) : null}
 

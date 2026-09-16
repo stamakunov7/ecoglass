@@ -50,7 +50,7 @@ const doorsLinks: Item[] = [{ label: "Replacement Doors", href: "#products" }]
 const cards = [
   { label: "Browse by Series", href: "#products", src: "/images/mega-series.png" },
   { label: "Browse by Materials", href: "#products", src: "/images/mega-materials.png" },
-  { label: "All Windows & Doors", href: "#products", src: "/images/hero-home.png" },
+  { label: "All Windows & Doors", href: "/products", src: "/images/hero-home.png" },
   { label: "Specialty Glass Products", href: "#products", src: "/images/product-smartglass.png" },
 ]
 
@@ -101,13 +101,13 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#products"
+            <Link
+              href="/products?category=windows"
               onClick={onNavigate}
               className="mt-1 inline-flex items-center gap-1 text-[15px] font-bold text-cta transition-colors hover:text-cta-dark"
             >
               See All <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -129,13 +129,13 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#products"
+            <Link
+              href="/products?category=doors"
               onClick={onNavigate}
               className="mt-1 inline-flex items-center gap-1 text-[15px] font-bold text-cta transition-colors hover:text-cta-dark"
             >
               See All <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
       {/* Right: 2x2 visual cards */}
       <div className="grid grid-cols-2 gap-4">
         {cards.map((card) => (
-          <a
+          <Link
             key={card.label}
             href={card.href}
             onClick={onNavigate}
@@ -160,7 +160,7 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
             <span className="relative mb-4 inline-flex items-center rounded-full border-2 border-cta bg-card px-4 py-2 text-center text-[13px] font-bold text-forest shadow-lg shadow-forest-deep/20 transition-colors group-hover:bg-cta group-hover:text-white">
               {card.label}
             </span>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
