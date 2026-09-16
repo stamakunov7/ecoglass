@@ -1,4 +1,7 @@
+"use client"
+
 import { Factory, Timer, Ruler, ShieldCheck, Sparkles, Headset, ArrowRight } from "lucide-react"
+import { useEstimate } from "./estimate-modal"
 
 const benefits = [
   {
@@ -34,6 +37,8 @@ const benefits = [
 ]
 
 export function WhySection() {
+  const { open: openEstimate } = useEstimate()
+
   return (
     <section id="why" className="bg-offwhite">
       <div className="mx-auto grid w-full max-w-[1400px] gap-8 px-5 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,38%)_minmax(0,62%)] lg:gap-14 lg:px-8 lg:py-24">
@@ -47,13 +52,14 @@ export function WhySection() {
             As a local manufacturer, we control the process so you get better quality, faster timelines, and
             personalized service from start to finish.
           </p>
-          <a
-            href="#estimate"
+          <button
+            type="button"
+            onClick={openEstimate}
             className="mt-6 hidden h-12 w-fit items-center justify-center gap-2 rounded-xl bg-cta px-6 text-sm font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark lg:inline-flex"
           >
             Get a Free Estimate
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </button>
         </div>
 
         {/* Benefit grid */}
