@@ -21,7 +21,7 @@ const whyItems = [
 
 const simpleNav: NavItem[] = [
   { label: "Our Process", href: "#process" },
-  { label: "Financing", href: "#financing" },
+  { label: "Financing", href: "/financing" },
   { label: "Gallery", href: "#products" },
   { label: "Contact", href: "#estimate" },
 ]

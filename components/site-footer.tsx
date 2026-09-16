@@ -1,23 +1,18 @@
-"use client"
-
-import { ArrowRight, Phone, MapPin, Mail, Clock } from "lucide-react"
+import { Phone, MapPin, Mail, Clock } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
-import { useEstimate } from "./estimate-modal"
 
 const quickLinks = [
-  { label: "Products", href: "/#products" },
+  { label: "Products", href: "/products" },
   { label: "Why EcoGlass", href: "/#why" },
   { label: "Our Process", href: "/#process" },
-  { label: "Financing", href: "/#financing" },
+  { label: "Financing", href: "/financing" },
   { label: "Gallery", href: "/#products" },
-  { label: "Contact", href: "/#estimate" },
+  { label: "Contact", href: "/financing#contact" },
 ]
 
 const productLinks = ["Windows", "Sliding Doors", "Entry Doors", "Smart Glass & Built-In Blinds"]
 
 export function SiteFooter() {
-  const { open: openEstimate } = useEstimate()
-
   return (
     <footer className="bg-charcoal">
       <div className="mx-auto w-full max-w-[1400px] px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -82,23 +77,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Estimate CTA card */}
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-2xl bg-forest px-6 py-6 sm:flex-row sm:items-center lg:mt-12">
-          <div>
-            <p className="text-base font-bold text-white">Serving Central Florida</p>
-            <p className="mt-1 text-[13px] text-white/70">Let&apos;s talk about your window and door project.</p>
-          </div>
-          <button
-            type="button"
-            onClick={openEstimate}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-dark sm:w-auto"
-          >
-            Get a Free Estimate
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </button>
-        </div>
-
-        <p className="mt-8 border-t border-white/10 pt-6 text-center text-[11px] text-white/40 sm:text-xs">
+        <p className="mt-10 border-t border-white/10 pt-6 text-center text-[11px] text-white/40 sm:text-xs lg:mt-12">
           © 2024 EcoGlass. All rights reserved.
         </p>
       </div>

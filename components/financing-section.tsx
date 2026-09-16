@@ -57,7 +57,7 @@ export function FinancingSection() {
           </ul>
 
           <a
-            href="#estimate"
+            href="/financing"
             className="mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark sm:mt-8"
           >
             Explore Financing

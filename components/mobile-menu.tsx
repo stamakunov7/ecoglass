@@ -25,7 +25,7 @@ const productHrefs: Record<string, string> = {
 const links = [
   { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
   { label: "Our Process", icon: Route, href: "#process" },
-  { label: "Financing", icon: Wallet, href: "#financing" },
+  { label: "Financing", icon: Wallet, href: "/financing" },
   { label: "Gallery", icon: Images, href: "#products" },
   { label: "Contact", icon: Mail, href: "#estimate" },
 ]
