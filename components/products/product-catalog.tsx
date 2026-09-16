@@ -82,7 +82,7 @@ const seeds: ProductSeed[] = [
     description:
       "EcoGlass offers awning windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect awning window for your home.",
     heroImage: "/images/awning-hero.png",
-    heroAlt: "Modern black-framed awning window open on a premium Florida home",
+    heroAlt: "Close-up of a black-framed awning window cranked open outward on a modern home, with lush greenery outside",
   },
   {
     slug: "bay-bow",
