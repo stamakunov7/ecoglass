@@ -15,7 +15,7 @@ export function HeroSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/70 to-forest-deep/90 lg:bg-gradient-to-r lg:from-forest-deep/92 lg:via-forest-deep/75 lg:to-forest-deep/30" />
 
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-col px-5 pb-9 pt-10 sm:px-6 sm:pb-14 sm:pt-14 lg:min-h-[620px] lg:justify-center lg:px-8 lg:py-24 xl:min-h-[680px]">
+      <div className="relative mx-auto flex min-h-[calc(100svh-var(--header-h,140px))] w-full max-w-[1400px] flex-col justify-center px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="max-w-[680px]">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs">
             Windows and doors, made for Florida

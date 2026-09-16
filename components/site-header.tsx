@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Menu, Phone, MapPin, CalendarCheck, CreditCard, ChevronDown } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { ProductsMegaMenu } from "./products-mega-menu"
@@ -29,6 +29,7 @@ const simpleNav: NavItem[] = [
 export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
   const [mega, setMega] = useState(false)
   const { open: openEstimate } = useEstimate()
+  const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -38,8 +39,25 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
     return () => document.removeEventListener("keydown", onKey)
   }, [mega])
 
+  // Publish the header's real height so full-screen heroes can size themselves
+  // to exactly fill the remaining viewport on any device.
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const setVar = () =>
+      document.documentElement.style.setProperty("--header-h", `${el.offsetHeight}px`)
+    setVar()
+    const ro = new ResizeObserver(setVar)
+    ro.observe(el)
+    window.addEventListener("resize", setVar)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener("resize", setVar)
+    }
+  }, [])
+
   return (
-    <header className="sticky top-0 z-30">
+    <header ref={headerRef} className="sticky top-0 z-30">
       {/* Page-dimming overlay for the mega menu (desktop only) */}
       <div
         onClick={() => setMega(false)}

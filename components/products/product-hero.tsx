@@ -34,7 +34,7 @@ export function ProductHero({ eyebrow, title, description, image, imageAlt }: Pr
     }`
 
   return (
-    <section className="relative flex min-h-[32rem] items-center overflow-hidden bg-offwhite sm:min-h-[36rem]">
+    <section className="relative flex min-h-[calc(100svh-var(--header-h,140px))] items-center overflow-hidden bg-offwhite">
       {/* Background image */}
       <Image src={image || "/placeholder.svg"} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
       {/* Readability overlay */}
