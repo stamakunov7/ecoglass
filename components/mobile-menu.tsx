@@ -23,11 +23,11 @@ const productHrefs: Record<string, string> = {
 }
 
 const links = [
-  { label: "Why EcoGlass", icon: Sparkles, href: "#why" },
-  { label: "Our Process", icon: Route, href: "#process" },
+  { label: "Why EcoGlass", icon: Sparkles, href: "/why-ecoglass" },
+  { label: "Our Process", icon: Route, href: "/our-process" },
   { label: "Financing", icon: Wallet, href: "/financing" },
-  { label: "Gallery", icon: Images, href: "#products" },
-  { label: "Contact", icon: Mail, href: "#estimate" },
+  { label: "Gallery", icon: Images, href: "/#products" },
+  { label: "Contact", icon: Mail, href: "/contact" },
 ]
 
 const productGroups = [
