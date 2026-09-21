@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Menu, Phone, MapPin, CalendarCheck, CreditCard, ChevronDown } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { ProductsMegaMenu } from "./products-mega-menu"
+import { WhyMegaMenu } from "./why-mega-menu"
 import { useEstimate } from "./estimate-modal"
 
 type NavItem = {
@@ -12,12 +13,7 @@ type NavItem = {
   items?: { label: string; href: string }[]
 }
 
-const whyItems = [
-  { label: "Direct Local Manufacturing", href: "/why-ecoglass#manufacturing" },
-  { label: "Energy-Efficient Solutions", href: "/why-ecoglass#energy" },
-  { label: "Custom Sizes & Options", href: "/why-ecoglass#custom" },
-  { label: "Professional Installation", href: "/why-ecoglass#installation" },
-]
+type MenuKey = "products" | "why"
 
 const simpleNav: NavItem[] = [
   { label: "Our Process", href: "/our-process" },
@@ -27,17 +23,23 @@ const simpleNav: NavItem[] = [
 ]
 
 export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
-  const [mega, setMega] = useState(false)
+  const [menu, setMenu] = useState<MenuKey | null>(null)
+  // Keep the last-opened menu mounted so the panel shows the right content while it fades out.
+  const [rendered, setRendered] = useState<MenuKey>("products")
   const { open: openEstimate } = useEstimate()
   const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    if (menu) setRendered(menu)
+  }, [menu])
+
+  useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setMega(false)
+      if (e.key === "Escape") setMenu(null)
     }
-    if (mega) document.addEventListener("keydown", onKey)
+    if (menu) document.addEventListener("keydown", onKey)
     return () => document.removeEventListener("keydown", onKey)
-  }, [mega])
+  }, [menu])
 
   // Publish the header's real height so full-screen heroes can size themselves
   // to exactly fill the remaining viewport on any device.
@@ -60,9 +62,9 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
     <header ref={headerRef} className="sticky top-0 z-30">
       {/* Page-dimming overlay for the mega menu (desktop only) */}
       <div
-        onClick={() => setMega(false)}
+        onClick={() => setMenu(null)}
         className={`fixed inset-0 top-0 -z-10 hidden bg-forest-deep/50 backdrop-blur-[1px] transition-opacity duration-300 md:block ${
-          mega ? "opacity-100" : "pointer-events-none opacity-0"
+          menu ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden="true"
       />
@@ -95,7 +97,7 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
       </div>
 
       {/* Main header + mega menu share one hover region */}
-      <div className="relative bg-card" onMouseLeave={() => setMega(false)}>
+      <div className="relative bg-card" onMouseLeave={() => setMenu(null)}>
         <div className="border-b border-border">
           <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
             <BrandLogo />
@@ -104,54 +106,46 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
               {/* Products (mega menu) */}
               <button
                 type="button"
-                onMouseEnter={() => setMega(true)}
-                onFocus={() => setMega(true)}
-                onClick={() => setMega(true)}
-                aria-expanded={mega}
+                onMouseEnter={() => setMenu("products")}
+                onFocus={() => setMenu("products")}
+                onClick={() => setMenu("products")}
+                aria-expanded={menu === "products"}
                 aria-haspopup="true"
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${
-                  mega ? "text-cta" : "text-ink/80 hover:text-cta"
+                  menu === "products" ? "text-cta" : "text-ink/80 hover:text-cta"
                 }`}
               >
                 Products
                 <ChevronDown
-                  className={`h-3.5 w-3.5 transition-transform ${mega ? "rotate-180" : ""}`}
+                  className={`h-3.5 w-3.5 transition-transform ${menu === "products" ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 />
               </button>
 
-              {/* Why EcoGlass (simple dropdown) */}
-              <div className="group relative" onMouseEnter={() => setMega(false)}>
-                <a
-                  href="/why-ecoglass"
-                  className="flex items-center gap-1 text-sm font-semibold text-ink/80 transition-colors group-hover:text-cta"
-                >
-                  Why EcoGlass
-                  <ChevronDown
-                    className="h-3.5 w-3.5 transition-transform group-hover:rotate-180"
-                    aria-hidden="true"
-                  />
-                </a>
-                <div className="invisible absolute left-1/2 top-full z-40 w-56 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
-                  <div className="overflow-hidden rounded-xl border border-border bg-card p-1.5 shadow-xl shadow-forest-deep/10">
-                    {whyItems.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="block rounded-lg px-3 py-2 text-sm font-medium text-ink/80 transition-colors hover:bg-muted hover:text-cta"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {/* Why EcoGlass (mega menu) */}
+              <button
+                type="button"
+                onMouseEnter={() => setMenu("why")}
+                onFocus={() => setMenu("why")}
+                onClick={() => setMenu("why")}
+                aria-expanded={menu === "why"}
+                aria-haspopup="true"
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors ${
+                  menu === "why" ? "text-cta" : "text-ink/80 hover:text-cta"
+                }`}
+              >
+                Why EcoGlass
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform ${menu === "why" ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+              </button>
 
               {simpleNav.map(({ label, href }) => (
                 <a
                   key={label}
                   href={href}
-                  onMouseEnter={() => setMega(false)}
+                  onMouseEnter={() => setMenu(null)}
                   className="text-sm font-semibold text-ink/80 transition-colors hover:text-cta"
                 >
                   {label}
@@ -179,15 +173,19 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
           </div>
         </div>
 
-        {/* Mega menu panel */}
+        {/* Mega menu panel (shared by Products and Why EcoGlass) */}
         <div
           className={`absolute left-0 right-0 top-full z-40 hidden origin-top border-b border-border bg-card shadow-2xl shadow-forest-deep/20 transition-all duration-200 ease-out md:block ${
-            mega
+            menu
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0"
           }`}
         >
-          <ProductsMegaMenu onNavigate={() => setMega(false)} />
+          {rendered === "why" ? (
+            <WhyMegaMenu onNavigate={() => setMenu(null)} />
+          ) : (
+            <ProductsMegaMenu onNavigate={() => setMenu(null)} />
+          )}
         </div>
       </div>
     </header>

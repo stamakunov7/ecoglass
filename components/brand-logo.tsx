@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 export function BrandLogo({
@@ -9,12 +8,11 @@ export function BrandLogo({
   variant?: "light" | "dark"
 }) {
   const logo = (
-    <Image
-      src="/images/ecoglass-logo.png"
+    <img
+      src="/images/ecoglass-logo.svg"
       alt="EcoGlass Windows & Doors"
       width={220}
-      height={64}
-      priority
+      height={81}
       className="h-9 w-auto object-contain sm:h-10"
     />
   )
