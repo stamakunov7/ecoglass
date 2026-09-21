@@ -2,34 +2,19 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import {
-  PanelTop,
-  Frame,
-  RectangleVertical,
-  Rows2,
-  Columns2,
-  AppWindow,
-  Square,
-  Sparkles,
-  LayoutGrid,
-  DoorClosed,
-  DoorOpen,
-  Grid2x2,
-  ArrowRight,
-  type LucideIcon,
-} from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
-type Item = { label: string; href: string; icon?: LucideIcon }
+type Item = { label: string; href: string; icon?: string }
 
 const windows: Item[] = [
-  { label: "Awning", href: "/products/awning", icon: PanelTop },
-  { label: "Bay & Bow", href: "/products/bay-bow", icon: Frame },
-  { label: "Casement", href: "/products/casement", icon: RectangleVertical },
-  { label: "Double & Single-Hung", href: "/products/double-single-hung", icon: Rows2 },
-  { label: "Sliding", href: "/products/sliding", icon: Columns2 },
-  { label: "Pass-Through", href: "/products/pass-through", icon: AppWindow },
-  { label: "Picture", href: "/products/picture", icon: Square },
-  { label: "Specialty", href: "/products/specialty", icon: Sparkles },
+  { label: "Awning", href: "/products/awning", icon: "/product-icons/awning.png" },
+  { label: "Bay & Bow", href: "/products/bay-bow", icon: "/product-icons/bay-bow.png" },
+  { label: "Casement", href: "/products/casement", icon: "/product-icons/casement.png" },
+  { label: "Double & Single-Hung", href: "/products/double-single-hung", icon: "/product-icons/single-double-hung.png" },
+  { label: "Sliding", href: "/products/sliding", icon: "/product-icons/sliding-window.png" },
+  { label: "Pass-Through", href: "/products/pass-through", icon: "/product-icons/pass-through.png" },
+  { label: "Picture", href: "/products/picture", icon: "/product-icons/picture-window.png" },
+  { label: "Specialty", href: "/products/specialty", icon: "/product-icons/specialty-window.png" },
 ]
 
 const windowsLinks: Item[] = [
@@ -38,14 +23,20 @@ const windowsLinks: Item[] = [
 ]
 
 const doors: Item[] = [
-  { label: "Big Doors", href: "/products/big-doors", icon: LayoutGrid },
-  { label: "Entry Doors", href: "/products/entry-doors", icon: DoorClosed },
-  { label: "French & Hinged Patio Doors", href: "/products/french-hinged-patio-doors", icon: DoorOpen },
-  { label: "Sliding Doors", href: "/products/sliding-doors", icon: Columns2 },
-  { label: "Storm & Screen Doors", href: "/products/storm-screen-doors", icon: Grid2x2 },
+  { label: "Big Doors", href: "/products/big-doors", icon: "/product-icons/big-doors.png" },
+  { label: "Entry Doors", href: "/products/entry-doors", icon: "/product-icons/entry-door.png" },
+  {
+    label: "French & Hinged Patio Doors",
+    href: "/products/french-hinged-patio-doors",
+    icon: "/product-icons/french-hinged-patio.png",
+  },
+  { label: "Sliding Doors", href: "/products/sliding-doors", icon: "/product-icons/sliding-door.png" },
+  { label: "Storm & Screen Doors", href: "/products/storm-screen-doors", icon: "/product-icons/storm-screen-door.png" },
 ]
 
-const doorsLinks: Item[] = [{ label: "Replacement Doors", href: "#products" }]
+const doorsLinks: Item[] = [
+  { label: "Replacement Doors", href: "#products", icon: "/product-icons/replacement-door.png" },
+]
 
 const cards = [
   { label: "Browse by Series", href: "#products", src: "/images/mega-series.png" },
@@ -60,20 +51,29 @@ function ColumnHeading({ children }: { children: React.ReactNode }) {
   )
 }
 
+function ProductIcon({ src }: { src: string }) {
+  return (
+    <span className="flex h-7 w-7 shrink-0 items-center justify-center sm:h-8 sm:w-8 lg:h-9 lg:w-9">
+      <Image
+        src={src}
+        alt=""
+        width={36}
+        height={36}
+        className="h-auto max-h-full w-auto max-w-full object-contain transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+      />
+    </span>
+  )
+}
+
 function ProductLink({ item, onNavigate }: { item: Item; onNavigate: () => void }) {
-  const Icon = item.icon
   return (
     <Link
       href={item.href}
       onClick={onNavigate}
-      className="group flex items-center gap-3 rounded-lg py-1.5 text-[15px] text-ink/80 transition-colors hover:text-cta"
+      className="group flex min-h-[44px] items-center gap-3 rounded-lg py-1 text-[15px] text-ink/80 transition-colors duration-200 hover:text-cta"
     >
-      {Icon ? (
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border bg-offwhite text-forest transition-colors group-hover:border-cta/40 group-hover:text-cta">
-          <Icon className="h-4 w-4" aria-hidden="true" />
-        </span>
-      ) : null}
-      <span className="font-medium">{item.label}</span>
+      {item.icon ? <ProductIcon src={item.icon} /> : null}
+      <span className="min-w-0 text-pretty font-medium leading-snug">{item.label}</span>
     </Link>
   )
 }
@@ -124,9 +124,10 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
                 key={item.label}
                 href={item.href}
                 onClick={onNavigate}
-                className="py-1 text-[15px] font-semibold text-ink/70 transition-colors hover:text-cta"
+                className="group flex min-h-[44px] items-center gap-3 rounded-lg py-1 text-[15px] font-semibold text-ink/70 transition-colors duration-200 hover:text-cta"
               >
-                {item.label}
+                {item.icon ? <ProductIcon src={item.icon} /> : null}
+                <span className="min-w-0 text-pretty leading-snug">{item.label}</span>
               </a>
             ))}
             <Link
