@@ -13,17 +13,17 @@ type NavItem = {
 }
 
 const whyItems = [
-  { label: "Direct Local Manufacturing", href: "#why" },
-  { label: "Energy-Efficient Solutions", href: "#why" },
-  { label: "Custom Sizes & Options", href: "#why" },
-  { label: "Professional Installation", href: "#why" },
+  { label: "Direct Local Manufacturing", href: "/why-ecoglass#manufacturing" },
+  { label: "Energy-Efficient Solutions", href: "/why-ecoglass#energy" },
+  { label: "Custom Sizes & Options", href: "/why-ecoglass#custom" },
+  { label: "Professional Installation", href: "/why-ecoglass#installation" },
 ]
 
 const simpleNav: NavItem[] = [
-  { label: "Our Process", href: "#process" },
+  { label: "Our Process", href: "/our-process" },
   { label: "Financing", href: "/financing" },
-  { label: "Gallery", href: "#products" },
-  { label: "Contact", href: "#estimate" },
+  { label: "Gallery", href: "/#products" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
@@ -123,7 +123,7 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
               {/* Why EcoGlass (simple dropdown) */}
               <div className="group relative" onMouseEnter={() => setMega(false)}>
                 <a
-                  href="#why"
+                  href="/why-ecoglass"
                   className="flex items-center gap-1 text-sm font-semibold text-ink/80 transition-colors group-hover:text-cta"
                 >
                   Why EcoGlass

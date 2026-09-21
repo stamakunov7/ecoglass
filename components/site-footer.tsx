@@ -3,11 +3,11 @@ import { BrandLogo } from "./brand-logo"
 
 const quickLinks = [
   { label: "Products", href: "/products" },
-  { label: "Why EcoGlass", href: "/#why" },
-  { label: "Our Process", href: "/#process" },
+  { label: "Why EcoGlass", href: "/why-ecoglass" },
+  { label: "Our Process", href: "/our-process" },
   { label: "Financing", href: "/financing" },
   { label: "Gallery", href: "/#products" },
-  { label: "Contact", href: "/financing#contact" },
+  { label: "Contact", href: "/contact" },
 ]
 
 const productLinks = ["Windows", "Sliding Doors", "Entry Doors", "Smart Glass & Built-In Blinds"]
