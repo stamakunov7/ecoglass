@@ -11,7 +11,6 @@ type PageHeroProps = {
   imageAlt: string
   primaryHref?: string
   primaryLabel?: string
-  compact?: boolean
 }
 
 export function PageHero({
@@ -22,20 +21,15 @@ export function PageHero({
   imageAlt,
   primaryHref,
   primaryLabel,
-  compact = false,
 }: PageHeroProps) {
   const { open: openEstimate } = useEstimate()
 
   return (
-    <section className="relative overflow-hidden bg-forest-deep">
+    <section className="relative flex min-h-[540px] items-center overflow-hidden bg-forest-deep sm:min-h-[520px] lg:min-h-[551px]">
       <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/85 to-forest-deep/30" />
 
-      <div
-        className={`relative mx-auto w-full max-w-[1400px] px-5 sm:px-6 lg:px-8 ${
-          compact ? "py-16 sm:py-20 lg:py-24" : "py-20 sm:py-24 lg:py-32"
-        }`}
-      >
+      <div className="relative mx-auto w-full max-w-[1400px] px-5 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white ring-1 ring-white/20 backdrop-blur-sm sm:text-xs">
             {eyebrow}

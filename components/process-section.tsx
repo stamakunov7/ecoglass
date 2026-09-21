@@ -1,4 +1,5 @@
 import { ClipboardList, Ruler, Factory, Wrench } from "lucide-react"
+import { ProcessVideoBg } from "./process-video-bg"
 
 const steps = [
   {
@@ -25,8 +26,9 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="bg-gradient-to-b from-forest to-forest-deep">
-      <div className="mx-auto w-full max-w-[1400px] px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+    <section id="process" className="relative overflow-hidden bg-gradient-to-b from-forest to-forest-deep">
+      <ProcessVideoBg />
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="max-w-[640px] lg:mx-auto lg:text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs">Our Process</p>
           <h2 className="mt-2 font-display text-[1.75rem] font-extrabold leading-tight text-white text-balance sm:text-4xl lg:text-5xl">

@@ -62,7 +62,6 @@ export default function ContactPage() {
     <SiteShell>
       <main>
         <PageHero
-          compact
           eyebrow="Contact EcoGlass"
           title="Let's talk about your home"
           description="Questions about a product, ready for a free estimate, or need support on an existing project? Reach out any way you like and a real member of our Longwood team will get back to you."

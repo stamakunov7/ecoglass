@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Wallet, FileCheck, CalendarClock, ShieldCheck, CreditCard, MonitorSmartphone, Phone } from "lucide-react"
 import { SiteShell } from "@/components/site-shell"
 import { SiteFooter } from "@/components/site-footer"
-import { FinancingHero } from "@/components/financing/financing-hero"
+import { PageHero } from "@/components/page-hero"
 import { FinancingContactForm } from "@/components/financing/financing-contact-form"
 
 export const metadata: Metadata = {
@@ -72,7 +72,15 @@ export default function FinancingPage() {
   return (
     <SiteShell>
       <main>
-        <FinancingHero />
+        <PageHero
+          eyebrow="Financing in partnership with Synchrony"
+          title="Upgrade Now, Pay Over Time"
+          description="Don't let budget hold back your home upgrade. Through our partnership with Synchrony Bank, EcoGlass offers flexible financing so you can get the windows and doors you want, on terms that work for you."
+          image="/images/financing-hero.png"
+          imageAlt="A couple relaxing in a bright Florida living room with new EcoGlass windows and doors"
+          primaryHref="#contact"
+          primaryLabel="Talk to us about financing"
+        />
 
         {/* Synchrony partnership band */}
         <section className="bg-card">
