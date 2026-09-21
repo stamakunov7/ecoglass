@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { ArrowRight, PanelTop, Blinds, DoorOpen, SunMedium } from "lucide-react"
 
 const products = [
@@ -6,24 +7,28 @@ const products = [
     subtitle: "Stylish. Efficient. Built to Last.",
     image: "/images/product-windows.png",
     icon: PanelTop,
+    href: "/products?category=windows",
   },
   {
     title: "Sliding Doors",
     subtitle: "Smooth Operation. Wide Open Views.",
     image: "/images/product-sliding.png",
     icon: Blinds,
+    href: "/products/sliding-doors",
   },
   {
     title: "Entry Doors",
     subtitle: "Make an Entrance. Built with Strength.",
     image: "/images/product-entry.png",
     icon: DoorOpen,
+    href: "/products/entry-doors",
   },
   {
     title: "Smart Glass & Blinds",
     subtitle: "Privacy. Comfort. At the Touch.",
     image: "/images/product-smartglass.png",
     icon: SunMedium,
+    href: "/products",
   },
 ]
 
@@ -42,13 +47,13 @@ export function ProductsSection() {
               We offer a wide range of customizable windows and doors designed for Florida living. Built with quality
               materials and expert craftsmanship.
             </p>
-            <a
-              href="#products"
+            <Link
+              href="/products"
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-cta transition-colors hover:text-cta-dark sm:mt-6"
             >
               Explore All Products
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
           <div className="hidden overflow-hidden rounded-3xl lg:block">
             <img
@@ -61,10 +66,11 @@ export function ProductsSection() {
 
         {/* Product grid */}
         <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:mt-14 lg:grid-cols-4">
-          {products.map(({ title, subtitle, image, icon: Icon }) => (
-            <article
+          {products.map(({ title, subtitle, image, icon: Icon, href }) => (
+            <Link
               key={title}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm shadow-forest/5 transition-shadow hover:shadow-lg hover:shadow-forest/10"
+              href={href}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm shadow-forest/5 transition-shadow hover:shadow-lg hover:shadow-forest/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
             >
               <div className="relative">
                 <img
@@ -84,7 +90,7 @@ export function ProductsSection() {
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                 </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

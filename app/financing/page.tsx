@@ -85,17 +85,27 @@ export default function FinancingPage() {
         {/* Synchrony partnership band */}
         <section className="bg-card">
           <div className="mx-auto grid w-full max-w-[1400px] items-center gap-8 px-5 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1fr_1.2fr] lg:gap-14 lg:px-8">
-            <div className="flex flex-col items-start gap-5 rounded-3xl bg-forest px-7 py-10 text-white sm:px-9">
-              <ShieldCheck className="h-9 w-9 text-cta" aria-hidden="true" />
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">Proud partner</p>
-                <p className="mt-2 font-display text-4xl font-extrabold tracking-tight">Synchrony</p>
-                <p className="mt-1 text-sm text-white/70">Home improvement financing</p>
-              </div>
+            <div className="flex flex-col items-start gap-6 rounded-3xl bg-gradient-to-br from-forest to-forest-deep px-7 py-10 text-white shadow-lg shadow-forest/20 sm:px-9">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">Proud financing partner</p>
+              <span className="inline-flex items-center rounded-2xl bg-white px-6 py-4 shadow-md shadow-black/10">
+                <img
+                  src="/images/synchrony-logo.webp"
+                  alt="Synchrony"
+                  width={2000}
+                  height={426}
+                  className="h-7 w-auto sm:h-8"
+                />
+              </span>
               <p className="text-[14px] leading-relaxed text-white/75">
                 EcoGlass partners with Synchrony Bank, a trusted national leader in home improvement financing, to bring
                 you flexible, transparent payment options.
               </p>
+              <div className="mt-1 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-semibold text-white/85">
+                <span className="inline-flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-cta" aria-hidden="true" />
+                  Trusted national lender
+                </span>
+              </div>
             </div>
 
             <div>
@@ -137,9 +147,12 @@ export default function FinancingPage() {
             </div>
             <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sage text-forest">
-                    <Icon className="h-6 w-6" aria-hidden="true" />
+                <div
+                  key={title}
+                  className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md hover:shadow-forest/10"
+                >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-deep text-white shadow-sm shadow-forest/20 ring-1 ring-inset ring-white/10">
+                    <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 text-base font-bold leading-tight text-forest">{title}</h3>
                   <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{body}</p>
@@ -157,15 +170,33 @@ export default function FinancingPage() {
               <h2 className="mt-2 font-display text-[1.75rem] font-extrabold leading-tight text-forest text-balance sm:text-4xl">
                 Three simple steps
               </h2>
+              <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-muted-foreground sm:text-base">
+                From first estimate to finished install, financing your project takes just a few minutes.
+              </p>
             </div>
-            <ol className="mt-9 grid gap-6 md:grid-cols-3">
+
+            <ol className="relative mt-12 grid gap-10 md:mt-16 md:grid-cols-3 md:gap-8">
+              {/* Connecting line across the numbered nodes (desktop) */}
+              <span
+                className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block"
+                aria-hidden="true"
+              />
               {steps.map(({ title, body }, i) => (
-                <li key={title} className="relative rounded-2xl border border-border bg-card p-7 shadow-sm">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cta font-display text-xl font-extrabold text-white">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold leading-tight text-forest">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
+                <li key={title} className="relative flex flex-col">
+                  <div className="flex items-center gap-4 md:block">
+                    <span className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-forest to-forest-deep font-display text-xl font-extrabold tracking-tight text-white shadow-lg shadow-forest/25 ring-8 ring-background">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta md:mt-6">
+                      Step {i + 1}
+                    </p>
+                  </div>
+                  <h3 className="mt-2 font-display text-xl font-extrabold leading-tight text-forest md:mt-1">
+                    {title}
+                  </h3>
+                  <p className="mt-2 max-w-[38ch] text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                    {body}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -218,7 +249,7 @@ export default function FinancingPage() {
                   href="tel:+13212070507"
                   className="flex items-center gap-3.5 text-[15px] font-semibold text-forest transition-colors hover:text-cta"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sage text-forest">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-deep text-white shadow-sm shadow-forest/20 ring-1 ring-inset ring-white/10">
                     <Phone className="h-5 w-5" aria-hidden="true" />
                   </span>
                   (321) 207-0507

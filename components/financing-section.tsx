@@ -14,7 +14,7 @@ const features = [
   {
     icon: CheckCircle2,
     title: "Financing available",
-    body: "Upgrade now and spread the cost over time with trusted partners.",
+    body: "Upgrade now and spread the cost over time with a trusted lender.",
   },
 ]
 
@@ -38,15 +38,15 @@ export function FinancingSection() {
             Financing Options That Fit Your Budget
           </h2>
           <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-            Don't let budget hold back your home upgrade. We offer flexible financing so you can get the windows and
+            Don&apos;t let budget hold back your home upgrade. We offer flexible financing so you can get the windows and
             doors you want, on terms that work for you.
           </p>
 
           <ul className="mt-6 flex flex-col gap-4 sm:mt-8">
             {features.map(({ icon: Icon, title, body }) => (
               <li key={title} className="flex items-start gap-3.5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sage text-forest">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-deep text-white shadow-sm shadow-forest/20 ring-1 ring-inset ring-white/10">
+                  <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
                 </span>
                 <div>
                   <h3 className="text-[15px] font-bold leading-tight text-forest sm:text-base">{title}</h3>
@@ -56,13 +56,29 @@ export function FinancingSection() {
             ))}
           </ul>
 
-          <a
-            href="/financing"
-            className="mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark sm:mt-8"
-          >
-            Explore Financing
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="mt-7 flex flex-col gap-5 sm:mt-8 sm:flex-row sm:items-center sm:gap-6">
+            <a
+              href="/financing"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark"
+            >
+              Explore Financing
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+
+            {/* Partner lockup */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px]">
+                In partnership with
+              </span>
+              <img
+                src="/images/synchrony-logo.webp"
+                alt="Synchrony"
+                width={2000}
+                height={426}
+                className="h-5 w-auto sm:h-[22px]"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
