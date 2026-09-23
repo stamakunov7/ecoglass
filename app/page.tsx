@@ -5,7 +5,8 @@ import { ProductsSection } from "@/components/products-section"
 import { WhySection } from "@/components/why-section"
 import { ProcessSection } from "@/components/process-section"
 import { FinancingSection } from "@/components/financing-section"
-import { CtaFooter } from "@/components/cta-footer"
+import { ReviewsSection } from "@/components/reviews-section"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
   return (
@@ -17,8 +18,9 @@ export default function Page() {
         <WhySection />
         <ProcessSection />
         <FinancingSection />
-        <CtaFooter />
+        <ReviewsSection />
       </main>
+      <SiteFooter />
     </SiteShell>
   )
 }
