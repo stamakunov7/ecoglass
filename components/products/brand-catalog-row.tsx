@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 export type Brand = {
+  /** URL segment, e.g. "nova" → /products/awning/nova */
+  slug: string
   name: string
   description: string
   image: string

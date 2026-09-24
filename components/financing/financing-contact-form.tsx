@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Send, CheckCircle2 } from "lucide-react"
+import { Send, CheckCircle2, Loader2 } from "lucide-react"
+import { LEAD_ERROR_MESSAGE, submitLead } from "@/lib/leads"
 
 type FormState = {
   firstName: string
@@ -25,6 +26,9 @@ export function FinancingContactForm() {
   const [form, setForm] = useState<FormState>(emptyForm)
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   function updateField(key: keyof FormState, value: string) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -42,9 +46,24 @@ export function FinancingContactForm() {
     return Object.keys(next).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (validate()) setSubmitted(true)
+    if (sending || !validate()) return
+    setSending(true)
+    setSendError("")
+    const result = await submitLead({
+      source: "financing",
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phone: form.phone,
+      budget: form.amount,
+      message: form.message,
+      company: honeypot,
+    })
+    setSending(false)
+    if (result.ok) setSubmitted(true)
+    else setSendError(LEAD_ERROR_MESSAGE)
   }
 
   if (submitted) {
@@ -68,7 +87,7 @@ export function FinancingContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
+      className="relative rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field
@@ -134,12 +153,40 @@ export function FinancingContactForm() {
         credit application.
       </p>
 
+      {/* Honeypot: hidden from people, filled in by bots */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
+      {sendError && (
+        <p role="alert" className="mt-4 rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {sendError}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark sm:w-auto"
+        disabled={sending}
+        className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark sm:w-auto disabled:cursor-wait disabled:opacity-80"
       >
-        Send inquiry
-        <Send className="h-4 w-4" aria-hidden="true" />
+        {sending ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            Sending…
+          </>
+        ) : (
+          <>
+            Send inquiry
+            <Send className="h-4 w-4" aria-hidden="true" />
+          </>
+        )}
       </button>
     </form>
   )

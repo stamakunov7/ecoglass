@@ -14,7 +14,7 @@ const productLinks = ["Windows", "Sliding Doors", "Entry Doors", "Smart Glass & 
 
 export function SiteFooter() {
   return (
-    <footer className="bg-charcoal">
+    <footer className="bg-charcoal print:hidden">
       <div className="mx-auto w-full max-w-[1400px] px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {/* Brand */}

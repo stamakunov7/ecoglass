@@ -59,7 +59,7 @@ export function SiteHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
   }, [])
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-30">
+    <header ref={headerRef} className="sticky top-0 z-30 print:hidden">
       {/* Page-dimming overlay for the mega menu (desktop only) */}
       <div
         onClick={() => setMenu(null)}
