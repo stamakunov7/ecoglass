@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { ClipboardList, Ruler, Factory, Wrench, FileBadge, Brush, ShieldCheck, PhoneCall, CheckCircle2 } from "lucide-react"
 import { SiteShell } from "@/components/site-shell"
+import { FaqSection } from "@/components/faq-section"
 import { CtaFooter } from "@/components/cta-footer"
 import { PageHero } from "@/components/page-hero"
 
@@ -189,33 +190,8 @@ export default function OurProcessPage() {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="bg-offwhite">
-          <div className="mx-auto w-full max-w-[900px] px-5 py-14 sm:px-6 sm:py-20 lg:px-8">
-            <div className="text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs">FAQ</p>
-              <h2 className="mt-2 font-display text-[1.75rem] font-extrabold leading-tight text-forest text-balance sm:text-4xl">
-                Common questions about the process
-              </h2>
-            </div>
-            <div className="mt-9 flex flex-col gap-3">
-              {faqs.map(({ q, a }) => (
-                <details
-                  key={q}
-                  className="group rounded-xl border border-border bg-card px-5 py-4 shadow-sm [&_summary]:list-none"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-[15px] font-bold text-forest">
-                    {q}
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border text-cta transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection title="Common questions about the process" faqs={faqs} />
+
       </main>
       <CtaFooter />
     </SiteShell>
