@@ -25,6 +25,7 @@ export type Product = {
 function makeBrands(slug: string): Brand[] {
   return [
     {
+      slug: "nova",
       name: "NOVA",
       description:
         "Clean, modern designs with slim profiles and dependable performance. A great fit for contemporary spaces that need energy efficiency and everyday reliability.",
@@ -34,6 +35,7 @@ function makeBrands(slug: string): Brand[] {
       logo: <NovaLogo />,
     },
     {
+      slug: "prestige",
       name: "PRESTIGE",
       description:
         "Elegant products that combine designer aesthetics with advanced performance. Ideal for homeowners who want a premium, refined finish.",
@@ -43,6 +45,7 @@ function makeBrands(slug: string): Brand[] {
       logo: <PrestigeLogo />,
     },
     {
+      slug: "duro-plast",
       name: "DURO PLAST",
       description:
         "Strong, practical builds made for long-lasting everyday performance. Designed to combine durability, low maintenance, and efficiency.",
@@ -52,6 +55,7 @@ function makeBrands(slug: string): Brand[] {
       logo: <DuroPlastLogo />,
     },
     {
+      slug: "prestige-plus",
       name: "PRESTIGE+",
       description:
         "Enhanced systems with a sleek appearance and upgraded performance. Perfect for projects that need style, functionality, and premium details.",

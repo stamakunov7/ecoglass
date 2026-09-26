@@ -19,10 +19,27 @@ import {
   User,
   Briefcase,
   CheckCircle2,
+  Loader2,
   type LucideIcon,
 } from "lucide-react"
+import { LEAD_ERROR_MESSAGE, submitLead, type LeadSpec } from "@/lib/leads"
 
-type EstimateContextValue = { open: () => void }
+/** A product designed in the configurator, sent along with a quote request. */
+export type QuoteDetails = {
+  title: string
+  specs: LeadSpec[]
+  quantity?: number
+  link?: string
+  /** Rendered in the modal's left panel (e.g. the live window preview). */
+  preview?: ReactNode
+}
+
+type EstimateContextValue = {
+  /** Opens the generic free-estimate form. Safe to pass straight to onClick. */
+  open: () => void
+  /** Opens the same form as a quote request for a designed product. */
+  openQuote: (quote: QuoteDetails) => void
+}
 
 const EstimateContext = createContext<EstimateContextValue | null>(null)
 
@@ -34,13 +51,21 @@ export function useEstimate() {
 
 export function EstimateProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
-  const open = useCallback(() => setIsOpen(true), [])
+  const [quote, setQuote] = useState<QuoteDetails | null>(null)
+  const open = useCallback(() => {
+    setQuote(null)
+    setIsOpen(true)
+  }, [])
+  const openQuote = useCallback((details: QuoteDetails) => {
+    setQuote(details)
+    setIsOpen(true)
+  }, [])
   const close = useCallback(() => setIsOpen(false), [])
 
   return (
-    <EstimateContext.Provider value={{ open }}>
+    <EstimateContext.Provider value={{ open, openQuote }}>
       {children}
-      <EstimateModal open={isOpen} onClose={close} />
+      <EstimateModal open={isOpen} onClose={close} quote={quote} />
     </EstimateContext.Provider>
   )
 }
@@ -88,13 +113,24 @@ type FormState = {
 
 const emptyForm: FormState = { firstName: "", lastName: "", email: "", mobile: "", zip: "" }
 
-function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+function EstimateModal({
+  open,
+  onClose,
+  quote,
+}: {
+  open: boolean
+  onClose: () => void
+  quote: QuoteDetails | null
+}) {
   const [step, setStep] = useState(1)
   const [role, setRole] = useState<Role | null>(null)
   const [projectType, setProjectType] = useState<ProjectType | null>(null)
   const [form, setForm] = useState<FormState>(emptyForm)
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   // Lock scroll + Escape to close
   useEffect(() => {
@@ -121,6 +157,9 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
       setForm(emptyForm)
       setErrors({})
       setSubmitted(false)
+      setSending(false)
+      setSendError("")
+      setHoneypot("")
     }, 250)
     return () => clearTimeout(t)
   }, [open])
@@ -152,9 +191,28 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
     return Object.keys(next).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (validate()) setSubmitted(true)
+    if (sending || !validate()) return
+    setSending(true)
+    setSendError("")
+    const result = await submitLead({
+      source: quote ? "quote" : "estimate",
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phone: form.mobile,
+      zip: form.zip,
+      role: role === "trade" ? "Trade professional" : "Homeowner",
+      projectType: projectOptions.find((p) => p.id === projectType)?.title,
+      configuration: quote
+        ? { title: quote.title, specs: quote.specs, quantity: quote.quantity, link: quote.link }
+        : undefined,
+      company: honeypot,
+    })
+    setSending(false)
+    if (result.ok) setSubmitted(true)
+    else setSendError(LEAD_ERROR_MESSAGE)
   }
 
   return (
@@ -183,18 +241,24 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
           open ? "translate-y-0 opacity-100 sm:scale-100" : "translate-y-3 opacity-0 sm:scale-95"
         }`}
       >
-        {/* Left image */}
+        {/* Left panel: the designed product for quotes, otherwise the estimate photo */}
         <div className="relative hidden shrink-0 md:block md:w-2/5">
-          <img
-            src="/images/estimate.png"
-            alt="EcoGlass professional measuring a window during an in-home estimate"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="font-display text-lg font-bold text-white">Free, no-obligation estimates</p>
-            <p className="mt-1 text-sm text-white/80">Built, supplied, and installed by EcoGlass in Central Florida.</p>
-          </div>
+          {quote ? (
+            <QuoteSummary quote={quote} />
+          ) : (
+            <>
+              <img
+                src="/images/estimate.png"
+                alt="EcoGlass professional measuring a window during an in-home estimate"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <p className="font-display text-lg font-bold text-white">Free, no-obligation estimates</p>
+                <p className="mt-1 text-sm text-white/80">Built, supplied, and installed by EcoGlass in Central Florida.</p>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Right content */}
@@ -211,17 +275,27 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
 
           <div className="flex-1 overflow-y-auto px-5 py-8 sm:px-8 sm:py-10">
             {submitted ? (
-              <SuccessView firstName={form.firstName} onClose={onClose} />
+              <SuccessView firstName={form.firstName} onClose={onClose} isQuote={!!quote} />
             ) : (
               <>
                 {/* Header */}
                 <div className="text-center">
                   <h2 className="font-display text-2xl font-extrabold text-forest sm:text-3xl">
-                    Request a Free Estimate
+                    {quote ? "Request a Quote" : "Request a Free Estimate"}
                   </h2>
                   <p className="mx-auto mt-2 max-w-[46ch] text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
-                    Tell us about your project to receive a no-obligation price quote on windows and doors from EcoGlass.
+                    {quote
+                      ? `Tell us about your project to receive a no-obligation price quote on your ${quote.title} from EcoGlass.`
+                      : "Tell us about your project to receive a no-obligation price quote on windows and doors from EcoGlass."}
                   </p>
+                  {quote && (
+                    <p className="mx-auto mt-4 inline-flex max-w-full items-center gap-2 rounded-full bg-sage/60 px-3.5 py-1.5 text-xs font-semibold text-forest md:hidden">
+                      <span className="truncate">
+                        {quote.title}
+                        {quote.specs[0] ? ` · ${quote.specs[0].value}` : ""}
+                      </span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Progress */}
@@ -320,18 +394,46 @@ function EstimateModal({ open, onClose }: { open: boolean; onClose: () => void }
                         />
                       </div>
 
+                      {/* Honeypot: hidden from people, filled in by bots */}
+                      <input
+                        type="text"
+                        name="company"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                      />
+
                       <p className="mt-5 text-center text-xs leading-relaxed text-muted-foreground">
-                        By clicking &quot;Request a quote&quot;, I agree to the terms below.
+                        By clicking &quot;Request a quote&quot;, you agree to be contacted by EcoGlass about your project.
                       </p>
+
+                      {sendError && (
+                        <p role="alert" className="mt-4 rounded-lg bg-destructive/10 px-4 py-3 text-center text-sm text-destructive">
+                          {sendError}
+                        </p>
+                      )}
 
                       <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <PreviousButton onClick={() => setStep(role === "trade" ? 1 : 2)} />
                         <button
                           type="submit"
-                          className="flex h-12 items-center justify-center gap-2 rounded-full bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark"
+                          disabled={sending}
+                          className="flex h-12 items-center justify-center gap-2 rounded-full bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark disabled:cursor-wait disabled:opacity-80"
                         >
-                          Request a quote
-                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                          {sending ? (
+                            <>
+                              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                              Sending…
+                            </>
+                          ) : (
+                            <>
+                              Request a quote
+                              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                            </>
+                          )}
                         </button>
                       </div>
                     </form>
@@ -500,7 +602,41 @@ function Field({
   )
 }
 
-function SuccessView({ firstName, onClose }: { firstName: string; onClose: () => void }) {
+function QuoteSummary({ quote }: { quote: QuoteDetails }) {
+  return (
+    <div className="flex h-full flex-col overflow-y-auto bg-offwhite">
+      {quote.preview && <div className="border-b border-border bg-[#F3F1EC] px-6 pt-8 pb-4">{quote.preview}</div>}
+      <div className="px-6 py-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta">Your design</p>
+        <p className="mt-1 font-display text-xl font-extrabold leading-tight text-forest">{quote.title}</p>
+        <dl className="mt-4 divide-y divide-border rounded-xl border border-border bg-card text-[13px]">
+          {quote.specs.map((s) => (
+            <div key={s.label} className="flex gap-3 px-4 py-2.5">
+              <dt className="w-28 shrink-0 text-muted-foreground">{s.label}</dt>
+              <dd className="font-semibold text-forest">{s.value}</dd>
+            </div>
+          ))}
+          {quote.quantity && quote.quantity > 1 && (
+            <div className="flex gap-3 px-4 py-2.5">
+              <dt className="w-28 shrink-0 text-muted-foreground">Quantity</dt>
+              <dd className="font-semibold text-forest">{quote.quantity}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    </div>
+  )
+}
+
+function SuccessView({
+  firstName,
+  onClose,
+  isQuote,
+}: {
+  firstName: string
+  onClose: () => void
+  isQuote: boolean
+}) {
   return (
     <div className="flex flex-col items-center py-10 text-center sm:py-16">
       <span className="flex h-16 w-16 items-center justify-center rounded-full bg-sage text-cta">
@@ -510,8 +646,9 @@ function SuccessView({ firstName, onClose }: { firstName: string; onClose: () =>
         Thanks{firstName ? `, ${firstName}` : ""}!
       </h2>
       <p className="mx-auto mt-3 max-w-[42ch] text-sm leading-relaxed text-muted-foreground">
-        Your request has been received. A local EcoGlass representative will reach out shortly to schedule your free,
-        no-obligation in-home estimate.
+        {isQuote
+          ? "Your quote request and design have been received. A local EcoGlass representative will reach out shortly with pricing and to schedule your free in-home measurement."
+          : "Your request has been received. A local EcoGlass representative will reach out shortly to schedule your free, no-obligation in-home estimate."}
       </p>
       <button
         type="button"
