@@ -2,8 +2,12 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const HERO_VIDEO_SRC =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hero_video-2UAgVo25a7flHAiicrky8kW5wEyIvZ.mp4"
+const HERO_VIDEO = {
+  desktop: "/videos/hero-home.mp4",
+  // Lighter 720p encode for phones.
+  mobile: "/videos/hero-home-720.mp4",
+  poster: "/images/hero-home-poster.webp",
+}
 
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -12,6 +16,8 @@ export function HeroVideo() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
+    // A fast (local, cached) video can fire canplay before hydration attaches onCanPlay.
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) setReady(true)
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
     const sync = () => {
@@ -29,15 +35,14 @@ export function HeroVideo() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <img
-        src="/images/hero-home.png"
+        src={HERO_VIDEO.poster}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <video
         ref={videoRef}
-        src={HERO_VIDEO_SRC}
-        poster="/images/hero-home.png"
+        poster={HERO_VIDEO.poster}
         autoPlay
         muted
         loop
@@ -50,7 +55,10 @@ export function HeroVideo() {
         className={`absolute inset-0 h-full w-full scale-[1.02] object-cover transition-opacity duration-[1400ms] ease-out ${
           ready ? "opacity-100" : "opacity-0"
         }`}
-      />
+      >
+        <source src={HERO_VIDEO.mobile} type="video/mp4" media="(max-width: 767px)" />
+        <source src={HERO_VIDEO.desktop} type="video/mp4" />
+      </video>
     </div>
   )
 }
