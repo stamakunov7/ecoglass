@@ -1,7 +1,18 @@
-import type { Brand } from "./brand-catalog-row"
+import type { ReactNode } from "react"
 import { NovaLogo, PrestigeLogo, DuroPlastLogo, PrestigePlusLogo } from "./brand-logos"
 
 export type ProductCategory = "Windows" | "Doors"
+
+export type Brand = {
+  /** URL segment, e.g. "nova" → /products/awning/nova */
+  slug: string
+  name: string
+  description: string
+  image: string
+  alt: string
+  href: string
+  logo: ReactNode
+}
 
 export type Product = {
   slug: string

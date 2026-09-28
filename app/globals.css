@@ -7,6 +7,7 @@
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
 
   --color-forest: #123b32;
   --color-forest-deep: #0d2c25;
@@ -194,5 +195,87 @@
   .hero-reveal {
     opacity: 1;
     animation: none;
+  }
+}
+
+/* ---------------- Product collection page effects ---------------- */
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12) translate(-1%, -1%);
+  }
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(159 211 162 / 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgb(159 211 162 / 0);
+  }
+}
+
+/* Slow cinematic zoom for hero photography */
+.ken-burns {
+  animation: ken-burns 26s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+}
+
+/* Animated gradient border for the featured card (wrap the card, pad by the border width) */
+.spin-border {
+  background: conic-gradient(from var(--border-angle), #9fd3a2, #1f5a3d, #e6d7a3, #ffffff, #9fd3a2);
+  animation: border-spin 7s linear infinite;
+}
+
+.soft-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+/* Light sweep across a button on hover */
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.5) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.shine:hover::after,
+.shine:focus-visible::after {
+  transform: translateX(130%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns,
+  .spin-border,
+  .soft-pulse {
+    animation: none;
+  }
+  .shine::after {
+    display: none;
   }
 }

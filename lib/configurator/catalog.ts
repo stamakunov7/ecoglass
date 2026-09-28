@@ -13,6 +13,9 @@ import type { BrandProfile, BrandSlug, SizeOptions, WindowKind, WindowOptions } 
 
 export const SAMPLE_DATA = true
 
+/** Brand highlighted as "Most popular" on the collection pages — SAMPLE, confirm before relying on it. */
+export const FEATURED_BRAND: BrandSlug | null = "prestige"
+
 /* ---------------- Which product uses which preview / designer ---------------- */
 
 const productKinds: Record<string, WindowKind | null> = {
@@ -201,6 +204,7 @@ export const brandProfiles: BrandProfile[] = [
     material: "Slim, clean-lined frames built for dependable everyday performance and energy efficiency.",
     highlights: ["Slim, modern profiles", "Energy-efficient everyday performance"],
     priceTier: 2,
+    bestFor: "Contemporary homes",
   },
   {
     slug: "prestige",
@@ -211,6 +215,7 @@ export const brandProfiles: BrandProfile[] = [
     material: "Refined frames that pair designer aesthetics with advanced performance.",
     highlights: ["Designer aesthetics, refined finish", "Advanced performance"],
     priceTier: 3,
+    bestFor: "A premium, refined finish",
   },
   {
     slug: "duro-plast",
@@ -221,6 +226,7 @@ export const brandProfiles: BrandProfile[] = [
     material: "Strong, practical frames made for durability, low maintenance, and efficiency.",
     highlights: ["Durable, low-maintenance build", "Practical and efficient"],
     priceTier: 2,
+    bestFor: "Durability and low upkeep",
   },
   {
     slug: "prestige-plus",
@@ -231,6 +237,7 @@ export const brandProfiles: BrandProfile[] = [
     material: "Enhanced systems with a sleek appearance, upgraded performance, and premium details.",
     highlights: ["Upgraded performance", "Sleek look with premium details"],
     priceTier: 4,
+    bestFor: "Style with premium details",
   },
 ]
 

@@ -1,5 +1,7 @@
 export type BrandSlug = "nova" | "prestige" | "duro-plast" | "prestige-plus"
 
+export type BrandSpecKey = "material" | "impactGlass" | "colors" | "warranty"
+
 /** How the live preview draws a product. `null` means the product has no online designer yet (doors). */
 export type WindowKind = "awning" | "casement" | "hung" | "slider" | "picture" | "bay" | "arch"
 
@@ -46,8 +48,12 @@ export type BrandProfile = {
   material: string
   /** Two short selling points for the "Explore other" cards. */
   highlights: [string, string]
-  /** 1–4, rendered as $ signs on the "Explore other" cards. */
+  /** 1–4, rendered as $ signs / price bars. */
   priceTier?: 1 | 2 | 3 | 4
+  /** Short "Best for" line on the brand collection page. */
+  bestFor: string
+  /** Facts for the comparison table. A row only appears once at least one brand has a value. */
+  specs?: Partial<Record<BrandSpecKey, string>>
   /** Per-brand overrides when a supplier offers different options than the defaults. */
   options?: Partial<WindowOptions>
 }
