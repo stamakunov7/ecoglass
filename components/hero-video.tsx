@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 
 const HERO_VIDEO = {
-  desktop: "/videos/hero-home.mp4",
+  desktop: "/videos/hero-florida.mp4",
   // Lighter 720p encode for phones.
-  mobile: "/videos/hero-home-720.mp4",
-  poster: "/images/hero-home-poster.webp",
+  mobile: "/videos/hero-florida-720.mp4",
+  poster: "/images/hero-florida-poster.webp",
 }
 
 export function HeroVideo() {
