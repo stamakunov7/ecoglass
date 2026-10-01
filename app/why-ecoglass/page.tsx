@@ -103,7 +103,7 @@ const performance = [
 
 export default function WhyEcoGlassPage() {
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <PageHero
           eyebrow="Why choose EcoGlass"

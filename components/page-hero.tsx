@@ -25,7 +25,7 @@ export function PageHero({
   const { open: openEstimate } = useEstimate()
 
   return (
-    <section className="relative flex min-h-[540px] items-center overflow-hidden bg-forest-deep sm:min-h-[520px] lg:min-h-[551px]">
+    <section className="relative flex min-h-[calc(540px+var(--header-h))] items-center overflow-hidden bg-forest-deep pt-[var(--header-h)] sm:min-h-[calc(520px+var(--header-h))] lg:min-h-[calc(551px+var(--header-h))]">
       <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/85 to-forest-deep/30" />
 

@@ -59,7 +59,7 @@ const serviceAreas = [
 
 export default function ContactPage() {
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <PageHero
           eyebrow="Contact EcoGlass"

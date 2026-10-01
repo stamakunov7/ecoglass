@@ -98,7 +98,7 @@ export function CollectionHero({
         aria-hidden="true"
       />
 
-      <div className="mx-auto flex min-h-[640px] w-full max-w-[1400px] flex-col justify-between gap-14 px-5 pb-8 pt-16 sm:px-6 sm:pt-24 lg:min-h-[max(680px,calc(100svh-var(--header-h,140px)))] lg:px-8 lg:pb-10">
+      <div className="mx-auto flex min-h-[calc(640px+var(--header-h))] w-full max-w-[1400px] flex-col justify-between gap-14 px-5 pb-8 pt-[calc(var(--header-h)+4rem)] sm:px-6 sm:pt-[calc(var(--header-h)+6rem)] lg:min-h-[max(calc(680px+var(--header-h)),100svh)] lg:px-8 lg:pb-10">
         <div className="max-w-[720px]">
           <p className="hero-reveal flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9fd3a2] sm:text-xs">
             <span className="h-px w-11 bg-[#9fd3a2]" aria-hidden="true" />

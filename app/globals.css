@@ -60,6 +60,8 @@
 
 :root {
   color-scheme: light;
+  /* Height of the site header; SiteHeader keeps it exact at runtime. */
+  --header-h: 109px;
   --background: #f7f8f5;
   --foreground: #263238;
   --card: #ffffff;

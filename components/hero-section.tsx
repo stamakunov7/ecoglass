@@ -12,7 +12,7 @@ export function HeroSection() {
       <HeroVideo />
       <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/70 via-forest-deep/45 to-forest-deep/85 lg:bg-gradient-to-r lg:from-forest-deep/85 lg:via-forest-deep/50 lg:to-forest-deep/10" />
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-var(--header-h,140px))] w-full max-w-[1400px] flex-col justify-center px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="relative mx-auto flex min-h-svh w-full max-w-[1400px] flex-col justify-center px-5 pb-12 pt-[calc(var(--header-h)+3rem)] sm:px-6 sm:pb-16 sm:pt-[calc(var(--header-h)+4rem)] lg:px-8">
         <div className="max-w-[680px]">
           <p className="hero-reveal text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs [animation-delay:150ms]">
             Windows and doors, made for Florida

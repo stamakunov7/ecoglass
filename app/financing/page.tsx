@@ -71,7 +71,7 @@ const faqs = [
 
 export default function FinancingPage() {
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <PageHero
           eyebrow="Financing in partnership with Synchrony"

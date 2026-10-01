@@ -10,7 +10,7 @@ import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <HeroSection />
         <TrustRow />

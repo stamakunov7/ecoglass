@@ -106,7 +106,7 @@ const faqs = [
 
 export default function OurProcessPage() {
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <PageHero
           eyebrow="Our process"

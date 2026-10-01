@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const backdrop = brands.find((b) => b.featured)?.image ?? product.heroImage
 
   return (
-    <SiteShell>
+    <SiteShell overlayHeader>
       <main>
         <CollectionHero
           category={product.category}
