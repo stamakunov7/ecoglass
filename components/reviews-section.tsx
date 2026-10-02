@@ -1,4 +1,5 @@
 import { ArrowUpRight, PenLine } from "lucide-react"
+import { Reveal } from "./reveal"
 
 const PLACE_ID = "ChIJ52NeRhRy54gRw-TSUPoZ1vA"
 const REVIEW_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`
@@ -85,27 +86,30 @@ function Stars({ value, className = "h-4 w-4" }: { value: number; className?: st
 export function ReviewsSection() {
   return (
     <section id="reviews" className="bg-offwhite">
-      <div className="mx-auto w-full max-w-[1400px] px-5 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="mx-auto w-full max-w-[1400px] px-5 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
         {/* Header */}
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs">Reviews</p>
-            <h2 className="mt-2 font-display text-[1.75rem] font-extrabold leading-tight text-forest text-balance sm:text-4xl lg:text-5xl">
-              Trusted by homeowners across Central Florida
+        <Reveal className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-[640px]">
+            <p className="flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-cta-dark sm:text-xs">
+              <span className="h-px w-11 bg-cta-dark" aria-hidden="true" />
+              Reviews
+            </p>
+            <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-forest text-balance sm:text-5xl lg:text-[64px]">
+              Trusted by <span className="font-serif font-normal italic text-cta-dark">Florida homeowners.</span>
             </h2>
-            <p className="mt-3 max-w-[46ch] text-[14px] leading-relaxed text-muted-foreground sm:text-base">
-              Real reviews from real EcoGlass customers. See why neighbors across Longwood and Central Florida choose us
-              for their windows and doors.
+            <p className="mt-6 max-w-[48ch] text-[17px] leading-relaxed text-muted-foreground">
+              Real reviews from real EcoGlass customers. See why homeowners across Florida choose us for their windows
+              and doors.
             </p>
           </div>
 
           {/* Rating summary + actions */}
           <div className="flex shrink-0 flex-col gap-6 lg:items-end">
             <div className="flex items-center gap-5">
-              <span className="font-display text-[3.5rem] font-extrabold leading-none tracking-tight text-forest sm:text-6xl">
+              <span className="font-display text-[4rem] font-extrabold leading-none tracking-[-0.04em] text-forest sm:text-[80px]">
                 {RATING.toFixed(1)}
               </span>
-              <span className="h-14 w-px bg-border" aria-hidden="true" />
+              <span className="h-16 w-px bg-forest/15" aria-hidden="true" />
               <div>
                 <Stars value={RATING} className="h-[22px] w-[22px]" />
                 <p className="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground">
@@ -119,7 +123,7 @@ export function ReviewsSection() {
                 href={REVIEW_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-cta px-6 text-[15px] font-semibold text-white shadow-lg shadow-cta/25 transition-all hover:bg-cta-dark hover:shadow-cta/40"
+                className="shine inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-forest px-6 text-[15px] font-semibold text-white shadow-lg shadow-forest/20 transition-transform hover:-translate-y-0.5"
               >
                 <PenLine className="h-4 w-4" aria-hidden="true" />
                 Leave a review
@@ -138,30 +142,32 @@ export function ReviewsSection() {
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Review cards */}
-        <div className="mt-10 grid gap-5 sm:mt-12 md:grid-cols-3">
-          {reviews.map(({ name, stars, tag, text }) => (
-            <figure
-              key={name}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md hover:shadow-forest/10"
-            >
-              <div className="flex items-center justify-between">
-                <Stars value={stars} className="h-[18px] w-[18px]" />
-                <GoogleG className="h-5 w-5" />
-              </div>
-              <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-ink">“{text}”</blockquote>
-              <figcaption className="mt-5 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-forest to-forest-deep text-sm font-bold text-white">
-                  {name.charAt(0)}
+        <div className="mt-12 grid gap-5 sm:mt-14 md:grid-cols-3">
+          {reviews.map(({ name, stars, tag, text }, i) => (
+            <Reveal key={name} delay={i * 110} className="h-full">
+              <figure className="flex h-full flex-col rounded-[24px] border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgb(13_44_37/0.35)] sm:p-8">
+                <div className="flex items-center justify-between">
+                  <Stars value={stars} className="h-[18px] w-[18px]" />
+                  <GoogleG className="h-5 w-5" />
+                </div>
+                <span className="mt-6 block h-7 font-serif text-[64px] leading-none text-cta/50" aria-hidden="true">
+                  &ldquo;
                 </span>
-                <span>
-                  <span className="block text-[14px] font-bold leading-tight text-forest">{name}</span>
-                  <span className="text-[12px] text-muted-foreground">{tag ? `${tag} · ` : ""}Google review</span>
-                </span>
-              </figcaption>
-            </figure>
+                <blockquote className="mt-2 flex-1 text-[17px] leading-relaxed text-ink">{text}</blockquote>
+                <figcaption className="mt-7 flex items-center gap-3 border-t border-border pt-5">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-forest to-forest-deep text-sm font-bold text-white">
+                    {name.charAt(0)}
+                  </span>
+                  <span>
+                    <span className="block text-[14px] font-bold leading-tight text-forest">{name}</span>
+                    <span className="text-[12px] text-muted-foreground">{tag ? `${tag} · ` : ""}Google review</span>
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>

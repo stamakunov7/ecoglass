@@ -1,85 +1,61 @@
-import { ArrowRight, Wallet, FileCheck, CheckCircle2 } from "lucide-react"
-
-const features = [
-  {
-    icon: Wallet,
-    title: "Flexible payment options",
-    body: "Choose a plan that works for your budget and your project.",
-  },
-  {
-    icon: FileCheck,
-    title: "Simple application process",
-    body: "Quick, straightforward approval so your project can start sooner.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Financing available",
-    body: "Upgrade now and spread the cost over time with a trusted lender.",
-  },
-]
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { Reveal } from "./reveal"
 
 export function FinancingSection() {
   return (
     <section id="financing" className="bg-background">
-      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-8 px-5 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
-        {/* Image */}
-        <div className="order-1 overflow-hidden rounded-3xl lg:order-none">
-          <img
-            src="/images/product-sliding.png"
-            alt="Modern living space with large sliding glass doors opening to a patio"
-            className="aspect-[4/3] w-full object-cover"
-          />
-        </div>
+      <div className="mx-auto w-full max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <Reveal>
+          <div className="relative isolate overflow-hidden rounded-[32px] border border-forest/10 bg-[#eef3ee] px-7 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+            {/* Soft glow in the corner for depth */}
+            <div
+              className="absolute -right-32 -top-40 -z-10 h-[420px] w-[520px] rounded-full bg-cta/15 blur-[100px]"
+              aria-hidden="true"
+            />
 
-        {/* Copy */}
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cta sm:text-xs">Financing</p>
-          <h2 className="mt-2 font-display text-[1.75rem] font-extrabold leading-tight text-forest text-balance sm:text-4xl lg:text-5xl">
-            Financing Options That Fit Your Budget
-          </h2>
-          <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-            Don&apos;t let budget hold back your home upgrade. We offer flexible financing so you can get the windows and
-            doors you want, on terms that work for you.
-          </p>
+            <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-16">
+              <div>
+                <p className="flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-cta-dark sm:text-xs">
+                  <span className="h-px w-11 bg-cta-dark" aria-hidden="true" />
+                  Financing
+                </p>
+                <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-forest sm:text-5xl lg:text-[60px]">
+                  Financing that
+                  <br />
+                  <span className="font-serif font-normal italic text-cta-dark">fits your budget.</span>
+                </h2>
+              </div>
 
-          <ul className="mt-6 flex flex-col gap-4 sm:mt-8">
-            {features.map(({ icon: Icon, title, body }) => (
-              <li key={title} className="flex items-start gap-3.5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-deep text-white shadow-sm shadow-forest/20 ring-1 ring-inset ring-white/10">
-                  <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="text-[15px] font-bold leading-tight text-forest sm:text-base">{title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{body}</p>
+              <div className="lg:pb-1">
+                <p className="max-w-[440px] text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
+                  Don&apos;t let budget hold back your home upgrade. Flexible plans so your project can start now.
+                </p>
+                <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-5">
+                  <Link
+                    href="/financing"
+                    className="shine group inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-forest px-8 text-[15px] font-bold text-white shadow-lg shadow-forest/20 transition-transform hover:-translate-y-0.5"
+                  >
+                    Explore financing
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                  <span className="flex items-center gap-3">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                      With
+                    </span>
+                    <img
+                      src="/images/synchrony-logo.webp"
+                      alt="Synchrony"
+                      width={2000}
+                      height={426}
+                      className="h-5 w-auto"
+                    />
+                  </span>
                 </div>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-7 flex flex-col gap-5 sm:mt-8 sm:flex-row sm:items-center sm:gap-6">
-            <a
-              href="/financing"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-cta px-6 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark"
-            >
-              Explore Financing
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-
-            {/* Partner lockup */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px]">
-                In partnership with
-              </span>
-              <img
-                src="/images/synchrony-logo.webp"
-                alt="Synchrony"
-                width={2000}
-                height={426}
-                className="h-5 w-auto sm:h-[22px]"
-              />
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

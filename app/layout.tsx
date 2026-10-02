@@ -13,9 +13,9 @@ const instrument = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: 'EcoGlass | Custom Windows & Doors in Central Florida',
+  title: 'EcoGlass | Custom Windows & Doors in Florida',
   description:
-    'Custom-built windows and doors manufactured, supplied, and installed by EcoGlass in Central Florida. Get a free in-home estimate.',
+    'Custom-built windows and doors manufactured in Central Florida and installed by EcoGlass across the state. Get a free in-home estimate.',
   generator: 'v0.app',
   icons: {
     icon: [

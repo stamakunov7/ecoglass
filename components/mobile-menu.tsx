@@ -183,7 +183,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           <div className="mt-2 rounded-xl bg-forest px-4 py-4">
             <p className="text-[13px] font-bold text-white">Built for Florida. Backed by Experience.</p>
             <p className="mt-1 text-[12px] leading-relaxed text-white/70">
-              Proudly serving homeowners across Central Florida with premium windows and doors.
+              Proudly serving homeowners across all of Florida with premium windows and doors.
             </p>
           </div>
         </div>

@@ -255,7 +255,7 @@ function EstimateModal({
               <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <p className="font-display text-lg font-bold text-white">Free, no-obligation estimates</p>
-                <p className="mt-1 text-sm text-white/80">Built, supplied, and installed by EcoGlass in Central Florida.</p>
+                <p className="mt-1 text-sm text-white/80">Built in Central Florida and installed by EcoGlass statewide.</p>
               </div>
             </>
           )}

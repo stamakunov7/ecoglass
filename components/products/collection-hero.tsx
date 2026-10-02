@@ -1,40 +1,16 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useEstimate } from "@/components/estimate-modal"
+import { useCountUp } from "@/lib/use-count-up"
 
 const NUMBER_WORDS: Record<number, string> = { 2: "two", 3: "three", 4: "four", 5: "five" }
 
 function scrollToBrands() {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   document.getElementById("brands")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
-}
-
-/** Counts from 0 up to `value` once, after `delay` ms. Renders the final value on the server. */
-function useCountUp(value: number, delay: number, decimals = 0) {
-  const [current, setCurrent] = useState(value)
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-    let frame = 0
-    setCurrent(0)
-    const timeout = setTimeout(() => {
-      const start = performance.now()
-      const tick = (now: number) => {
-        const t = Math.min(1, (now - start) / 1400)
-        const eased = 1 - Math.pow(1 - t, 3)
-        setCurrent(value * eased)
-        if (t < 1) frame = requestAnimationFrame(tick)
-      }
-      frame = requestAnimationFrame(tick)
-    }, delay)
-    return () => {
-      clearTimeout(timeout)
-      cancelAnimationFrame(frame)
-    }
-  }, [value, delay])
-  return current.toFixed(decimals)
 }
 
 export function CollectionHero({
@@ -116,7 +92,7 @@ export function CollectionHero({
             style={{ animationDelay: "300ms" }}
           >
             {count.charAt(0).toUpperCase() + count.slice(1)} trusted brands, each built to your exact opening and installed
-            by our own crew in Central Florida.
+            by our own crew anywhere in Florida.
           </p>
           <div
             className="hero-reveal mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"

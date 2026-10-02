@@ -110,7 +110,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
           <div className="hidden items-center gap-6 md:flex">
             <span className="flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-cta" aria-hidden="true" />
-              Serving Central Florida
+              Serving all of Florida
             </span>
             <span className="flex items-center gap-1.5">
               <CalendarCheck className="h-3.5 w-3.5 text-cta" aria-hidden="true" />

@@ -16,7 +16,7 @@ export function CollectionClosing() {
           Built here. <span className="font-serif font-normal italic text-cta-dark">Installed by us.</span>
         </h2>
         <p className="mt-6 max-w-[600px] text-[17px] leading-relaxed text-muted-foreground sm:text-lg">
-          Manufactured, supplied, and installed in Central Florida — with one team from your first call to the final
+          Manufactured in Central Florida and installed across the state — with one team from your first call to the final
           walkthrough.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">

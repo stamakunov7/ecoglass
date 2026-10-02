@@ -1,6 +1,5 @@
 import { SiteShell } from "@/components/site-shell"
 import { HeroSection } from "@/components/hero-section"
-import { TrustRow } from "@/components/trust-row"
 import { ProductsSection } from "@/components/products-section"
 import { WhySection } from "@/components/why-section"
 import { ProcessSection } from "@/components/process-section"
@@ -13,7 +12,6 @@ export default function Page() {
     <SiteShell overlayHeader>
       <main>
         <HeroSection />
-        <TrustRow />
         <ProductsSection />
         <WhySection />
         <ProcessSection />

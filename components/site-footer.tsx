@@ -21,7 +21,7 @@ export function SiteFooter() {
           <div className="sm:col-span-2 lg:col-span-1">
             <BrandLogo variant="dark" />
             <p className="mt-3 max-w-[38ch] text-[13px] leading-relaxed text-white/55">
-              Custom windows and doors manufactured, supplied, and installed in Central Florida.
+              Custom windows and doors manufactured in Central Florida and installed across the state.
             </p>
           </div>
 

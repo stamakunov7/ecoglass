@@ -19,9 +19,9 @@ import { CtaFooter } from "@/components/cta-footer"
 import { PageHero } from "@/components/page-hero"
 
 export const metadata: Metadata = {
-  title: "Why EcoGlass | Local Window & Door Manufacturer in Central Florida",
+  title: "Why EcoGlass | Florida Window & Door Manufacturer",
   description:
-    "EcoGlass manufactures, supplies, and installs custom energy-efficient, impact-rated windows and doors in Central Florida. Learn why homeowners choose a local manufacturer.",
+    "EcoGlass manufactures custom energy-efficient, impact-rated windows and doors in Central Florida and installs them across the state. Learn why homeowners choose a local manufacturer.",
 }
 
 const pillars = [
@@ -108,7 +108,7 @@ export default function WhyEcoGlassPage() {
         <PageHero
           eyebrow="Why choose EcoGlass"
           title="Built Local. Built for You."
-          description="EcoGlass is a Central Florida manufacturer, supplier, and installer of custom windows and doors. Because we control every step, you get better quality, faster timelines, and one accountable team from first call to final walkthrough."
+          description="EcoGlass is a Florida manufacturer, supplier, and installer of custom windows and doors. Because we control every step, you get better quality, faster timelines, and one accountable team from first call to final walkthrough."
           image="/images/why-hero.png"
           imageAlt="Inside the EcoGlass window and door manufacturing facility in Central Florida"
           primaryHref="#benefits"

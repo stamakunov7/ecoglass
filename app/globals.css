@@ -200,6 +200,42 @@
   }
 }
 
+/* Text rising out of an invisible mask (wrap it in an overflow-hidden inline-block) */
+@keyframes mask-reveal {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.mask-reveal {
+  transform: translateY(105%);
+  animation: mask-reveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Endless horizontal ribbon: the track holds two identical rows */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 48s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mask-reveal {
+    transform: none;
+    animation: none;
+  }
+  .marquee {
+    animation: none;
+  }
+}
+
 /* ---------------- Product collection page effects ---------------- */
 
 @property --border-angle {
@@ -249,6 +285,24 @@
   animation: soft-pulse 2.4s ease-in-out infinite;
 }
 
+/* Expanding ring around a map marker */
+@keyframes map-ping {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+.map-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 /* Light sweep across a button on hover */
 .shine {
   position: relative;
@@ -274,8 +328,12 @@
 @media (prefers-reduced-motion: reduce) {
   .ken-burns,
   .spin-border,
-  .soft-pulse {
+  .soft-pulse,
+  .map-ping {
     animation: none;
+  }
+  .map-ping {
+    opacity: 0;
   }
   .shine::after {
     display: none;
