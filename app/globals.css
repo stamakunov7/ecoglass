@@ -278,6 +278,73 @@
   animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
+/* Split-flap style flip for comparison rows (parent sets the perspective) */
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    transform: rotateX(-95deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+.flip-in {
+  transform-origin: 50% 0%;
+  backface-visibility: hidden;
+  animation: flip-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Small looping motions for feature icons */
+@keyframes gust {
+  0% {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(40%);
+    opacity: 0;
+  }
+}
+
+.gust {
+  animation: gust 2.4s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+.sway {
+  transform-origin: 50% 90%;
+  animation: sway 3.2s ease-in-out infinite;
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0.55);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  animation: ripple 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mask-reveal {
     transform: none;
@@ -285,10 +352,14 @@
   }
   .marquee,
   .marquee-y,
-  .scroll-cue {
+  .scroll-cue,
+  .gust,
+  .sway,
+  .ripple {
     animation: none;
   }
-  .gallery-in {
+  .gallery-in,
+  .flip-in {
     opacity: 1;
     animation: none;
   }
