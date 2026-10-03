@@ -2,12 +2,10 @@ import Link from "next/link"
 
 export function BrandLogo({
   className = "",
-  variant = "light",
   onDark,
 }: {
   className?: string
-  variant?: "light" | "dark"
-  /** Set when the logo sits over imagery that can change: true crossfades to the white-lettered version. */
+  /** For dark surfaces: true shows the white-lettered version, and toggling it crossfades between the two. */
   onDark?: boolean
 }) {
   const logo = (
@@ -32,16 +30,11 @@ export function BrandLogo({
     </span>
   )
 
-  const base =
-    variant === "dark"
-      ? "inline-flex items-center rounded-lg bg-white px-3 py-2"
-      : "inline-flex items-center"
-
   return (
     <Link
       href="/"
       aria-label="EcoGlass Windows & Doors — go to homepage"
-      className={`${base} rounded-lg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${className}`}
+      className={`inline-flex items-center rounded-lg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${className}`}
     >
       {logo}
     </Link>

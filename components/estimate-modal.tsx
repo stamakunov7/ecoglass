@@ -221,6 +221,7 @@ function EstimateModal({
         open ? "pointer-events-auto" : "pointer-events-none"
       }`}
       aria-hidden={!open}
+      data-lenis-prevent
     >
       {/* Overlay */}
       <button

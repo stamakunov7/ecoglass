@@ -26,7 +26,7 @@ const links = [
   { label: "Why EcoGlass", icon: Sparkles, href: "/why-ecoglass" },
   { label: "Our Process", icon: Route, href: "/our-process" },
   { label: "Financing", icon: Wallet, href: "/financing" },
-  { label: "Gallery", icon: Images, href: "/#products" },
+  { label: "Gallery", icon: Images, href: "/gallery" },
   { label: "Contact", icon: Mail, href: "/contact" },
 ]
 
@@ -63,6 +63,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
     <div
       className={`fixed inset-0 z-50 md:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
       aria-hidden={!open}
+      data-lenis-prevent
     >
       {/* Overlay */}
       <button

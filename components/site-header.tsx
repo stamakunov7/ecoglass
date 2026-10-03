@@ -18,7 +18,7 @@ type MenuKey = "products" | "why"
 const simpleNav: NavItem[] = [
   { label: "Our Process", href: "/our-process" },
   { label: "Financing", href: "/financing" },
-  { label: "Gallery", href: "/#products" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ]
 
