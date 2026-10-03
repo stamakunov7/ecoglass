@@ -56,7 +56,7 @@ export default function ContactPage() {
             aria-hidden="true"
           />
 
-          <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-12 px-5 pb-16 pt-[calc(var(--header-h)+3rem)] sm:px-6 sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,540px)] lg:gap-16 lg:px-8 lg:pb-24 xl:gap-24">
+          <div className="mx-auto grid min-h-svh w-full max-w-[1400px] grid-cols-1 items-center gap-12 px-5 pb-16 pt-[calc(var(--header-h)+3rem)] sm:px-6 sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,540px)] lg:gap-16 lg:px-8 lg:pb-24 xl:gap-24">
             <div>
               <p className="hero-reveal flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9fd3a2] sm:text-xs">
                 <span className="h-px w-11 bg-[#9fd3a2]" aria-hidden="true" />

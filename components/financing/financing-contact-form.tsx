@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Send, CheckCircle2, Loader2 } from "lucide-react"
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
 import { LEAD_ERROR_MESSAGE, submitLead } from "@/lib/leads"
 
 type FormState = {
@@ -10,7 +10,6 @@ type FormState = {
   email: string
   phone: string
   amount: string
-  message: string
 }
 
 const emptyForm: FormState = {
@@ -19,7 +18,6 @@ const emptyForm: FormState = {
   email: "",
   phone: "",
   amount: "",
-  message: "",
 }
 
 export function FinancingContactForm() {
@@ -58,7 +56,6 @@ export function FinancingContactForm() {
       email: form.email,
       phone: form.phone,
       budget: form.amount,
-      message: form.message,
       company: honeypot,
     })
     setSending(false)
@@ -68,7 +65,7 @@ export function FinancingContactForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center rounded-2xl border border-border bg-card px-6 py-14 text-center shadow-sm">
+      <div className="flex flex-col items-center px-2 py-12 text-center sm:py-16">
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-sage text-cta">
           <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
         </span>
@@ -84,11 +81,7 @@ export function FinancingContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="relative rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
-    >
+    <form onSubmit={handleSubmit} noValidate className="relative">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field
           label="First name"
@@ -130,28 +123,12 @@ export function FinancingContactForm() {
       <div className="mt-4">
         <Field
           label="Estimated project budget"
+          optional
           placeholder="e.g. $10,000 – $15,000"
           value={form.amount}
           onChange={(v) => updateField("amount", v)}
         />
       </div>
-      <div className="mt-4">
-        <label className="block">
-          <span className="mb-1.5 block text-[13px] font-semibold text-forest">How can we help?</span>
-          <textarea
-            value={form.message}
-            placeholder="Tell us about your project and any financing questions."
-            onChange={(e) => updateField("message", e.target.value)}
-            rows={4}
-            className="w-full resize-none rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-cta focus:ring-2 focus:ring-cta/20"
-          />
-        </label>
-      </div>
-
-      <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-        Subject to credit approval. Financing is provided by Synchrony Bank. Submitting this form does not constitute a
-        credit application.
-      </p>
 
       {/* Honeypot: hidden from people, filled in by bots */}
       <input
@@ -174,7 +151,7 @@ export function FinancingContactForm() {
       <button
         type="submit"
         disabled={sending}
-        className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-cta px-7 text-[15px] font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark sm:w-auto disabled:cursor-wait disabled:opacity-80"
+        className="shine group mt-6 flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-forest px-8 text-[15px] font-bold text-white shadow-lg shadow-forest/20 transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-forest-deep disabled:cursor-wait disabled:opacity-80 disabled:hover:translate-y-0"
       >
         {sending ? (
           <>
@@ -183,11 +160,15 @@ export function FinancingContactForm() {
           </>
         ) : (
           <>
-            Send inquiry
-            <Send className="h-4 w-4" aria-hidden="true" />
+            Ask about financing
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </>
         )}
       </button>
+
+      <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
+        Subject to credit approval. Financing is provided by Synchrony Bank. This form is not a credit application.
+      </p>
     </form>
   )
 }
@@ -195,6 +176,7 @@ export function FinancingContactForm() {
 function Field({
   label,
   required,
+  optional,
   placeholder,
   value,
   error,
@@ -203,6 +185,7 @@ function Field({
 }: {
   label: string
   required?: boolean
+  optional?: boolean
   placeholder: string
   value: string
   error?: string
@@ -214,6 +197,7 @@ function Field({
       <span className="mb-1.5 block text-[13px] font-semibold text-forest">
         {label}
         {required && <span className="text-cta"> *</span>}
+        {optional && <span className="font-normal text-muted-foreground"> (optional)</span>}
       </span>
       <input
         type={type}
@@ -221,7 +205,7 @@ function Field({
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
-        className={`h-11 w-full rounded-lg border bg-card px-3.5 text-sm text-ink outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-cta focus:ring-2 focus:ring-cta/20 ${
+        className={`h-12 w-full rounded-xl border bg-offwhite px-4 text-[15px] text-ink outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-cta focus:bg-card focus:ring-4 focus:ring-cta/10 ${
           error ? "border-destructive" : "border-input"
         }`}
       />

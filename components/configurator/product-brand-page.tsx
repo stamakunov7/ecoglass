@@ -7,6 +7,7 @@ import { useEstimate } from "@/components/estimate-modal"
 import { DuroPlastLogo, NovaLogo, PrestigeLogo, PrestigePlusLogo } from "@/components/products/brand-logos"
 import { SAMPLE_DATA } from "@/lib/configurator/catalog"
 import { formatSize } from "@/lib/configurator/format"
+import { glideTo } from "@/lib/smooth-scroll"
 import {
   defaultSelection,
   describeSelection,
@@ -128,10 +129,7 @@ function PageFrame({
     const node = contentRef.current
     if (!node) return
     const headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 0
-    if (node.getBoundingClientRect().top < headerH + 40) {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      node.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
-    }
+    if (node.getBoundingClientRect().top < headerH + 40) glideTo(node, 0.9)
   }
 
   function goTo(id: StepId) {

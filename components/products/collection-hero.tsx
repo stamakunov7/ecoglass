@@ -5,12 +5,13 @@ import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useEstimate } from "@/components/estimate-modal"
 import { useCountUp } from "@/lib/use-count-up"
+import { glideTo } from "@/lib/smooth-scroll"
 
 const NUMBER_WORDS: Record<number, string> = { 2: "two", 3: "three", 4: "four", 5: "five" }
 
 function scrollToBrands() {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  document.getElementById("brands")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
+  const brands = document.getElementById("brands")
+  if (brands) glideTo(brands, 1.4)
 }
 
 export function CollectionHero({

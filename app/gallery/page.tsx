@@ -4,7 +4,6 @@ import { SiteFooter } from "@/components/site-footer"
 import { GalleryHero } from "@/components/gallery/gallery-hero"
 import { GalleryZoom } from "@/components/gallery/gallery-zoom"
 import { GalleryGrid } from "@/components/gallery/gallery-grid"
-import { GallerySmoothScroll } from "@/components/gallery/gallery-smooth-scroll"
 import { ProcessClosing } from "@/components/process/process-closing"
 
 export const metadata: Metadata = {
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <SiteShell overlayHeader>
-      <GallerySmoothScroll />
       <main>
         <GalleryHero />
         <GalleryZoom />

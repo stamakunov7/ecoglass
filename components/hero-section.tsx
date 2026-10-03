@@ -4,10 +4,11 @@ import { ArrowRight } from "lucide-react"
 import { useEstimate } from "./estimate-modal"
 import { HeroVideo } from "./hero-video"
 import { useCountUp } from "@/lib/use-count-up"
+import { glideTo } from "@/lib/smooth-scroll"
 
 function scrollToProducts() {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  document.getElementById("products")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
+  const products = document.getElementById("products")
+  if (products) glideTo(products, 1.4)
 }
 
 export function HeroSection() {

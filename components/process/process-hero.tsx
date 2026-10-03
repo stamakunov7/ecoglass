@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowDown } from "lucide-react"
 import { useEstimate } from "@/components/estimate-modal"
+import { glideTo } from "@/lib/smooth-scroll"
 import { PROCESS_STEPS } from "./process-steps-data"
 
 const VIDEO = {
@@ -18,8 +19,8 @@ const WORDS = [
 ]
 
 function scrollToId(id: string) {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
+  const target = document.getElementById(id)
+  if (target) glideTo(target, 1.4)
 }
 
 export function ProcessHero() {

@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react"
 import { SiteHeader } from "./site-header"
 import { MobileMenu } from "./mobile-menu"
 import { EstimateProvider } from "./estimate-modal"
+import { SmoothScroll } from "./smooth-scroll"
 
 /** `overlayHeader`: the page opens with a full-bleed dark hero, so the header floats over it see-through. */
 export function SiteShell({ children, overlayHeader = false }: { children: ReactNode; overlayHeader?: boolean }) {
@@ -11,6 +12,7 @@ export function SiteShell({ children, overlayHeader = false }: { children: React
 
   return (
     <EstimateProvider>
+      <SmoothScroll />
       <div className="relative min-h-screen w-full overflow-x-clip bg-background">
         <SiteHeader overlay={overlayHeader} onOpenMenu={() => setMenuOpen(true)} />
         {children}
