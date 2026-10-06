@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail } from "lucide-react"
+import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail, Building2 } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { useEstimate } from "./estimate-modal"
 
@@ -26,6 +26,7 @@ const links = [
   { label: "Why EcoGlass", icon: Sparkles, href: "/why-ecoglass" },
   { label: "Our Process", icon: Route, href: "/our-process" },
   { label: "Financing", icon: Wallet, href: "/financing" },
+  { label: "Commercial", icon: Building2, href: "/commercial" },
   { label: "Gallery", icon: Images, href: "/gallery" },
   { label: "Contact", icon: Mail, href: "/contact" },
 ]
@@ -61,7 +62,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
   return (
     <div
-      className={`fixed inset-0 z-50 md:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-50 xl:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
       aria-hidden={!open}
       data-lenis-prevent
     >

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { glideTo, hasSmoothScroll, isGliding } from "@/lib/smooth-scroll"
 
 const PHOTO = "/images/gallery/dusk-home.webp"
 
@@ -8,7 +9,8 @@ const clamp = (v: number) => Math.min(1, Math.max(0, v))
 
 /**
  * A giant "LOCAL." with a photo showing through the letters. Scrolling zooms into the stroke of
- * the C until the photo fills the screen, then a caption settles in.
+ * the C until the photo fills the screen, then a caption settles in. Once a wheel scroll starts the zoom,
+ * the page glides the rest of the way so it never stops halfway through.
  */
 export function WhyHero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -35,10 +37,14 @@ export function WhyHero() {
       word.style.transformOrigin = `${l.left - w.left + l.width * 0.2}px ${l.top - w.top + l.height * 0.5}px`
     }
 
+    // Touch scrolling keeps its own momentum, so the glide is only for wheel and keyboard.
+    const assist = !window.matchMedia("(pointer: coarse)").matches
     let frame = 0
+    let lastY = window.scrollY
     const update = () => {
       const rect = section.getBoundingClientRect()
-      const p = clamp(-rect.top / (rect.height - window.innerHeight))
+      const travel = rect.height - window.innerHeight
+      const p = clamp(-rect.top / travel)
       const zoom = clamp(p / 0.72)
       word.style.transform = `scale(${1 + zoom ** 3 * 90})`
       if (introRef.current) {
@@ -51,6 +57,15 @@ export function WhyHero() {
         const t = clamp((p - 0.74) / 0.16)
         captionRef.current.style.opacity = String(t)
         captionRef.current.style.transform = `translateY(${(1 - t) * 28}px)`
+      }
+
+      const y = window.scrollY
+      const direction = Math.sign(y - lastY)
+      lastY = y
+      if (assist && direction !== 0 && hasSmoothScroll() && !isGliding()) {
+        const start = rect.top + y
+        if (direction > 0 && p > 0.003 && p < 0.9) glideTo(start + travel, 2.6)
+        else if (direction < 0 && p < 0.997 && p > 0.1) glideTo(start, 2.6)
       }
     }
     const onScroll = () => {

@@ -1,7 +1,7 @@
 import type { LeadPayload, LeadSource } from "@/lib/leads"
 
 /**
- * Receives every form on the site (estimate, product quote, contact, financing) and
+ * Receives every form on the site (estimate, product quote, contact, financing, commercial bid) and
  * emails it to the team through Resend.
  *
  * Environment:
@@ -10,7 +10,7 @@ import type { LeadPayload, LeadSource } from "@/lib/leads"
  *   LEAD_FROM_EMAIL  – sender on a domain verified in Resend (default Resend's onboarding sender)
  */
 
-const SOURCES: LeadSource[] = ["estimate", "quote", "contact", "financing"]
+const SOURCES: LeadSource[] = ["estimate", "quote", "contact", "financing", "commercial"]
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function str(value: unknown, max = 200) {
@@ -44,6 +44,11 @@ function parse(body: unknown): { lead?: LeadPayload; error?: string } {
     topic: line(b.topic, 80),
     message: str(b.message, 4000),
     budget: line(b.budget, 120),
+    businessName: line(b.businessName, 160),
+    location: line(b.location, 200),
+    units: line(b.units, 80),
+    timeline: line(b.timeline, 80),
+    plansLink: line(b.plansLink, 1000),
     page: line(b.page, 500),
     company: line(b.company, 200),
   }
@@ -77,6 +82,8 @@ function subjectFor(lead: LeadPayload) {
       return `New free estimate request — ${name}`
     case "financing":
       return `New financing inquiry — ${name}`
+    case "commercial":
+      return `New commercial bid request${lead.businessName ? ` — ${lead.businessName}` : ""} — ${name}`
     default:
       return `New contact message${lead.topic ? ` (${lead.topic})` : ""} — ${name}`
   }
@@ -89,9 +96,14 @@ function rowsFor(lead: LeadPayload): [string, string][] {
     ["Phone", lead.phone],
   ]
   const optional: [string, string | undefined][] = [
+    ["Company", lead.businessName],
     ["Zip code", lead.zip],
     ["I am a", lead.role],
     ["Project type", lead.projectType],
+    ["Project location", lead.location],
+    ["Windows & doors (approx.)", lead.units],
+    ["Timeline", lead.timeline],
+    ["Plans", lead.plansLink],
     ["Topic", lead.topic],
     ["Budget", lead.budget],
     ["Message", lead.message],

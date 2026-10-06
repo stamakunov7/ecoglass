@@ -6,6 +6,7 @@ import { BrandLogo } from "./brand-logo"
 import { ProductsMegaMenu } from "./products-mega-menu"
 import { WhyMegaMenu } from "./why-mega-menu"
 import { useEstimate } from "./estimate-modal"
+import { EstimateCta } from "./estimate-cta"
 
 type NavItem = {
   label: string
@@ -18,6 +19,7 @@ type MenuKey = "products" | "why"
 const simpleNav: NavItem[] = [
   { label: "Our Process", href: "/our-process" },
   { label: "Financing", href: "/financing" },
+  { label: "Commercial", href: "/commercial" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ]
@@ -43,7 +45,15 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
   }, [menu])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    // Pinned dark scenes marked data-header-clear keep the header see-through while they sit behind it.
+    const onScroll = () => {
+      const height = headerRef.current?.offsetHeight ?? 0
+      const overScene = Array.from(document.querySelectorAll<HTMLElement>("[data-header-clear]")).some((el) => {
+        const rect = el.getBoundingClientRect()
+        return rect.top <= 1 && rect.bottom >= height
+      })
+      setScrolled(window.scrollY > 24 && !overScene)
+    }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -82,7 +92,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
       {/* Page-dimming overlay for the mega menu (desktop only) */}
       <div
         onClick={() => setMenu(null)}
-        className={`fixed inset-0 top-0 -z-10 hidden bg-forest-deep/50 backdrop-blur-[1px] transition-opacity duration-300 md:block ${
+        className={`fixed inset-0 top-0 -z-10 hidden bg-forest-deep/50 backdrop-blur-[1px] transition-opacity duration-300 xl:block ${
           menu ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden="true"
@@ -141,7 +151,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
           <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
             <BrandLogo onDark={overlay ? clear : undefined} />
 
-            <nav className="hidden items-center gap-5 md:flex lg:gap-7">
+            <nav className="hidden items-center gap-6 whitespace-nowrap xl:flex 2xl:gap-7">
               {/* Products (mega menu) */}
               <button
                 type="button"
@@ -161,12 +171,11 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
                 />
               </button>
 
-              {/* Why EcoGlass (mega menu) */}
-              <button
-                type="button"
+              {/* Why EcoGlass: hover previews the mega menu, a click opens the page */}
+              <a
+                href="/why-ecoglass"
                 onMouseEnter={() => setMenu("why")}
                 onFocus={() => setMenu("why")}
-                onClick={() => setMenu("why")}
                 aria-expanded={menu === "why"}
                 aria-haspopup="true"
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${
@@ -178,7 +187,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
                   className={`h-3.5 w-3.5 transition-transform ${menu === "why" ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 />
-              </button>
+              </a>
 
               {simpleNav.map(({ label, href }) => (
                 <a
@@ -193,18 +202,12 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
             </nav>
 
             <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={openEstimate}
-                className="hidden h-11 items-center justify-center rounded-xl bg-cta px-5 text-sm font-semibold text-white shadow-sm shadow-cta/30 transition-colors hover:bg-cta-dark md:flex"
-              >
-                Get a Free Estimate
-              </button>
+              <EstimateCta onClick={openEstimate} className="hidden xl:flex" />
               <button
                 type="button"
                 onClick={onOpenMenu}
                 aria-label="Open navigation menu"
-                className={`flex h-11 w-11 items-center justify-center rounded-lg border transition-colors md:hidden ${
+                className={`flex h-11 w-11 items-center justify-center rounded-lg border transition-colors xl:hidden ${
                   clear
                     ? "border-white/30 bg-white/10 text-white backdrop-blur-md active:bg-white/20"
                     : "border-border bg-card text-forest active:bg-muted"
@@ -218,7 +221,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
 
         {/* Mega menu panel (shared by Products and Why EcoGlass) */}
         <div
-          className={`absolute left-0 right-0 top-full z-40 hidden origin-top border-b border-border bg-card shadow-2xl shadow-forest-deep/20 transition-all duration-200 ease-out md:block ${
+          className={`absolute left-0 right-0 top-full z-40 hidden origin-top border-b border-border bg-card shadow-2xl shadow-forest-deep/20 transition-all duration-200 ease-out xl:block ${
             menu
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0"

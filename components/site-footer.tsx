@@ -6,6 +6,7 @@ const quickLinks = [
   { label: "Why EcoGlass", href: "/why-ecoglass" },
   { label: "Our Process", href: "/our-process" },
   { label: "Financing", href: "/financing" },
+  { label: "Commercial", href: "/commercial" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ]

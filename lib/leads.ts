@@ -1,4 +1,4 @@
-export type LeadSource = "estimate" | "quote" | "contact" | "financing"
+export type LeadSource = "estimate" | "quote" | "contact" | "financing" | "commercial"
 
 export type LeadSpec = { label: string; value: string }
 
@@ -16,6 +16,12 @@ export type LeadPayload = {
   topic?: string
   message?: string
   budget?: string
+  /** Commercial bid requests */
+  businessName?: string
+  location?: string
+  units?: string
+  timeline?: string
+  plansLink?: string
   /** A product designed in the configurator. */
   configuration?: {
     title: string

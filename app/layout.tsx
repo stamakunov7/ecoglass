@@ -13,6 +13,7 @@ const instrument = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.ecoglass.us'),
   title: 'EcoGlass | Custom Windows & Doors in Florida',
   description:
     'Custom-built windows and doors manufactured in Central Florida and installed by EcoGlass across the state. Get a free in-home estimate.',
@@ -20,24 +21,24 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/icon-light-32x32.png?v=3',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-dark-32x32.png?v=3',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/icon.svg?v=3',
         type: 'image/svg+xml',
       },
       {
-        url: '/icon-512.png',
+        url: '/icon-512.png?v=3',
         sizes: '512x512',
         type: 'image/png',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/apple-icon.png?v=3',
   },
 }
 
