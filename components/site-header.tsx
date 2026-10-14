@@ -152,12 +152,11 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
             <BrandLogo onDark={overlay ? clear : undefined} />
 
             <nav className="hidden items-center gap-6 whitespace-nowrap xl:flex 2xl:gap-7">
-              {/* Products (mega menu) */}
-              <button
-                type="button"
+              {/* Products: hover previews the mega menu, a click opens the full catalog */}
+              <a
+                href="/products"
                 onMouseEnter={() => setMenu("products")}
                 onFocus={() => setMenu("products")}
-                onClick={() => setMenu("products")}
                 aria-expanded={menu === "products"}
                 aria-haspopup="true"
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${
@@ -169,7 +168,7 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
                   className={`h-3.5 w-3.5 transition-transform ${menu === "products" ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 />
-              </button>
+              </a>
 
               {/* Why EcoGlass: hover previews the mega menu, a click opens the page */}
               <a
