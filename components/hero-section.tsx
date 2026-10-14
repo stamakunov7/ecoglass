@@ -85,13 +85,13 @@ export function HeroSection() {
         </div>
 
         <div
-          className="hero-reveal grid grid-cols-2 gap-y-5 border-t border-white/15 pt-6 lg:grid-cols-4 lg:gap-y-0"
+          className="hero-reveal grid grid-cols-2 gap-y-4 border-t border-white/15 pt-5 lg:grid-cols-4 lg:gap-y-0"
           style={{ animationDelay: "950ms" }}
         >
           {facts.map(({ key, value, label }, i) => (
             <div key={key} className={`pr-3 lg:px-6 lg:first:pl-0 ${i > 0 ? "lg:border-l lg:border-white/15" : ""}`}>
-              <p className="font-display text-lg font-extrabold tabular-nums tracking-[-0.01em] sm:text-xl">{value}</p>
-              <p className="mt-0.5 text-[13px] text-white/65">{label}</p>
+              <p className="font-display text-[15px] font-bold tabular-nums tracking-[-0.01em] sm:text-base">{value}</p>
+              <p className="mt-0.5 text-[12px] text-white/60">{label}</p>
             </div>
           ))}
         </div>

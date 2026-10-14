@@ -27,11 +27,17 @@ export type Product = {
   brands: Brand[]
 }
 
+/** Products whose brand cards have their own photos in /images/series. The rest show the awning set for now. */
+const SERIES_PHOTOS = new Set(["awning", "double-single-hung"])
+
+/** Photo of one brand's version of a product, e.g. /images/series/casement-nova.webp. */
+function seriesImage(slug: string, brand: string) {
+  return `/images/series/${SERIES_PHOTOS.has(slug) ? slug : "awning"}-${brand}.webp`
+}
+
 /**
  * The four supplier brands are shared across every product line. Descriptions are
- * kept product-neutral so they read correctly for both windows and doors. Each
- * product reuses the same representative brand imagery; swap per-product art later
- * by overriding the image paths in makeBrands.
+ * kept product-neutral so they read correctly for both windows and doors.
  */
 function makeBrands(slug: string): Brand[] {
   return [
@@ -40,7 +46,7 @@ function makeBrands(slug: string): Brand[] {
       name: "NOVA",
       description:
         "Clean, modern designs with slim profiles and dependable performance. A great fit for contemporary spaces that need energy efficiency and everyday reliability.",
-      image: "/images/awning-nova.png",
+      image: seriesImage(slug, "nova"),
       alt: "NOVA product",
       href: `/products/${slug}/nova`,
       logo: <NovaLogo />,
@@ -50,7 +56,7 @@ function makeBrands(slug: string): Brand[] {
       name: "PRESTIGE",
       description:
         "Elegant products that combine designer aesthetics with advanced performance. Ideal for homeowners who want a premium, refined finish.",
-      image: "/images/awning-prestige.png",
+      image: seriesImage(slug, "prestige"),
       alt: "PRESTIGE product",
       href: `/products/${slug}/prestige`,
       logo: <PrestigeLogo />,
@@ -60,7 +66,7 @@ function makeBrands(slug: string): Brand[] {
       name: "DURO PLAST",
       description:
         "Strong, practical builds made for long-lasting everyday performance. Designed to combine durability, low maintenance, and efficiency.",
-      image: "/images/awning-duroplast.png",
+      image: seriesImage(slug, "duro-plast"),
       alt: "DURO PLAST product",
       href: `/products/${slug}/duro-plast`,
       logo: <DuroPlastLogo />,
@@ -70,7 +76,7 @@ function makeBrands(slug: string): Brand[] {
       name: "PRESTIGE+",
       description:
         "Enhanced systems with a sleek appearance and upgraded performance. Perfect for projects that need style, functionality, and premium details.",
-      image: "/images/awning-prestige-plus.png",
+      image: seriesImage(slug, "prestige-plus"),
       alt: "PRESTIGE+ product",
       href: `/products/${slug}/prestige-plus`,
       logo: <PrestigePlusLogo />,
