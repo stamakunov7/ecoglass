@@ -2,7 +2,7 @@
 const legacyRedirects = [
   ["/about", "/why-ecoglass"],
   ["/windows", "/products?category=windows"],
-  ["/doors", "/products?category=doors"],
+  ["/doors", "/products/doors"],
   ["/nova-series", "/products?category=windows"],
   ["/prestige-series-1", "/products?category=windows"],
   ["/copy-of-prestige-series", "/products?category=windows"],
@@ -18,6 +18,15 @@ const legacyRedirects = [
   ["/down-for-maintainance", "/"],
 ]
 
+/** Door pages from before the door lineup was rebuilt, with or without a brand segment, sent to the matching door. */
+const oldDoorPages = [
+  ["sliding-doors", "/products/doors"],
+  ["big-doors", "/products/doors/prestige-s-8375"],
+  ["entry-doors", "/products/doors/entry"],
+  ["french-hinged-patio-doors", "/products/doors/french-patio"],
+  ["storm-screen-doors", "/products/doors/storm-screen"],
+]
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
@@ -27,7 +36,13 @@ const nextConfig = {
     unoptimized: true,
   },
   async redirects() {
-    return legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true }))
+    return [
+      ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...oldDoorPages.flatMap(([slug, destination]) => [
+        { source: `/products/${slug}`, destination, permanent: true },
+        { source: `/products/${slug}/:brand`, destination, permanent: true },
+      ]),
+    ]
   },
 }
 

@@ -15,11 +15,13 @@ const productHrefs: Record<string, string> = {
   "Pass-Through": "/products/pass-through",
   Picture: "/products/picture",
   Specialty: "/products/specialty",
-  "Big Doors": "/products/big-doors",
-  "Entry Doors": "/products/entry-doors",
-  "French & Hinged Patio Doors": "/products/french-hinged-patio-doors",
-  "Sliding Doors": "/products/sliding-doors",
-  "Storm & Screen Doors": "/products/storm-screen-doors",
+  "Sliding Glass Doors": "/products/doors",
+  "Six-Panel Sliding Doors": "/products/doors/prestige-s-8375",
+  "Impact Sliding Doors": "/products/doors/duraplus-impact",
+  "Tilt & Turn Terrace Doors": "/products/doors/prestige-s-6300",
+  "French & Hinged Patio Doors": "/products/doors/french-patio",
+  "Entry Doors": "/products/doors/entry",
+  "Storm & Screen Doors": "/products/doors/storm-screen",
 }
 
 const links = [
@@ -38,7 +40,15 @@ const productGroups = [
   },
   {
     heading: "Doors",
-    items: ["Big Doors", "Entry Doors", "French & Hinged Patio Doors", "Sliding Doors", "Storm & Screen Doors"],
+    items: [
+      "Sliding Glass Doors",
+      "Six-Panel Sliding Doors",
+      "Impact Sliding Doors",
+      "Tilt & Turn Terrace Doors",
+      "French & Hinged Patio Doors",
+      "Entry Doors",
+      "Storm & Screen Doors",
+    ],
   },
 ]
 

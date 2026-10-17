@@ -29,7 +29,7 @@ export function CatalogBrands() {
           <div className="max-w-[760px]">
             <p className="flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9fd3a2] sm:text-xs">
               <span className="h-px w-11 bg-[#9fd3a2]" aria-hidden="true" />
-              Four brands, every style
+              Four brands, every window
             </p>
             <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-[64px]">
               Choose the style.{" "}
@@ -37,8 +37,8 @@ export function CatalogBrands() {
             </h2>
           </div>
           <p className="max-w-[400px] text-[16px] leading-relaxed text-white/65">
-            Every window and door in the catalog comes in the same four brands, from everyday value to signature finishes.
-            Each product page compares them side by side.
+            Every window style in the catalog comes in the same four brands, from everyday value to signature
+            finishes. Each window page compares them side by side.
           </p>
         </Reveal>
 

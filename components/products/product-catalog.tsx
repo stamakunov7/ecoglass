@@ -98,6 +98,7 @@ type ProductSeed = {
   heroAlt: string
 }
 
+/** Window styles. Doors have their own lineup in door-catalog.ts. */
 const seeds: ProductSeed[] = [
   {
     slug: "awning",
@@ -186,61 +187,6 @@ const seeds: ProductSeed[] = [
       "EcoGlass offers specialty windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect specialty window for your home.",
     heroImage: "/images/products/specialty.webp",
     heroAlt: "Elegant arched specialty window on a premium Florida home facade",
-  },
-  {
-    slug: "big-doors",
-    name: "Big Doors",
-    category: "Doors",
-    title: "Big Doors",
-    summary: "Floor-to-ceiling glass walls that open whole rooms to the outdoors.",
-    description:
-      "EcoGlass offers big door systems from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect big door for your home.",
-    heroImage: "/images/products/big-doors.webp",
-    heroAlt: "Large multi-panel sliding glass big door system opening to a pool patio",
-  },
-  {
-    slug: "entry-doors",
-    name: "Entry Doors",
-    category: "Doors",
-    title: "Entry Doors",
-    summary: "A secure, efficient front door that sets the tone for your home.",
-    description:
-      "EcoGlass offers entry doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect entry door for your home.",
-    heroImage: "/images/products/entry-doors.webp",
-    heroAlt: "Premium modern front entry door with sidelights on a Florida home",
-  },
-  {
-    slug: "french-hinged-patio-doors",
-    name: "French & Hinged Patio Doors",
-    category: "Doors",
-    title: "French & Hinged Patio Doors",
-    summary: "Swinging glass doors with a classic look, opening onto the patio.",
-    description:
-      "EcoGlass offers french and hinged patio doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect patio door for your home.",
-    heroImage: "/images/products/french-hinged-patio-doors.webp",
-    heroAlt: "Elegant french hinged patio doors opening onto a garden patio",
-  },
-  {
-    slug: "sliding-doors",
-    name: "Sliding Doors",
-    category: "Doors",
-    title: "Sliding Doors",
-    summary: "Large glass panels that slide open to the pool deck or lanai.",
-    description:
-      "EcoGlass offers sliding doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect sliding door for your home.",
-    heroImage: "/images/products/sliding-doors.webp",
-    heroAlt: "Modern sliding glass patio door connecting a living room to a pool deck",
-  },
-  {
-    slug: "storm-screen-doors",
-    name: "Storm & Screen Doors",
-    category: "Doors",
-    title: "Storm & Screen Doors",
-    summary: "An extra layer at the entry: fresh air in, bugs and weather out.",
-    description:
-      "EcoGlass offers storm and screen doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect storm or screen door for your home.",
-    heroImage: "/images/products/storm-screen-doors.webp",
-    heroAlt: "Storm and screen door on a welcoming Florida home entrance",
   },
 ]
 

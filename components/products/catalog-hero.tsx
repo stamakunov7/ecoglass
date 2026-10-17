@@ -21,6 +21,8 @@ function scrollToCatalog() {
 
 /** Full-screen hero that slowly cycles through every product, with a "now showing" ticker along the bottom. */
 export function CatalogHero({ items, brandCount }: { items: CatalogItem[]; brandCount: number }) {
+  const windowCount = items.filter((i) => i.category === "Windows").length
+  const doorCount = items.length - windowCount
   const { open: openEstimate } = useEstimate()
   const [index, setIndex] = useState(0)
   const [auto, setAuto] = useState(true)
@@ -90,8 +92,8 @@ export function CatalogHero({ items, brandCount }: { items: CatalogItem[]; brand
             className="hero-reveal mt-6 max-w-[540px] text-[16px] leading-relaxed text-[#d4ded9] sm:text-lg"
             style={{ animationDelay: "300ms" }}
           >
-            {items.length} styles of windows and doors, each offered in {NUMBER_WORDS[brandCount] ?? brandCount} brands and made to measure in our
-            Longwood factory.
+            {windowCount} window styles in {NUMBER_WORDS[brandCount] ?? brandCount} brands and {doorCount} door models, all made
+            to measure in our Longwood factory.
           </p>
           <div className="hero-reveal mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "450ms" }}>
             <button
@@ -117,7 +119,7 @@ export function CatalogHero({ items, brandCount }: { items: CatalogItem[]; brand
           className="hero-reveal mt-14 flex flex-col gap-4 border-t border-white/15 pt-5 lg:mt-20 lg:flex-row lg:items-center lg:justify-between"
           style={{ animationDelay: "650ms" }}
         >
-          <Link href={`/products/${current.slug}`} className="group flex min-w-0 items-baseline gap-4">
+          <Link href={current.href} className="group flex min-w-0 items-baseline gap-4">
             <span className="shrink-0 font-display text-[13px] font-bold tabular-nums tracking-[0.08em] text-[#9fd3a2]">
               {pad(index + 1)} / {pad(items.length)}
             </span>

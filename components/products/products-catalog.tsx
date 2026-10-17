@@ -16,7 +16,9 @@ export type CatalogItem = {
   summary: string
   heroImage: string
   heroAlt: string
-  brandCount: number
+  href: string
+  /** Corner label, e.g. "4 brands" or a door's series */
+  badge?: string
 }
 
 type Filter = "All" | ProductCategory
@@ -32,7 +34,7 @@ const GROUPS: { category: ProductCategory; id: string; note: string }[] = [
   {
     category: "Doors",
     id: "doors",
-    note: "Entry, patio and floor-to-ceiling glass doors, built in Longwood and installed by our own crews.",
+    note: "Sliding doors from NOVA, PRESTIGE and DURAPLUS, plus terrace, patio, entry and storm doors.",
   },
 ]
 
@@ -48,7 +50,7 @@ function trackSpotlight(e: MouseEvent<HTMLElement>) {
 function CatalogCard({ item, number }: { item: CatalogItem; number: number }) {
   return (
     <Link
-      href={`/products/${item.slug}`}
+      href={item.href}
       onMouseMove={trackSpotlight}
       className="group relative isolate block h-[440px] overflow-hidden rounded-[28px] bg-forest-deep shadow-[0_30px_60px_-35px_rgb(13_44_37/0.6)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1.5 hover:shadow-[0_50px_90px_-40px_rgb(13_44_37/0.75),0_0_0_1px_rgb(159_211_162/0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:h-[480px]"
     >
@@ -77,9 +79,11 @@ function CatalogCard({ item, number }: { item: CatalogItem; number: number }) {
         <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1.5 font-display text-[11px] font-bold tabular-nums tracking-[0.16em] text-white backdrop-blur-xl">
           {pad(number)}
         </span>
-        <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
-          {item.brandCount} brands
-        </span>
+        {item.badge && (
+          <span className="truncate rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+            {item.badge}
+          </span>
+        )}
       </div>
 
       <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
@@ -95,7 +99,7 @@ function CatalogCard({ item, number }: { item: CatalogItem; number: number }) {
               aria-hidden="true"
             />
           </span>
-          Compare brands
+          {item.category === "Windows" ? "Compare brands" : "View door"}
         </span>
       </div>
     </Link>
@@ -180,7 +184,7 @@ export function ProductsCatalog({ items, initialFilter = "All" }: { items: Catal
             })}
           </div>
           <p className="hidden text-[14px] text-muted-foreground md:block">
-            Every style comes in <span className="font-semibold text-forest">four brands</span>, compared side by side.
+            Every window style comes in <span className="font-semibold text-forest">four brands</span>, compared side by side.
           </p>
         </div>
       </div>

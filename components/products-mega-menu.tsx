@@ -23,19 +23,21 @@ const windowsLinks: Item[] = [
 ]
 
 const doors: Item[] = [
-  { label: "Big Doors", href: "/products/big-doors", icon: "/product-icons/big-doors.png" },
-  { label: "Entry Doors", href: "/products/entry-doors", icon: "/product-icons/entry-door.png" },
+  { label: "Sliding Glass Doors", href: "/products/doors", icon: "/product-icons/sliding-door.png" },
+  { label: "Six-Panel Sliding Doors", href: "/products/doors/prestige-s-8375", icon: "/product-icons/big-doors.png" },
+  { label: "Impact Sliding Doors", href: "/products/doors/duraplus-impact", icon: "/product-icons/sliding-door.png" },
   {
-    label: "French & Hinged Patio Doors",
-    href: "/products/french-hinged-patio-doors",
+    label: "Tilt & Turn Terrace Doors",
+    href: "/products/doors/prestige-s-6300",
     icon: "/product-icons/french-hinged-patio.png",
   },
-  { label: "Sliding Doors", href: "/products/sliding-doors", icon: "/product-icons/sliding-door.png" },
-  { label: "Storm & Screen Doors", href: "/products/storm-screen-doors", icon: "/product-icons/storm-screen-door.png" },
-]
-
-const doorsLinks: Item[] = [
-  { label: "Replacement Doors", href: "#products", icon: "/product-icons/replacement-door.png" },
+  {
+    label: "French & Hinged Patio Doors",
+    href: "/products/doors/french-patio",
+    icon: "/product-icons/french-hinged-patio.png",
+  },
+  { label: "Entry Doors", href: "/products/doors/entry", icon: "/product-icons/entry-door.png" },
+  { label: "Storm & Screen Doors", href: "/products/doors/storm-screen", icon: "/product-icons/storm-screen-door.png" },
 ]
 
 const cards = [
@@ -119,19 +121,8 @@ export function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
             ))}
           </div>
           <div className="mt-3 flex flex-col gap-1 border-t border-border pt-3">
-            {doorsLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={onNavigate}
-                className="group flex min-h-[44px] items-center gap-3 rounded-lg py-1 text-[15px] font-semibold text-ink/70 transition-colors duration-200 hover:text-cta"
-              >
-                {item.icon ? <ProductIcon src={item.icon} /> : null}
-                <span className="min-w-0 text-pretty leading-snug">{item.label}</span>
-              </a>
-            ))}
             <Link
-              href="/products?category=doors"
+              href="/products/doors"
               onClick={onNavigate}
               className="mt-1 inline-flex items-center gap-1 text-[15px] font-bold text-cta transition-colors hover:text-cta-dark"
             >

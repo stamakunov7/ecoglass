@@ -6,6 +6,7 @@ import { CatalogBrands } from "@/components/products/catalog-brands"
 import { CollectionClosing } from "@/components/products/collection-closing"
 import { ProductsCatalog, type CatalogItem } from "@/components/products/products-catalog"
 import { products, type ProductCategory } from "@/components/products/product-catalog"
+import { doorModels, doorTitle } from "@/components/products/door-catalog"
 import { brandProfiles } from "@/lib/configurator/catalog"
 
 export const metadata: Metadata = {
@@ -14,16 +15,30 @@ export const metadata: Metadata = {
     "Browse the full EcoGlass catalog of windows and doors. Explore every style — from awning and casement windows to entry, sliding, and patio doors.",
 }
 
-const items: CatalogItem[] = products.map(({ slug, name, category, title, summary, heroImage, heroAlt, brands }) => ({
-  slug,
-  name,
-  category,
-  title,
-  summary,
-  heroImage,
-  heroAlt,
-  brandCount: brands.length,
-}))
+const items: CatalogItem[] = [
+  ...products.map(({ slug, name, category, title, summary, heroImage, heroAlt, brands }) => ({
+    slug,
+    name,
+    category,
+    title,
+    summary,
+    heroImage,
+    heroAlt,
+    href: `/products/${slug}`,
+    badge: `${brands.length} brands`,
+  })),
+  ...doorModels.map((door) => ({
+    slug: door.slug,
+    name: door.name,
+    category: "Doors" as const,
+    title: doorTitle(door),
+    summary: door.summary,
+    heroImage: door.image,
+    heroAlt: door.alt,
+    href: `/products/doors/${door.slug}`,
+    badge: door.series?.split(" ")[0],
+  })),
+]
 
 function toFilter(value?: string): "All" | ProductCategory {
   if (value === "windows") return "Windows"

@@ -16,14 +16,14 @@ const products = [
     subtitle: "Smooth operation. Wide open views.",
     image: "/images/product-sliding.png",
     alt: "Wide sliding glass doors opening onto a pool deck",
-    href: "/products/sliding-doors",
+    href: "/products/doors",
   },
   {
     title: "Entry Doors",
     subtitle: "Make an entrance. Built with strength.",
     image: "/images/product-entry.png",
     alt: "Modern glass entry door on a Florida home",
-    href: "/products/entry-doors",
+    href: "/products/doors/entry",
   },
   {
     title: "Smart Glass & Blinds",
