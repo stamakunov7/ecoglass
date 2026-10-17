@@ -60,7 +60,7 @@ export default function FinancingPage() {
         {/* Hero: the pitch on the left, the form right beside it */}
         <section className="relative isolate overflow-hidden bg-forest-deep text-white">
           <Image
-            src="/images/financing-hero.png"
+            src="/images/financing-hero.webp"
             alt="A couple relaxing in a bright Florida living room with new windows and doors"
             fill
             preload

@@ -95,7 +95,7 @@ export function WhyMegaMenu({ onNavigate }: { onNavigate: () => void }) {
         className="group relative flex min-h-[240px] items-end overflow-hidden rounded-2xl border border-border bg-muted"
       >
         <Image
-          src="/images/why-hero.png"
+          src="/images/why-hero.webp"
           alt="Inside the EcoGlass window and door manufacturing facility in Central Florida"
           fill
           sizes="(min-width: 1024px) 360px, 90vw"

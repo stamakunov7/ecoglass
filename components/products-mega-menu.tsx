@@ -41,10 +41,10 @@ const doors: Item[] = [
 ]
 
 const cards = [
-  { label: "Browse by Series", href: "#products", src: "/images/mega-series.png" },
-  { label: "Browse by Materials", href: "#products", src: "/images/mega-materials.png" },
-  { label: "All Windows & Doors", href: "/products", src: "/images/hero-home.png" },
-  { label: "Specialty Glass Products", href: "#products", src: "/images/product-smartglass.png" },
+  { label: "Browse by Series", href: "#products", src: "/images/mega-series.webp" },
+  { label: "Browse by Materials", href: "#products", src: "/images/mega-materials.webp" },
+  { label: "All Windows & Doors", href: "/products", src: "/images/hero-home.webp" },
+  { label: "Specialty Glass Products", href: "#products", src: "/images/product-smartglass.webp" },
 ]
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {

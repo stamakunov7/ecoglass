@@ -249,7 +249,7 @@ function EstimateModal({
           ) : (
             <>
               <img
-                src="/images/estimate.png"
+                src="/images/estimate.webp"
                 alt="EcoGlass professional measuring a window during an in-home estimate"
                 className="h-full w-full object-cover"
               />

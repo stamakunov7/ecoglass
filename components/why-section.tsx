@@ -70,7 +70,7 @@ export function WhySection() {
           </Reveal>
           <Reveal delay={150} className="relative mt-10 hidden aspect-[16/10] overflow-hidden rounded-[24px] lg:block">
             <Image
-              src="/images/why-hero.png"
+              src="/images/why-hero.webp"
               alt="Window units on racks inside the EcoGlass factory in Longwood"
               fill
               sizes="40vw"

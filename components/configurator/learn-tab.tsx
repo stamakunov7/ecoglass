@@ -90,7 +90,7 @@ export function LearnTab({
   // The hero already shows the brand photo when there's no live preview, so use the in-home visit photo here instead.
   const bandImage = preview
     ? photo
-    : { src: "/images/estimate.png", alt: "EcoGlass professional measuring a window during an in-home estimate" }
+    : { src: "/images/estimate.webp", alt: "EcoGlass professional measuring a window during an in-home estimate" }
 
   return (
     <>

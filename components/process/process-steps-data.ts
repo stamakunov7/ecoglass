@@ -22,7 +22,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
       "We confirm your appointment within one business day",
       "No pressure, no obligation, and no cost",
     ],
-    image: "/images/estimate.png",
+    image: "/images/estimate.webp",
     alt: "EcoGlass specialist reviewing a window with a homeowner during an in-home visit",
   },
   {
@@ -35,7 +35,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
       "Side-by-side product and glass package comparison",
       "Written, itemized quote with financing options",
     ],
-    image: "/images/process-measure.png",
+    image: "/images/process-measure.webp",
     alt: "Specialist measuring a window opening with a tape measure and laser level",
   },
   {
@@ -48,7 +48,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
       "Quality inspection before anything leaves the floor",
       "Permits and HOA paperwork handled by our team",
     ],
-    image: "/images/why-hero.png",
+    image: "/images/why-hero.webp",
     alt: "Window units on racks inside the EcoGlass manufacturing facility",
   },
   {
@@ -61,7 +61,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
       "Proper flashing, sealing, and interior finish work",
       "Final walkthrough and cleanup on the same day",
     ],
-    image: "/images/process-hero.png",
+    image: "/images/process-hero.webp",
     alt: "Installer fitting a black-framed window on a modern Florida home",
   },
 ]

@@ -40,7 +40,7 @@ export function ProcessClosing() {
     <section ref={sectionRef} className="relative isolate overflow-hidden bg-forest-deep text-white">
       <div ref={photoRef} className="absolute inset-0 -z-20 will-change-transform" style={{ transform: "scale(1.25)" }}>
         <Image
-          src="/images/hero-home.png"
+          src="/images/hero-home.webp"
           alt="A finished Florida home at dusk with new floor-to-ceiling windows and doors"
           fill
           sizes="100vw"
