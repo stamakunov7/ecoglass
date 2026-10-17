@@ -21,6 +21,8 @@ export type Product = {
   category: ProductCategory
   /** Full hero + document title, e.g. "Bay & Bow Windows" */
   title: string
+  /** One line on how this style works, for the catalog. */
+  summary: string
   description: string
   heroImage: string
   heroAlt: string
@@ -89,6 +91,8 @@ type ProductSeed = {
   name: string
   category: ProductCategory
   title: string
+  /** One line on how this style works, for the catalog. */
+  summary: string
   description: string
   heroImage: string
   heroAlt: string
@@ -100,9 +104,10 @@ const seeds: ProductSeed[] = [
     name: "Awning",
     category: "Windows",
     title: "Awning Windows",
+    summary: "Hinged at the top and opens outward, so you can let air in even when it rains.",
     description:
       "EcoGlass offers awning windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect awning window for your home.",
-    heroImage: "/images/awning-hero.png",
+    heroImage: "/images/products/awning.webp",
     heroAlt: "Close-up of a black-framed awning window cranked open outward on a modern home, with lush greenery outside",
   },
   {
@@ -110,9 +115,10 @@ const seeds: ProductSeed[] = [
     name: "Bay & Bow",
     category: "Windows",
     title: "Bay & Bow Windows",
+    summary: "Projects out from the wall for more light, more room and a view on three sides.",
     description:
       "EcoGlass offers bay & bow windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect bay or bow window for your home.",
-    heroImage: "/images/hero-bay-bow.png",
+    heroImage: "/images/products/bay-bow.webp",
     heroAlt: "Bay and bow window projecting outward on a premium Florida home",
   },
   {
@@ -120,9 +126,10 @@ const seeds: ProductSeed[] = [
     name: "Casement",
     category: "Windows",
     title: "Casement Windows",
+    summary: "Hinged at the side and cranks open all the way for the most airflow.",
     description:
       "EcoGlass offers casement windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect casement window for your home.",
-    heroImage: "/images/hero-casement.png",
+    heroImage: "/images/products/casement.webp",
     heroAlt: "Modern casement window cranked open on a Florida home",
   },
   {
@@ -130,9 +137,10 @@ const seeds: ProductSeed[] = [
     name: "Double & Single-Hung",
     category: "Windows",
     title: "Double & Single-Hung Windows",
+    summary: "Classic sashes that slide up and down. Simple to use, easy to clean.",
     description:
       "EcoGlass offers double and single-hung windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect hung window for your home.",
-    heroImage: "/images/hero-double-single-hung.png",
+    heroImage: "/images/products/double-single-hung.webp",
     heroAlt: "Classic double-hung window in a bright Florida home interior",
   },
   {
@@ -140,9 +148,10 @@ const seeds: ProductSeed[] = [
     name: "Sliding",
     category: "Windows",
     title: "Sliding Windows",
+    summary: "Sashes glide side to side on a track for wide views and easy operation.",
     description:
       "EcoGlass offers sliding windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect sliding window for your home.",
-    heroImage: "/images/hero-sliding.png",
+    heroImage: "/images/products/sliding.webp",
     heroAlt: "Large horizontal sliding window on a modern Florida home",
   },
   {
@@ -150,9 +159,10 @@ const seeds: ProductSeed[] = [
     name: "Pass-Through",
     category: "Windows",
     title: "Pass-Through Windows",
+    summary: "Opens the kitchen to the patio for easy serving and outdoor living.",
     description:
       "EcoGlass offers pass-through windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect pass-through window for your home.",
-    heroImage: "/images/hero-pass-through.png",
+    heroImage: "/images/products/pass-through.webp",
     heroAlt: "Pass-through kitchen window opening onto an outdoor patio bar",
   },
   {
@@ -160,9 +170,10 @@ const seeds: ProductSeed[] = [
     name: "Picture",
     category: "Windows",
     title: "Picture Windows",
+    summary: "One large fixed pane that frames the view and brings in the most light.",
     description:
       "EcoGlass offers picture windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect picture window for your home.",
-    heroImage: "/images/hero-picture.png",
+    heroImage: "/images/products/picture.webp",
     heroAlt: "Large fixed picture window framing a garden view in a Florida living room",
   },
   {
@@ -170,9 +181,10 @@ const seeds: ProductSeed[] = [
     name: "Specialty",
     category: "Windows",
     title: "Specialty Windows",
+    summary: "Arches, circles and custom shapes made to fit your architecture.",
     description:
       "EcoGlass offers specialty windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect specialty window for your home.",
-    heroImage: "/images/hero-specialty.png",
+    heroImage: "/images/products/specialty.webp",
     heroAlt: "Elegant arched specialty window on a premium Florida home facade",
   },
   {
@@ -180,9 +192,10 @@ const seeds: ProductSeed[] = [
     name: "Big Doors",
     category: "Doors",
     title: "Big Doors",
+    summary: "Floor-to-ceiling glass walls that open whole rooms to the outdoors.",
     description:
       "EcoGlass offers big door systems from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect big door for your home.",
-    heroImage: "/images/hero-big-doors.png",
+    heroImage: "/images/products/big-doors.webp",
     heroAlt: "Large multi-panel sliding glass big door system opening to a pool patio",
   },
   {
@@ -190,9 +203,10 @@ const seeds: ProductSeed[] = [
     name: "Entry Doors",
     category: "Doors",
     title: "Entry Doors",
+    summary: "A secure, efficient front door that sets the tone for your home.",
     description:
       "EcoGlass offers entry doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect entry door for your home.",
-    heroImage: "/images/hero-entry-doors.png",
+    heroImage: "/images/products/entry-doors.webp",
     heroAlt: "Premium modern front entry door with sidelights on a Florida home",
   },
   {
@@ -200,9 +214,10 @@ const seeds: ProductSeed[] = [
     name: "French & Hinged Patio Doors",
     category: "Doors",
     title: "French & Hinged Patio Doors",
+    summary: "Swinging glass doors with a classic look, opening onto the patio.",
     description:
       "EcoGlass offers french and hinged patio doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect patio door for your home.",
-    heroImage: "/images/hero-french-hinged-patio-doors.png",
+    heroImage: "/images/products/french-hinged-patio-doors.webp",
     heroAlt: "Elegant french hinged patio doors opening onto a garden patio",
   },
   {
@@ -210,9 +225,10 @@ const seeds: ProductSeed[] = [
     name: "Sliding Doors",
     category: "Doors",
     title: "Sliding Doors",
+    summary: "Large glass panels that slide open to the pool deck or lanai.",
     description:
       "EcoGlass offers sliding doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect sliding door for your home.",
-    heroImage: "/images/hero-sliding-doors.png",
+    heroImage: "/images/products/sliding-doors.webp",
     heroAlt: "Modern sliding glass patio door connecting a living room to a pool deck",
   },
   {
@@ -220,9 +236,10 @@ const seeds: ProductSeed[] = [
     name: "Storm & Screen Doors",
     category: "Doors",
     title: "Storm & Screen Doors",
+    summary: "An extra layer at the entry: fresh air in, bugs and weather out.",
     description:
       "EcoGlass offers storm and screen doors from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect storm or screen door for your home.",
-    heroImage: "/images/hero-storm-screen-doors.png",
+    heroImage: "/images/products/storm-screen-doors.webp",
     heroAlt: "Storm and screen door on a welcoming Florida home entrance",
   },
 ]

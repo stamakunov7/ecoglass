@@ -112,8 +112,12 @@ export default function FinancingPage() {
                 ))}
               </ul>
 
-              <div
-                className="hero-reveal mt-9 inline-flex items-center gap-3 rounded-full bg-white/95 py-2.5 pl-5 pr-6 shadow-lg shadow-black/20"
+              <a
+                href="https://www.synchrony.com/mmc/P1226242802"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Apply for financing with Synchrony (opens in a new tab)"
+                className="hero-reveal mt-9 inline-flex items-center gap-3 rounded-full bg-white/95 py-2.5 pl-5 pr-6 shadow-lg shadow-black/20 transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-white"
                 style={{ animationDelay: "800ms" }}
               >
                 <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -126,7 +130,7 @@ export default function FinancingPage() {
                   height={426}
                   className="h-5 w-auto"
                 />
-              </div>
+              </a>
             </div>
 
             <div
