@@ -103,7 +103,8 @@ const exteriorColors = [
   { id: "black", name: "Black", hex: "#1F2022" },
 ]
 
-const glass = [
+/** Glass packages offered in the designer; the specialty glass page describes the same list. */
+export const glassOptions = [
   {
     id: "low-e",
     name: "Low-E Insulated Glass",
@@ -186,7 +187,7 @@ function defaultOptions(kind: WindowKind): WindowOptions {
     sizes: sizesByKind[kind],
     interiorColors,
     exteriorColors,
-    glass,
+    glass: glassOptions,
     grilles,
     hardware: hardwareStyles[kind],
   }

@@ -11,7 +11,12 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ]
 
-const productLinks = ["Windows", "Sliding Doors", "Entry Doors", "Smart Glass & Built-In Blinds"]
+const productLinks = [
+  { label: "Windows", href: "/products?category=windows" },
+  { label: "Doors", href: "/products/doors" },
+  { label: "Specialty Glass", href: "/products/specialty-glass" },
+  { label: "Browse by Series", href: "/products/series" },
+]
 
 const contactItems = [
   {
@@ -73,9 +78,9 @@ export function SiteFooter() {
           <nav aria-label="Products">
             <h3 className={heading}>Products</h3>
             <ul className="mt-5 space-y-3 text-[14px]">
-              {productLinks.map((label) => (
+              {productLinks.map(({ label, href }) => (
                 <li key={label}>
-                  <a href="/#products" className={link}>
+                  <a href={href} className={link}>
                     {label}
                   </a>
                 </li>

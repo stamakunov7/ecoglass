@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("", 1),
     page("/products", 0.9),
     page("/products/doors", 0.9),
+    page("/products/series", 0.7),
+    page("/products/specialty-glass", 0.7),
     page("/why-ecoglass", 0.7),
     page("/our-process", 0.7),
     page("/financing", 0.7),
