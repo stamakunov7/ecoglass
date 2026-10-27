@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, Minus, Phone } from "lucide-react"
+import { ArrowRight, Check, Minus } from "lucide-react"
+import { CallButtons } from "@/components/call-links"
+import { canonicalMeta } from "@/lib/site"
 import { SiteShell } from "@/components/site-shell"
 import { SiteFooter } from "@/components/site-footer"
 import { Reveal } from "@/components/reveal"
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
   title: "Specialty Glass | EcoGlass Windows & Doors",
   description:
     "Clear insulated, Low-E, impact laminated and impact Low-E glass for your EcoGlass windows and doors. See how each glass works and where it fits best.",
+  ...canonicalMeta("/products/specialty-glass"),
 }
 
 const COMPARE = [
@@ -120,21 +123,15 @@ export default function SpecialtyGlassPage() {
                 Every EcoGlass window and door is glazed to order. These are the glass packages you can choose in our
                 online designer, and what each one does for your home.
               </p>
-              <div className="hero-reveal mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "450ms" }}>
+              <div className="hero-reveal mt-9 flex flex-col gap-3" style={{ animationDelay: "450ms" }}>
                 <Link
                   href="/products?category=windows"
-                  className="shine group inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-bold text-forest shadow-xl shadow-black/20 transition-transform hover:-translate-y-0.5"
+                  className="shine group inline-flex h-14 w-fit items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-bold text-forest shadow-xl shadow-black/20 transition-transform hover:-translate-y-0.5"
                 >
                   Design your window
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
-                <a
-                  href="tel:+13212070507"
-                  className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 text-[15px] font-semibold text-white backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/20"
-                >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  (321) 207-0507
-                </a>
+                <CallButtons tone="onDark" />
               </div>
             </div>
 

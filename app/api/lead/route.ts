@@ -1,3 +1,4 @@
+import { ATTRIBUTION_KEYS, type Attribution } from "@/lib/attribution"
 import type { LeadPayload, LeadSource } from "@/lib/leads"
 
 /**
@@ -51,6 +52,8 @@ function parse(body: unknown): { lead?: LeadPayload; error?: string } {
     plansLink: line(b.plansLink, 1000),
     page: line(b.page, 500),
     company: line(b.company, 200),
+    eventId: line(b.eventId, 80),
+    attribution: parseAttribution(b.attribution),
   }
   if (!lead.firstName || !lead.lastName) return { error: "Please enter your name." }
   if (!EMAIL_RE.test(lead.email)) return { error: "Please enter a valid email address." }
@@ -71,6 +74,17 @@ function parse(body: unknown): { lead?: LeadPayload; error?: string } {
     }
   }
   return { lead }
+}
+
+function parseAttribution(value: unknown): Attribution | undefined {
+  if (!value || typeof value !== "object") return undefined
+  const raw = value as Record<string, unknown>
+  const out: Attribution = {}
+  for (const key of ATTRIBUTION_KEYS) {
+    const v = line(raw[key], 200)
+    if (v) out[key] = v
+  }
+  return Object.keys(out).length ? out : undefined
 }
 
 function subjectFor(lead: LeadPayload) {
@@ -107,8 +121,15 @@ function rowsFor(lead: LeadPayload): [string, string][] {
     ["Topic", lead.topic],
     ["Budget", lead.budget],
     ["Message", lead.message],
+    ["Event ID", lead.eventId],
   ]
   for (const [label, value] of optional) if (value) rows.push([label, value])
+  if (lead.attribution) {
+    for (const key of ATTRIBUTION_KEYS) {
+      const value = lead.attribution[key]
+      if (value) rows.push([key, value])
+    }
+  }
   return rows
 }
 

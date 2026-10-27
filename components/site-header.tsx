@@ -1,12 +1,14 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Menu, Phone, MapPin, CalendarCheck, CreditCard, ChevronDown } from "lucide-react"
+import { Menu, MapPin, CalendarCheck, CreditCard, ChevronDown } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { ProductsMegaMenu } from "./products-mega-menu"
 import { WhyMegaMenu } from "./why-mega-menu"
 import { useEstimate } from "./estimate-modal"
 import { EstimateCta } from "./estimate-cta"
+import { HeaderPhones } from "./call-links"
+import { SocialLinks } from "./social-links"
 
 type NavItem = {
   label: string
@@ -127,16 +129,14 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
               Free in-home estimates
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="tel:+13212070507" className="flex items-center gap-1.5 font-medium">
-              <Phone className="h-3.5 w-3.5 text-cta" aria-hidden="true" />
-              (321) 207-0507
-            </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <HeaderPhones />
             <span className="h-3 w-px bg-white/25" aria-hidden="true" />
             <span className="flex items-center gap-1.5 text-white/80">
               <CreditCard className="hidden h-3.5 w-3.5 text-cta sm:block" aria-hidden="true" />
               Financing available
             </span>
+            <SocialLinks onDark className="-my-1 hidden lg:flex" />
           </div>
         </div>
       </div>

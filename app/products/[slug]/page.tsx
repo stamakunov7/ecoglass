@@ -9,6 +9,7 @@ import { BrandQuiz } from "@/components/products/brand-quiz"
 import { CollectionClosing } from "@/components/products/collection-closing"
 import { getProduct, getProductSlugs } from "@/components/products/product-catalog"
 import { FEATURED_BRAND, getBrandProfile, getWindowKind } from "@/lib/configurator/catalog"
+import { canonicalMeta } from "@/lib/site"
 
 export function generateStaticParams() {
   return getProductSlugs().map((slug) => ({ slug }))
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${product.title} | EcoGlass`,
     description: product.description,
+    ...canonicalMeta(`/products/${slug}`),
   }
 }
 

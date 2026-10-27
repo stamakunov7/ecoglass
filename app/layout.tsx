@@ -1,8 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Inter, Instrument_Serif, Manrope } from 'next/font/google'
 import './globals.css'
-import { SITE_URL } from '@/lib/site'
+import { ConsentBanner } from '@/components/consent-banner'
+import { TrackingRoot } from '@/components/tracking-root'
+import { HAS_GOOGLE_TAG, PIXEL_IDS } from '@/lib/pixel-ids'
+import { SITE, SITE_URL, canonicalMeta, localBusinessJsonLd } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' })
@@ -16,12 +20,13 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'EcoGlass | Custom Windows & Doors in Florida',
-  description:
-    'Custom-built windows and doors manufactured in Central Florida and installed by EcoGlass across the state. Get a free in-home estimate.',
+  description: SITE.description,
+  ...canonicalMeta('/'),
   openGraph: {
     type: 'website',
-    siteName: 'EcoGlass Windows & Doors',
+    siteName: SITE.name,
     locale: 'en_US',
+    url: '/',
   },
   twitter: { card: 'summary_large_image' },
   icons: {
@@ -53,35 +58,7 @@ export const viewport: Viewport = {
   themeColor: '#123b32',
 }
 
-/** Tells Google who the business is, where it is and when it's open. */
-const localBusiness = {
-  '@context': 'https://schema.org',
-  '@type': 'HomeAndConstructionBusiness',
-  name: 'EcoGlass Windows & Doors',
-  description:
-    'Manufacturer, supplier and installer of custom windows and doors, built in Longwood and installed across Florida.',
-  url: SITE_URL,
-  logo: `${SITE_URL}/icon-512.png`,
-  image: `${SITE_URL}/opengraph-image.jpg`,
-  telephone: '+1-321-207-0507',
-  email: 'info@vk-ecoglass.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '144 Hope Street',
-    addressLocality: 'Longwood',
-    addressRegion: 'FL',
-    postalCode: '32750',
-    addressCountry: 'US',
-  },
-  areaServed: { '@type': 'State', name: 'Florida' },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:30',
-    closes: '17:30',
-  },
-  hasMap: 'https://www.google.com/maps?cid=17354086777007301827',
-}
+const gtagId = PIXEL_IDS.ga || PIXEL_IDS.ads
 
 export default function RootLayout({
   children,
@@ -91,11 +68,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`light ${inter.variable} ${manrope.variable} ${instrument.variable}`}>
       <body className="bg-background font-sans antialiased">
+        {HAS_GOOGLE_TAG && gtagId ? (
+          <Script id="gtag-consent-default" strategy="beforeInteractive">
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`}
+          </Script>
+        ) : null}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, '\\u003c') }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()).replace(/</g, '\\u003c') }}
         />
         {children}
+        <TrackingRoot />
+        <ConsentBanner />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

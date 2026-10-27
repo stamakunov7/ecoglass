@@ -6,11 +6,13 @@ import { FaqSection } from "@/components/faq-section"
 import { Reveal } from "@/components/reveal"
 import { BuildSequence } from "@/components/commercial/build-sequence"
 import { BidForm } from "@/components/commercial/bid-form"
+import { PHONE_LIST, SITE, canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Commercial Windows & Doors | EcoGlass",
   description:
     "Factory-direct windows and doors for builders, developers, general contractors and condo associations across Florida. Phased deliveries, in-house installation, licensed GC.",
+  ...canonicalMeta("/commercial"),
 }
 
 const clients = [
@@ -189,21 +191,26 @@ export default function CommercialPage() {
                   team will follow up to review plans and prepare your proposal.
                 </p>
                 <ul className="mt-10 max-w-[440px] divide-y divide-forest/10 border-y border-forest/10">
+                  {PHONE_LIST.map((phone) => (
+                    <li key={phone.id}>
+                      <a href={phone.tel} className="group flex items-center gap-4 py-4">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sage text-forest">
+                          <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
+                        </span>
+                        <span>
+                          <span className="block text-[12px] font-semibold text-muted-foreground">{phone.region}</span>
+                          <span className="text-[16px] font-semibold text-forest group-hover:text-cta-dark">{phone.display}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
                   <li>
-                    <a href="tel:+13212070507" className="group flex items-center gap-4 py-4">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sage text-forest">
-                        <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
-                      </span>
-                      <span className="text-[16px] font-semibold text-forest group-hover:text-cta-dark">(321) 207-0507</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:info@vk-ecoglass.com" className="group flex items-center gap-4 py-4">
+                    <a href={`mailto:${SITE.email}`} className="group flex items-center gap-4 py-4">
                       <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sage text-forest">
                         <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
                       </span>
                       <span className="text-[16px] font-semibold text-forest group-hover:text-cta-dark">
-                        info@vk-ecoglass.com
+                        {SITE.email}
                       </span>
                     </a>
                   </li>

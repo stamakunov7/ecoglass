@@ -1,8 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
-import { LEAD_ERROR_MESSAGE, submitLead } from "@/lib/leads"
+import { useRouter } from "next/navigation"
+import { ArrowRight, Loader2 } from "lucide-react"
+import { rememberLeadName } from "@/lib/attribution"
+import { LeadConsent } from "@/components/lead-consent"
+import { LEAD_ERROR_MESSAGE, submitLead, thankYouHref } from "@/lib/leads"
+import { trackLead } from "@/lib/track"
 
 const ROLES = ["Builder / developer", "Condo association", "Property manager", "General contractor", "Architect", "Other"]
 const PROJECT_TYPES = ["New construction", "Condo / multifamily", "Commercial building", "Replacement / retrofit"]
@@ -46,9 +50,9 @@ export function BidForm() {
   const [form, setForm] = useState<Form>(empty)
   const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({})
   const [sending, setSending] = useState(false)
-  const [sent, setSent] = useState(false)
   const [sendError, setSendError] = useState("")
   const [honeypot, setHoneypot] = useState("")
+  const router = useRouter()
 
   function update(key: keyof Form, value: string) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -74,24 +78,11 @@ export function BidForm() {
     setSendError("")
     const result = await submitLead({ source: "commercial", ...form, company: honeypot })
     setSending(false)
-    if (result.ok) setSent(true)
-    else setSendError(LEAD_ERROR_MESSAGE)
-  }
-
-  if (sent) {
-    return (
-      <div className="flex flex-col items-center px-2 py-14 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-sage text-cta">
-          <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
-        </span>
-        <h3 className="mt-6 font-display text-2xl font-extrabold text-forest">
-          Thanks{form.firstName ? `, ${form.firstName}` : ""}!
-        </h3>
-        <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-relaxed text-muted-foreground">
-          Your project is in. Our commercial team will review it and get back to you within one business day.
-        </p>
-      </div>
-    )
+    if (result.ok) {
+      if (!honeypot && result.eventId) trackLead({ formType: "commercial", eventId: result.eventId })
+      rememberLeadName(form.firstName)
+      router.replace(thankYouHref("commercial"))
+    } else setSendError(LEAD_ERROR_MESSAGE)
   }
 
   const field = (key: keyof Form, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
@@ -217,6 +208,8 @@ export function BidForm() {
           </>
         )}
       </button>
+
+      <LeadConsent action="requesting a bid" />
     </form>
   )
 }

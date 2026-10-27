@@ -5,6 +5,7 @@ import Link from "next/link"
 import { X, ChevronRight, ChevronDown, ArrowRight, Phone, CreditCard, PackageOpen, Sparkles, Route, Wallet, Images, Mail, Building2 } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 import { useEstimate } from "./estimate-modal"
+import { PHONE_LIST } from "@/lib/site"
 
 const productHrefs: Record<string, string> = {
   Awning: "/products/awning",
@@ -180,13 +181,16 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             Get a Free Estimate
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
-          <a
-            href="tel:+13212070507"
-            className="flex h-12 items-center justify-center gap-2 rounded-xl border border-cta/40 bg-card text-[15px] font-semibold text-cta transition-colors active:bg-sage/60"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            Call (321) 207-0507
-          </a>
+          {PHONE_LIST.map((phone) => (
+            <a
+              key={phone.id}
+              href={phone.tel}
+              className="flex h-12 items-center justify-center gap-2 rounded-xl border border-cta/40 bg-card text-[15px] font-semibold text-cta transition-colors active:bg-sage/60"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              {phone.shortRegion} {phone.display}
+            </a>
+          ))}
           <div className="flex items-center justify-center gap-2 rounded-xl bg-sage px-4 py-3 text-[13px] font-semibold text-forest">
             <CreditCard className="h-4 w-4" aria-hidden="true" />
             Financing available

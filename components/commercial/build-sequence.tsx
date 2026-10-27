@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowDown, Check, Phone } from "lucide-react"
+import { ArrowDown, Check } from "lucide-react"
 import { glideTo } from "@/lib/smooth-scroll"
+import { CallButtons } from "@/components/call-links"
 
 /** Frames of the construction time-lapse: a full-width set and a building-centered set for portrait screens. */
 const FRAME_COUNT = 81
@@ -228,7 +229,7 @@ export function BuildSequence() {
               Florida, from a single building to a full community.
             </p>
             <div
-              className="hero-reveal mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center max-sm:hidden"
+              className="hero-reveal mt-7 flex flex-col gap-3 sm:mt-9 max-sm:hidden"
               style={{ animationDelay: "680ms" }}
             >
               <button
@@ -237,18 +238,12 @@ export function BuildSequence() {
                   const bid = document.getElementById("bid")
                   if (bid) glideTo(bid, 2.4)
                 }}
-                className="shine group inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-bold text-forest shadow-xl shadow-black/20 transition-transform hover:-translate-y-0.5"
+                className="shine group inline-flex h-14 w-fit items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-bold text-forest shadow-xl shadow-black/20 transition-transform hover:-translate-y-0.5"
               >
                 Request a bid
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" aria-hidden="true" />
               </button>
-              <a
-                href="tel:+13212070507"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 text-[15px] font-semibold text-white backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/20"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                (321) 207-0507
-              </a>
+              <CallButtons tone="onDark" />
             </div>
           </div>
 

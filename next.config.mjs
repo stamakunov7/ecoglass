@@ -32,9 +32,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
+  // Vercel image optimization is compatible with this App Router site (local /public assets).
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),

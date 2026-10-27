@@ -6,6 +6,7 @@ import { ReviewsSection } from "@/components/reviews-section"
 import { ProductBrandPage } from "@/components/configurator/product-brand-page"
 import { getProduct, products, type Product } from "@/components/products/product-catalog"
 import { brandSlugs, getBrandProfile, getWindowKind, getWindowOptions } from "@/lib/configurator/catalog"
+import { canonicalMeta } from "@/lib/site"
 
 // Only the known product × brand combinations exist; anything else is a 404.
 export const dynamicParams = false
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${profile.name} ${singular(product)} | EcoGlass`,
     description: `${profile.tagline} ${profile.description} Design yours online and request a free quote from EcoGlass.`,
+    ...canonicalMeta(`/products/${slug}/${brand}`),
   }
 }
 

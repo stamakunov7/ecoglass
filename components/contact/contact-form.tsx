@@ -1,8 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
-import { LEAD_ERROR_MESSAGE, submitLead } from "@/lib/leads"
+import { useRouter } from "next/navigation"
+import { ArrowRight, Loader2 } from "lucide-react"
+import { rememberLeadName } from "@/lib/attribution"
+import { LeadConsent } from "@/components/lead-consent"
+import { LEAD_ERROR_MESSAGE, submitLead, thankYouHref } from "@/lib/leads"
+import { trackLead } from "@/lib/track"
 
 type FormState = {
   firstName: string
@@ -23,10 +27,10 @@ const emptyForm: FormState = {
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(emptyForm)
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({})
-  const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   const [sendError, setSendError] = useState("")
   const [honeypot, setHoneypot] = useState("")
+  const router = useRouter()
 
   function updateField(key: keyof FormState, value: string) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -60,24 +64,11 @@ export function ContactForm() {
       company: honeypot,
     })
     setSending(false)
-    if (result.ok) setSubmitted(true)
-    else setSendError(LEAD_ERROR_MESSAGE)
-  }
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center px-2 py-12 text-center sm:py-16">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-sage text-cta">
-          <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
-        </span>
-        <h3 className="mt-6 font-display text-2xl font-extrabold text-forest">
-          Thanks{form.firstName ? `, ${form.firstName}` : ""}!
-        </h3>
-        <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-relaxed text-muted-foreground">
-          Your request is in. A member of the EcoGlass team will call you within one business day to confirm a time.
-        </p>
-      </div>
-    )
+    if (result.ok) {
+      if (!honeypot && result.eventId) trackLead({ formType: "contact", eventId: result.eventId })
+      rememberLeadName(form.firstName)
+      router.replace(thankYouHref("contact"))
+    } else setSendError(LEAD_ERROR_MESSAGE)
   }
 
   return (
@@ -171,9 +162,7 @@ export function ContactForm() {
         )}
       </button>
 
-      <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
-        By submitting, you agree to be contacted by EcoGlass about your inquiry. We never share your information.
-      </p>
+      <LeadConsent action="submitting" />
     </form>
   )
 }

@@ -5,11 +5,13 @@ import { Reveal } from "@/components/reveal"
 import { CollectionClosing } from "@/components/products/collection-closing"
 import { DoorCarousel } from "@/components/products/door-carousel"
 import { doorModels } from "@/components/products/door-catalog"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Doors | EcoGlass Windows & Doors",
   description:
     "Sliding glass doors from NOVA, PRESTIGE and DURAPLUS, tilt & turn terrace doors, French patio doors, entry and storm doors. Made to measure and installed across Florida by EcoGlass.",
+  ...canonicalMeta("/products/doors"),
 }
 
 /** What every EcoGlass glass door is built around, from the company's own door specifications. */

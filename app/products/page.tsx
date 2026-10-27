@@ -8,11 +8,13 @@ import { ProductsCatalog, type CatalogItem } from "@/components/products/product
 import { products, type ProductCategory } from "@/components/products/product-catalog"
 import { doorModels, doorTitle } from "@/components/products/door-catalog"
 import { brandProfiles } from "@/lib/configurator/catalog"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "All Windows & Doors | EcoGlass",
   description:
     "Browse the full EcoGlass catalog of windows and doors. Explore every style — from awning and casement windows to entry, sliding, and patio doors.",
+  ...canonicalMeta("/products"),
 }
 
 const items: CatalogItem[] = [

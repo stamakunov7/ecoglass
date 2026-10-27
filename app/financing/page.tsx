@@ -6,11 +6,13 @@ import { FaqSection } from "@/components/faq-section"
 import { SiteFooter } from "@/components/site-footer"
 import { Reveal } from "@/components/reveal"
 import { FinancingContactForm } from "@/components/financing/financing-contact-form"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Financing | EcoGlass Windows & Doors",
   description:
     "Flexible financing for windows and doors through EcoGlass's partnership with Synchrony Bank. Promotional plans, low monthly payments, and a quick, simple application.",
+  ...canonicalMeta("/financing"),
 }
 
 const highlights = [

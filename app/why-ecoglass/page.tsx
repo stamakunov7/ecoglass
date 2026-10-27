@@ -8,11 +8,13 @@ import { WhyPillars } from "@/components/why/why-pillars"
 import { WhyReasons } from "@/components/why/why-reasons"
 import { WhyCompare } from "@/components/why/why-compare"
 import { WhyFlorida } from "@/components/why/why-florida"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Why EcoGlass | Florida Window & Door Manufacturer",
   description:
     "EcoGlass manufactures custom energy-efficient, impact-rated windows and doors in Central Florida and installs them across the state. Learn why homeowners choose a local manufacturer.",
+  ...canonicalMeta("/why-ecoglass"),
 }
 
 export default function WhyEcoGlassPage() {

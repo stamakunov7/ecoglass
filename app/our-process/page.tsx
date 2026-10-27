@@ -7,11 +7,13 @@ import { ProcessSteps } from "@/components/process/process-steps"
 import { ProcessMarquee } from "@/components/process/process-marquee"
 import { ProcessPromises } from "@/components/process/process-promises"
 import { ProcessClosing } from "@/components/process/process-closing"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Our Process | EcoGlass Windows & Doors",
   description:
     "From your free in-home estimate to final installation, see exactly how EcoGlass manufactures and installs custom windows and doors across Florida.",
+  ...canonicalMeta("/our-process"),
 }
 
 const faqs = [

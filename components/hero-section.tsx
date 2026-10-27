@@ -5,6 +5,7 @@ import { useEstimate } from "./estimate-modal"
 import { HeroVideo } from "./hero-video"
 import { useCountUp } from "@/lib/use-count-up"
 import { glideTo } from "@/lib/smooth-scroll"
+import { SITE } from "@/lib/site"
 
 function scrollToProducts() {
   const products = document.getElementById("products")
@@ -13,8 +14,8 @@ function scrollToProducts() {
 
 export function HeroSection() {
   const { open: openEstimate } = useEstimate()
-  const rating = useCountUp(4.7, 1300, 1)
-  const reviews = useCountUp(103, 1300)
+  const rating = useCountUp(SITE.reviews.ratingValue, 1300, 1)
+  const reviews = useCountUp(SITE.reviews.reviewCount, 1300)
 
   const facts = [
     { key: "measure", value: "Made to measure", label: "Built to your exact opening" },
