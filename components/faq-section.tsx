@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import { Plus } from "lucide-react"
+import { PhoneInline } from "@/components/call-links"
 
 export type Faq = { q: string; a: string }
 
@@ -17,9 +18,7 @@ export function FaqSection({ title, intro, faqs }: { title: string; intro?: Reac
             {intro ?? (
               <>
                 Don&apos;t see your question? Call us at{" "}
-                <a href="tel:+13212070507" className="font-semibold text-forest underline-offset-4 hover:text-cta hover:underline">
-                  (321) 207-0507
-                </a>{" "}
+                <PhoneInline className="font-semibold text-forest underline-offset-4 hover:text-cta hover:underline" />{" "}
                 and a real person from our Longwood team will help.
               </>
             )}

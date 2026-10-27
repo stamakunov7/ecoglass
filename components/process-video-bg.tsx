@@ -34,6 +34,11 @@ export function ProcessVideoBg() {
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <img
+        src={PROCESS_VIDEO.poster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <video
         ref={videoRef}
         poster={PROCESS_VIDEO.poster}

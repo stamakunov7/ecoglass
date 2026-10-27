@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowUpRight, Phone } from "lucide-react"
 import { SiteShell } from "@/components/site-shell"
 import { SiteFooter } from "@/components/site-footer"
+import { PHONE_LIST } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Page Not Found | EcoGlass",
@@ -79,14 +80,20 @@ export default function NotFound() {
               ))}
             </ul>
 
-            <a
-              href="tel:+13212070507"
-              className="hero-reveal mt-10 inline-flex items-center gap-2 self-start text-[15px] font-semibold text-white/80 transition-colors hover:text-white"
+            <div
+              className="hero-reveal mt-10 flex flex-col gap-2 self-start text-[15px] font-semibold text-white/80 sm:flex-row sm:items-center sm:gap-4"
               style={{ animationDelay: "600ms" }}
             >
-              <Phone className="h-4 w-4 text-[#9fd3a2]" aria-hidden="true" />
-              Or call us at (321) 207-0507
-            </a>
+              <span className="inline-flex items-center gap-2">
+                <Phone className="h-4 w-4 text-[#9fd3a2]" aria-hidden="true" />
+                Or call us
+              </span>
+              {PHONE_LIST.map((phone) => (
+                <a key={phone.id} href={phone.tel} className="transition-colors hover:text-white">
+                  {phone.shortRegion} {phone.display}
+                </a>
+              ))}
+            </div>
           </div>
         </section>
       </main>

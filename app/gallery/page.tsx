@@ -6,10 +6,13 @@ import { GalleryZoom } from "@/components/gallery/gallery-zoom"
 import { GalleryGrid } from "@/components/gallery/gallery-grid"
 import { ProcessClosing } from "@/components/process/process-closing"
 
+import { canonicalMeta } from "@/lib/site"
+
 export const metadata: Metadata = {
   title: "Gallery | EcoGlass Windows & Doors",
   description:
     "Browse windows, doors and homes by EcoGlass — custom-built in Longwood and installed across Florida.",
+  ...canonicalMeta("/gallery"),
 }
 
 export default function GalleryPage() {

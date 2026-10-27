@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
-import { Phone } from "lucide-react"
 import { useEstimate } from "@/components/estimate-modal"
 import { Reveal } from "@/components/reveal"
+import { CallButtons } from "@/components/call-links"
 
 /** Closing call to action over a finished home, with the photo drifting slower than the page. */
 export function ProcessClosing() {
@@ -61,7 +61,7 @@ export function ProcessClosing() {
         <p className="mt-6 max-w-[520px] text-[17px] leading-relaxed text-[#d4ded9] sm:text-lg">
           Book a free, no-obligation in-home estimate. We&apos;ll take it from there.
         </p>
-        <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+        <div className="mt-10 flex w-full flex-col items-center gap-3">
           <button
             type="button"
             onClick={openEstimate}
@@ -69,13 +69,7 @@ export function ProcessClosing() {
           >
             Get a free estimate
           </button>
-          <a
-            href="tel:+13212070507"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 text-[15px] font-semibold text-white backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/20"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            Call (321) 207-0507
-          </a>
+          <CallButtons tone="onDark" className="justify-center" />
         </div>
       </Reveal>
     </section>

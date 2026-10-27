@@ -7,16 +7,19 @@ import { Reveal } from "@/components/reveal"
 import { ContactForm } from "@/components/contact/contact-form"
 import { FloridaMap } from "@/components/contact/florida-map"
 import { OpenStatus } from "@/components/contact/open-status"
+import { PhoneInline } from "@/components/call-links"
+import { PHONES, SITE, canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Contact Us | EcoGlass Windows & Doors",
   description:
-    "Contact EcoGlass for a free in-home window and door estimate anywhere in Florida, product questions, or service. Call (321) 207-0507 or visit our Longwood showroom.",
+    "Contact EcoGlass for a free in-home window and door estimate anywhere in Florida, product questions, or service. Call Orlando (321) 207-0507 or Tampa Bay (689) 777-8085, or visit our Longwood showroom.",
+  ...canonicalMeta("/contact"),
 }
 
-const ADDRESS = "144 Hope Street, Longwood, FL 32750"
-const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=144+Hope+Street,+Longwood,+FL+32750"
-const MAP_EMBED = "https://www.google.com/maps?q=144+Hope+Street,+Longwood,+FL+32750&z=15&output=embed"
+const ADDRESS = SITE.address.line
+const DIRECTIONS = SITE.maps.directionsUrl
+const MAP_EMBED = SITE.maps.embedUrl
 
 const regions = [
   { name: "North Florida & Panhandle", cities: "Jacksonville, Tallahassee, Gainesville, Pensacola, Panama City" },
@@ -27,12 +30,25 @@ const regions = [
 
 export default function ContactPage() {
   const reachUs = [
-    { icon: Phone, label: "Call us", value: "(321) 207-0507", href: "tel:+13212070507", note: <OpenStatus tone="dark" /> },
+    {
+      icon: Phone,
+      label: PHONES.orlando.region,
+      value: PHONES.orlando.display,
+      href: PHONES.orlando.tel,
+      note: <OpenStatus tone="dark" />,
+    },
+    {
+      icon: Phone,
+      label: PHONES.tampa.region,
+      value: PHONES.tampa.display,
+      href: PHONES.tampa.tel,
+      note: PHONES.tampa.area,
+    },
     {
       icon: Mail,
       label: "Email us",
-      value: "info@vk-ecoglass.com",
-      href: "mailto:info@vk-ecoglass.com",
+      value: SITE.email,
+      href: `mailto:${SITE.email}`,
       note: "We reply within one business day",
     },
     { icon: MapPin, label: "Visit the showroom", value: ADDRESS, href: DIRECTIONS, note: "Showroom & factory · Get directions" },
@@ -158,10 +174,8 @@ export default function ContactPage() {
               </dl>
 
               <p className="mt-9 text-[14px] text-muted-foreground">
-                Don&apos;t see your town? We cover the whole state —{" "}
-                <a href="tel:+13212070507" className="font-semibold text-forest underline-offset-4 hover:underline">
-                  call (321) 207-0507
-                </a>
+                Don&apos;t see your town? We cover the whole state — call{" "}
+                <PhoneInline className="font-semibold text-forest underline-offset-4 hover:underline" />
                 .
               </p>
             </Reveal>

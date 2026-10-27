@@ -3,12 +3,12 @@
 import { Fragment, useEffect, useRef, useState } from "react"
 import { ArrowUpRight, PenLine } from "lucide-react"
 import { Reveal } from "./reveal"
+import { SITE } from "@/lib/site"
 
-const PLACE_ID = "ChIJ52NeRhRy54gRw-TSUPoZ1vA"
-const REVIEW_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`
-const LISTING_URL = "https://www.google.com/maps?cid=17354086777007301827"
-const RATING = 4.7
-const COUNT = 103
+const REVIEW_URL = `https://search.google.com/local/writereview?placeid=${SITE.maps.placeId}`
+const LISTING_URL = SITE.maps.listingUrl
+const RATING = SITE.reviews.ratingValue
+const COUNT = SITE.reviews.reviewCount
 const TURN_MS = 8000
 
 type Review = {

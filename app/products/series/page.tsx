@@ -12,11 +12,13 @@ import { NovaLogo, PrestigeLogo, DuroPlastLogo, PrestigePlusLogo } from "@/compo
 import { products } from "@/components/products/product-catalog"
 import { doorModels, type DoorModel } from "@/components/products/door-catalog"
 import { getBrandProfile } from "@/lib/configurator/catalog"
+import { canonicalMeta } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Browse by Series | EcoGlass Windows & Doors",
   description:
     "NOVA, DURO PLAST, PRESTIGE, PRESTIGE+ and DURAPLUS: every EcoGlass window and door series, with the styles each one comes in.",
+  ...canonicalMeta("/products/series"),
 }
 
 type Series = {

@@ -1,5 +1,8 @@
+import Link from "next/link"
 import { Phone, MapPin, Mail, Clock } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
+import { SocialLinks } from "./social-links"
+import { PHONE_LIST, SITE } from "@/lib/site"
 
 const quickLinks = [
   { label: "Products", href: "/products" },
@@ -21,12 +24,16 @@ const productLinks = [
 const contactItems = [
   {
     icon: MapPin,
-    label: "144 Hope Street, Longwood, FL 32750",
-    href: "https://www.google.com/maps/search/?api=1&query=144+Hope+Street,+Longwood,+FL+32750",
+    label: SITE.address.line,
+    href: SITE.maps.searchUrl,
   },
-  { icon: Phone, label: "(321) 207-0507", href: "tel:+13212070507" },
-  { icon: Mail, label: "info@vk-ecoglass.com", href: "mailto:info@vk-ecoglass.com" },
-  { icon: Clock, label: "Mon – Fri, 8:30 AM – 5:30 PM" },
+  ...PHONE_LIST.map((phone) => ({
+    icon: Phone,
+    label: `${phone.shortRegion} ${phone.display}`,
+    href: phone.tel,
+  })),
+  { icon: Mail, label: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: Clock, label: SITE.hours.display },
 ]
 
 const heading = "text-[11px] font-semibold uppercase tracking-[0.24em] text-[#9fd3a2]"
@@ -58,6 +65,7 @@ export function SiteFooter() {
             <p className="mt-5 max-w-[38ch] text-[13px] leading-relaxed text-white/60">
               Custom windows and doors manufactured in Central Florida and installed across the state.
             </p>
+            <SocialLinks onDark className="mt-5" />
           </div>
 
           {/* Quick links */}
@@ -113,8 +121,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 text-[12px] text-white/40 sm:flex-row lg:mt-16">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-[12px] text-white/40 sm:flex-row lg:mt-16">
           <p>© {new Date().getFullYear()} EcoGlass. All rights reserved.</p>
+          <nav className="flex items-center gap-4" aria-label="Legal">
+            <Link href="/privacy" className={link}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className={link}>
+              Terms
+            </Link>
+          </nav>
           <p>Made in Longwood, Florida</p>
         </div>
       </div>

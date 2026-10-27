@@ -1,8 +1,8 @@
 "use client"
 
-import { Phone } from "lucide-react"
 import { useEstimate } from "@/components/estimate-modal"
 import { Reveal } from "@/components/reveal"
+import { CallButtons } from "@/components/call-links"
 
 export function CollectionClosing() {
   const { open: openEstimate } = useEstimate()
@@ -19,7 +19,7 @@ export function CollectionClosing() {
           Manufactured in Central Florida and installed across the state — with one team from your first call to the final
           walkthrough.
         </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center gap-3">
           <button
             type="button"
             onClick={openEstimate}
@@ -27,13 +27,7 @@ export function CollectionClosing() {
           >
             Get a free estimate
           </button>
-          <a
-            href="tel:+13212070507"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-forest px-7 text-[15px] font-semibold text-forest transition-colors hover:bg-forest hover:text-white"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            Call (321) 207-0507
-          </a>
+          <CallButtons tone="onLight" className="justify-center" />
         </div>
       </Reveal>
     </section>

@@ -7,6 +7,7 @@ import { CollectionClosing } from "@/components/products/collection-closing"
 import { DoorCarousel } from "@/components/products/door-carousel"
 import { DoorDetail } from "@/components/products/door-detail"
 import { doorModels, doorTitle, getDoor } from "@/components/products/door-catalog"
+import { canonicalMeta } from "@/lib/site"
 
 export const dynamicParams = false
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${doorTitle(door)} | EcoGlass`,
     description: `${door.summary} Made to measure and installed across Florida by EcoGlass. Get a free in-home estimate.`,
+    ...canonicalMeta(`/products/doors/${model}`),
   }
 }
 
