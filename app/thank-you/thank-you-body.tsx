@@ -8,7 +8,10 @@ import { peekLeadName } from "@/lib/attribution"
 import { PHONE_LIST } from "@/lib/site"
 import type { LeadSource } from "@/lib/leads"
 
-const COPY: Record<LeadSource, { title: string; body: string }> = {
+/** Warranty registrations confirm in place on /warranty and never come through this page. */
+type ThankedSource = Exclude<LeadSource, "warranty">
+
+const COPY: Record<ThankedSource, { title: string; body: string }> = {
   estimate: {
     title: "Your estimate request is in.",
     body: "A local EcoGlass representative will reach out shortly to schedule your free, no-obligation in-home estimate.",
@@ -31,7 +34,7 @@ const COPY: Record<LeadSource, { title: string; body: string }> = {
   },
 }
 
-function isLeadSource(value: string | null): value is LeadSource {
+function isLeadSource(value: string | null): value is ThankedSource {
   return value === "estimate" || value === "quote" || value === "contact" || value === "financing" || value === "commercial"
 }
 

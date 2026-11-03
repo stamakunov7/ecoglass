@@ -2,8 +2,8 @@ import { ATTRIBUTION_KEYS, type Attribution } from "@/lib/attribution"
 import type { LeadPayload, LeadSource } from "@/lib/leads"
 
 /**
- * Receives every form on the site (estimate, product quote, contact, financing, commercial bid) and
- * emails it to the team through Resend.
+ * Receives every form on the site (estimate, product quote, contact, financing, commercial bid,
+ * warranty registration) and emails it to the team through Resend.
  *
  * Environment:
  *   RESEND_API_KEY   – required in production (https://resend.com/api-keys)
@@ -11,7 +11,7 @@ import type { LeadPayload, LeadSource } from "@/lib/leads"
  *   LEAD_FROM_EMAIL  – sender on a domain verified in Resend (default Resend's onboarding sender)
  */
 
-const SOURCES: LeadSource[] = ["estimate", "quote", "contact", "financing", "commercial"]
+const SOURCES: LeadSource[] = ["estimate", "quote", "contact", "financing", "commercial", "warranty"]
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function str(value: unknown, max = 200) {
@@ -50,6 +50,10 @@ function parse(body: unknown): { lead?: LeadPayload; error?: string } {
     units: line(b.units, 80),
     timeline: line(b.timeline, 80),
     plansLink: line(b.plansLink, 1000),
+    invoiceNumber: line(b.invoiceNumber, 80),
+    poName: line(b.poName, 120),
+    productSeries: line(b.productSeries, 60),
+    installedByEcoGlass: b.installedByEcoGlass === true,
     page: line(b.page, 500),
     company: line(b.company, 200),
     eventId: line(b.eventId, 80),
@@ -58,6 +62,12 @@ function parse(body: unknown): { lead?: LeadPayload; error?: string } {
   if (!lead.firstName || !lead.lastName) return { error: "Please enter your name." }
   if (!EMAIL_RE.test(lead.email)) return { error: "Please enter a valid email address." }
   if (!lead.phone) return { error: "Please enter a phone number." }
+  if (source === "warranty") {
+    if (!lead.location) return { error: "Please enter the project address." }
+    if (!lead.invoiceNumber) return { error: "Please enter your invoice number." }
+    if (!lead.productSeries) return { error: "Please choose a product series." }
+    if (!lead.installedByEcoGlass) return { error: "Warranty registration is only for installations by EcoGlass." }
+  }
 
   const c = b.configuration as Record<string, unknown> | undefined
   if (c && typeof c === "object") {
@@ -96,6 +106,8 @@ function subjectFor(lead: LeadPayload) {
       return `New free estimate request — ${name}`
     case "financing":
       return `New financing inquiry — ${name}`
+    case "warranty":
+      return `Warranty registration — ${name}${lead.invoiceNumber ? ` · Invoice ${lead.invoiceNumber}` : ""}`
     case "commercial":
       return `New commercial bid request${lead.businessName ? ` — ${lead.businessName}` : ""} — ${name}`
     default:
@@ -111,10 +123,15 @@ function rowsFor(lead: LeadPayload): [string, string][] {
   ]
   const optional: [string, string | undefined][] = [
     ["Company", lead.businessName],
+    ["Project address", lead.source === "warranty" ? lead.location : undefined],
+    ["Invoice number", lead.invoiceNumber],
+    ["PO name", lead.poName],
+    ["Product series", lead.productSeries],
+    ["Installed by EcoGlass", lead.installedByEcoGlass ? "Yes, confirmed by the customer" : undefined],
     ["Zip code", lead.zip],
     ["I am a", lead.role],
     ["Project type", lead.projectType],
-    ["Project location", lead.location],
+    ["Project location", lead.source === "warranty" ? undefined : lead.location],
     ["Windows & doors (approx.)", lead.units],
     ["Timeline", lead.timeline],
     ["Plans", lead.plansLink],
@@ -161,6 +178,11 @@ function renderEmail(lead: LeadPayload) {
   <p style="margin:0 0 20px;color:#5c6b66;font-size:13px">Sent from the EcoGlass website${
     lead.page ? ` · <a href="${escapeHtml(lead.page)}" style="color:#3e8e41">${escapeHtml(lead.page)}</a>` : ""
   }</p>
+  ${
+    lead.source === "warranty"
+      ? `<p style="margin:0 0 20px;padding:12px 14px;background:#f1f6f1;border-left:3px solid #3e8e41;font-size:13px;line-height:1.5">Before issuing a warranty certificate, check the invoice and confirm that EcoGlass's own installers did this job. The warranty is valid only for installations by EcoGlass's authorized installers.</p>`
+      : ""
+  }
   <h3 style="margin:0 0 8px;font-size:15px">Contact</h3>
   ${table(contact)}
   ${
@@ -177,6 +199,9 @@ function renderEmail(lead: LeadPayload) {
   const text = [
     subjectFor(lead),
     "",
+    ...(lead.source === "warranty"
+      ? ["Check the invoice and confirm EcoGlass's installers did this job before issuing a certificate.", ""]
+      : []),
     ...contact.map(([k, v]) => `${k}: ${v}`),
     ...(config ? ["", "Designed product", ...configRows.map(([k, v]) => `${k}: ${v}`), config.link ? `Design link: ${config.link}` : ""] : []),
     lead.page ? `\nSent from: ${lead.page}` : "",

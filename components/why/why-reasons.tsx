@@ -1,6 +1,7 @@
 "use client"
 
 import { Fragment, useEffect, useRef } from "react"
+import Image from "next/image"
 import { Factory, Timer, Ruler, ShieldCheck, Sparkles, Headset } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
@@ -169,7 +170,7 @@ export function WhyReasons() {
                       </div>
                     </div>
                     <div className="relative min-h-[260px] lg:min-h-0">
-                      <img src={image} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+                      <Image src={image} alt={alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
                     </div>
                     {/* Darkens the card as newer cards stack over it */}
                     <div

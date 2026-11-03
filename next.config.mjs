@@ -13,8 +13,8 @@ const legacyRedirects = [
   ["/other-products", "/products"],
   ["/documents", "/products"],
   ["/resources-1", "/products"],
-  ["/maintainance-tips", "/why-ecoglass#support"],
-  ["/warrantyregistration", "/contact"],
+  ["/maintainance-tips", "/care"],
+  ["/warrantyregistration", "/warranty"],
   ["/down-for-maintainance", "/"],
 ]
 
@@ -32,7 +32,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Vercel image optimization is compatible with this App Router site (local /public assets).
+  images: {
+    // Resized and re-encoded on Vercel per screen. Cached for a day, so a photo replaced under the same name shows within a day.
+    qualities: [75],
+    minimumCacheTTL: 86400,
+  },
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Reveal } from "@/components/reveal"
 
 const PILLARS = [
@@ -62,10 +63,12 @@ export function WhyPillars() {
                     open ? "lg:grow-[2.6]" : "lg:grow"
                   }`}
                 >
-                  <img
+                  <Image
                     src={image}
                     alt={alt}
-                    className={`absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    fill
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    className={`object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       open ? "scale-100" : "scale-110"
                     }`}
                   />

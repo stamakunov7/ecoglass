@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, BadgeCheck, Leaf, Sun, Volume2, Wind } from "lucide-react"
 import { Reveal } from "@/components/reveal"
@@ -100,10 +101,12 @@ export function WhyFlorida() {
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
           <Reveal className="relative min-h-[360px] overflow-hidden rounded-[28px] bg-forest-deep sm:col-span-2 lg:row-span-2 lg:min-h-0">
-            <img
+            <Image
               src="/images/gallery/frame-detail.webp"
               alt="Close-up of an impact-rated window corner showing laminated glass and frame detail"
-              className="ken-burns absolute inset-0 h-full w-full object-cover"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="ken-burns object-cover"
             />
             <div
               className="absolute inset-0 bg-gradient-to-t from-[rgb(8_26_21/0.85)] via-transparent to-transparent"

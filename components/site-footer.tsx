@@ -21,6 +21,12 @@ const productLinks = [
   { label: "Browse by Series", href: "/products/series" },
 ]
 
+const supportLinks = [
+  { label: "Warranty Registration", href: "/warranty" },
+  { label: "Care & Maintenance", href: "/care" },
+  { label: "Contact Us", href: "/contact" },
+]
+
 const contactItems = [
   {
     icon: MapPin,
@@ -58,7 +64,7 @@ export function SiteFooter() {
       />
 
       <div className="mx-auto w-full max-w-[1400px] px-5 pt-14 sm:px-6 sm:pt-20 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr] lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <BrandLogo onDark />
@@ -87,6 +93,20 @@ export function SiteFooter() {
             <h3 className={heading}>Products</h3>
             <ul className="mt-5 space-y-3 text-[14px]">
               {productLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={link}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Support for existing customers */}
+          <nav aria-label="Support">
+            <h3 className={heading}>Support</h3>
+            <ul className="mt-5 space-y-3 text-[14px]">
+              {supportLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} className={link}>
                     {label}

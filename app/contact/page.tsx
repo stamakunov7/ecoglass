@@ -127,6 +127,18 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
+
+              <p className="hero-reveal mt-6 text-[14px] text-white/70" style={{ animationDelay: "600ms" }}>
+                Already an EcoGlass customer?{" "}
+                <a href="/warranty" className="font-semibold text-white underline decoration-[#9fd3a2]/60 underline-offset-4 hover:decoration-[#9fd3a2]">
+                  Register your warranty
+                </a>{" "}
+                or read our{" "}
+                <a href="/care" className="font-semibold text-white underline decoration-[#9fd3a2]/60 underline-offset-4 hover:decoration-[#9fd3a2]">
+                  care tips
+                </a>
+                .
+              </p>
             </div>
 
             <div

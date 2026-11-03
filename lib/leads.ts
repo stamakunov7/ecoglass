@@ -1,7 +1,7 @@
 import { readAttribution, type Attribution } from "@/lib/attribution"
 import { newEventId } from "@/lib/event-id"
 
-export type LeadSource = "estimate" | "quote" | "contact" | "financing" | "commercial"
+export type LeadSource = "estimate" | "quote" | "contact" | "financing" | "commercial" | "warranty"
 
 export type LeadSpec = { label: string; value: string }
 
@@ -25,6 +25,12 @@ export type LeadPayload = {
   units?: string
   timeline?: string
   plansLink?: string
+  /** Warranty registrations */
+  invoiceNumber?: string
+  poName?: string
+  productSeries?: string
+  /** The customer confirms EcoGlass's own installers did the job; the team still checks before issuing a certificate. */
+  installedByEcoGlass?: boolean
   /** A product designed in the configurator. */
   configuration?: {
     title: string

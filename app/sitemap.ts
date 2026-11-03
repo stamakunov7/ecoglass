@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/commercial", 0.7),
     page("/gallery", 0.6),
     page("/contact", 0.8),
+    page("/warranty", 0.5),
+    page("/care", 0.5),
     page("/privacy", 0.3),
     page("/terms", 0.3),
     ...products.map((p) => page(`/products/${p.slug}`, 0.8)),

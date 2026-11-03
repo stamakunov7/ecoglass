@@ -1,16 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
 import { ArrowDown } from "lucide-react"
+import { useBackgroundVideo, VideoSources } from "@/components/background-video"
+import { PROCESS_VIDEO as VIDEO } from "@/components/process-video-bg"
 import { useEstimate } from "@/components/estimate-modal"
 import { glideTo } from "@/lib/smooth-scroll"
 import { PROCESS_STEPS } from "./process-steps-data"
-
-const VIDEO = {
-  desktop: "/videos/process-hero.mp4",
-  mobile: "/videos/process-hero-720.mp4",
-  poster: "/images/process-hero-poster.webp",
-}
 
 const WORDS = [
   { text: "Simple.", accent: false },
@@ -25,27 +20,13 @@ function scrollToId(id: string) {
 
 export function ProcessHero() {
   const { open: openEstimate } = useEstimate()
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    // A cached video can fire canplay before hydration attaches onCanPlay.
-    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) setReady(true)
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const sync = () => (reduceMotion.matches ? video.pause() : video.play().catch(() => {}))
-    sync()
-    reduceMotion.addEventListener("change", sync)
-    return () => reduceMotion.removeEventListener("change", sync)
-  }, [])
+  const { videoRef, load, ready, onCanPlay } = useBackgroundVideo()
 
   return (
     <section className="relative isolate flex min-h-svh flex-col overflow-hidden bg-forest-deep text-white">
-      <img src={VIDEO.poster} alt="" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full object-cover" />
+      <img src={VIDEO.poster} alt="" aria-hidden="true" fetchPriority="high" className="absolute inset-0 -z-30 h-full w-full object-cover" />
       <video
         ref={videoRef}
-        poster={VIDEO.poster}
         autoPlay
         muted
         loop
@@ -54,13 +35,12 @@ export function ProcessHero() {
         disablePictureInPicture
         aria-hidden="true"
         tabIndex={-1}
-        onCanPlay={() => setReady(true)}
+        onCanPlay={onCanPlay}
         className={`absolute inset-0 -z-20 h-full w-full scale-[1.03] object-cover transition-opacity duration-[1400ms] ease-out ${
           ready ? "opacity-100" : "opacity-0"
         }`}
       >
-        <source src={VIDEO.mobile} type="video/mp4" media="(max-width: 767px)" />
-        <source src={VIDEO.desktop} type="video/mp4" />
+        {load && <VideoSources set={VIDEO} />}
       </video>
       <div
         className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(8_26_21/0.9)_0%,rgb(8_26_21/0.66)_45%,rgb(8_26_21/0.3)_100%)] max-lg:bg-[linear-gradient(180deg,rgb(8_26_21/0.55)_0%,rgb(8_26_21/0.85)_75%)]"

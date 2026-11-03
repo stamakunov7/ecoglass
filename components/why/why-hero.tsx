@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 import { glideTo, hasSmoothScroll, isGliding } from "@/lib/smooth-scroll"
 
 const PHOTO = "/images/gallery/dusk-home.webp"
@@ -133,7 +134,7 @@ export function WhyHero() {
       <h1 className="sr-only">Built local. Built for you.</h1>
 
       <div className="sticky top-0 isolate h-svh overflow-hidden">
-        <img src={PHOTO} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <Image src={PHOTO} alt="" fill preload sizes="100vw" className="object-cover" />
 
         {/* Brand-green sheet; multiply turns the white letters into windows onto the photo */}
         <div ref={maskRef} className={`${column} bg-forest-deep mix-blend-multiply`} aria-hidden="true">
