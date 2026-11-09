@@ -136,7 +136,8 @@ export function SiteHeader({ onOpenMenu, overlay = false }: { onOpenMenu: () => 
               <CreditCard className="hidden h-3.5 w-3.5 text-cta sm:block" aria-hidden="true" />
               Financing available
             </span>
-            <SocialLinks onDark className="-my-1 hidden lg:flex" />
+            <span className="hidden h-3 w-px bg-white/25 lg:block" aria-hidden="true" />
+            <SocialLinks onDark compact className="-my-1 hidden lg:flex" />
           </div>
         </div>
       </div>

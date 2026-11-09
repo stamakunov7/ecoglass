@@ -82,8 +82,8 @@ export const SITE = {
   primaryPhone: PHONES.orlando,
   /** Public profile URLs. Leave empty until the client provides them — empty links are hidden. */
   social: {
-    instagram: "",
-    facebook: "",
+    instagram: "https://www.instagram.com/ecoglass.us/",
+    facebook: "https://www.facebook.com/profile.php?id=61596402742999",
     tiktok: "",
   },
 } as const
@@ -143,6 +143,7 @@ export function localBusinessJsonLd() {
       closes: SITE.hours.closes,
     },
     hasMap: SITE.maps.listingUrl,
+    sameAs: Object.values(SITE.social).filter(Boolean),
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: String(SITE.reviews.ratingValue),
