@@ -121,8 +121,8 @@ export const doorModels: DoorModel[] = [
       "Pressure-balance system for drainage",
       "Reinforced sash built for large surface hinges",
     ],
-    image: "/images/gallery/french-doors.webp",
-    alt: "Pair of glass terrace doors swung open to a garden patio",
+    image: "/images/products/tilt-turn-terrace-door.webp",
+    alt: "Modern tilt and turn terrace door with black frame on a contemporary Florida home",
   },
   {
     slug: "french-patio",
