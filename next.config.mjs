@@ -24,8 +24,12 @@ const oldDoorPages = [
   ["big-doors", "/products/doors/prestige-s-8375"],
   ["entry-doors", "/products/doors/entry"],
   ["french-hinged-patio-doors", "/products/doors/french-patio"],
-  ["storm-screen-doors", "/products/doors/storm-screen"],
+  ["storm-screen-doors", "/products/doors/retractable-screen"],
+  ["storm-screen", "/products/doors/retractable-screen"],
 ]
+
+/** Window products that have been removed, redirected to the windows listing. */
+const removedWindows = ["awning", "bay-bow", "pass-through"]
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -43,6 +47,10 @@ const nextConfig = {
       ...oldDoorPages.flatMap(([slug, destination]) => [
         { source: `/products/${slug}`, destination, permanent: true },
         { source: `/products/${slug}/:brand`, destination, permanent: true },
+      ]),
+      ...removedWindows.flatMap((slug) => [
+        { source: `/products/${slug}`, destination: "/products?category=windows", permanent: true },
+        { source: `/products/${slug}/:brand`, destination: "/products?category=windows", permanent: true },
       ]),
     ]
   },

@@ -3,7 +3,7 @@ export type BrandSlug = "nova" | "prestige" | "duro-plast" | "prestige-plus"
 export type BrandSpecKey = "material" | "impactGlass" | "colors" | "warranty"
 
 /** How the live preview draws a product. `null` means the product has no online designer yet (doors). */
-export type WindowKind = "awning" | "casement" | "hung" | "slider" | "picture" | "bay" | "arch"
+export type WindowKind = "casement" | "hung" | "slider" | "picture" | "arch"
 
 export type GrillePattern = "none" | "colonial" | "prairie" | "fractional"
 

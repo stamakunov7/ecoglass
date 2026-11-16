@@ -8,12 +8,9 @@ import { useEstimate } from "./estimate-modal"
 import { PHONE_LIST } from "@/lib/site"
 
 const productHrefs: Record<string, string> = {
-  Awning: "/products/awning",
-  "Bay & Bow": "/products/bay-bow",
   Casement: "/products/casement",
   "Double & Single-Hung": "/products/double-single-hung",
   Sliding: "/products/sliding",
-  "Pass-Through": "/products/pass-through",
   Picture: "/products/picture",
   Specialty: "/products/specialty",
   "Sliding Glass Doors": "/products/doors",
@@ -22,7 +19,8 @@ const productHrefs: Record<string, string> = {
   "Tilt & Turn Terrace Doors": "/products/doors/prestige-s-6300",
   "French & Hinged Patio Doors": "/products/doors/french-patio",
   "Entry Doors": "/products/doors/entry",
-  "Storm & Screen Doors": "/products/doors/storm-screen",
+  "Bi-Fold Doors": "/products/doors/bi-fold",
+  "Retractable Screen Doors": "/products/doors/retractable-screen",
 }
 
 const links = [
@@ -37,7 +35,7 @@ const links = [
 const productGroups = [
   {
     heading: "Windows",
-    items: ["Awning", "Bay & Bow", "Casement", "Double & Single-Hung", "Sliding", "Pass-Through", "Picture", "Specialty"],
+    items: ["Casement", "Double & Single-Hung", "Sliding", "Picture", "Specialty"],
   },
   {
     heading: "Doors",
@@ -48,7 +46,8 @@ const productGroups = [
       "Tilt & Turn Terrace Doors",
       "French & Hinged Patio Doors",
       "Entry Doors",
-      "Storm & Screen Doors",
+      "Bi-Fold Doors",
+      "Retractable Screen Doors",
     ],
   },
 ]

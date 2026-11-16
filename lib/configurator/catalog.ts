@@ -19,12 +19,9 @@ export const FEATURED_BRAND: BrandSlug | null = "prestige"
 /* ---------------- Which product uses which preview / designer ---------------- */
 
 const productKinds: Record<string, WindowKind | null> = {
-  awning: "awning",
-  "bay-bow": "bay",
   casement: "casement",
   "double-single-hung": "hung",
   sliding: "slider",
-  "pass-through": "slider",
   picture: "picture",
   specialty: "arch",
 }
@@ -37,13 +34,6 @@ export function getWindowKind(productSlug: string): WindowKind | null {
 /* ---------------- Default options (shared by every brand unless overridden) ---------------- */
 
 const sizesByKind: Record<WindowKind, SizeOptions> = {
-  awning: {
-    widths: [17.5, 23.5, 29.5, 35.5, 41.5, 47.5],
-    heights: [17.5, 23.5, 29.5, 35.5],
-    min: { width: 14, height: 12 },
-    max: { width: 48, height: 36 },
-    default: { width: 41.5, height: 23.5 },
-  },
   casement: {
     widths: [17.5, 23.5, 29.5, 35.5],
     heights: [35.5, 41.5, 47.5, 59.5, 71.5],
@@ -71,13 +61,6 @@ const sizesByKind: Record<WindowKind, SizeOptions> = {
     min: { width: 12, height: 12 },
     max: { width: 96, height: 84 },
     default: { width: 47.5, height: 47.5 },
-  },
-  bay: {
-    widths: [71.5, 83.5, 95.5],
-    heights: [47.5, 59.5],
-    min: { width: 60, height: 36 },
-    max: { width: 120, height: 72 },
-    default: { width: 83.5, height: 59.5 },
   },
   arch: {
     widths: [23.5, 35.5, 47.5, 59.5],
@@ -146,13 +129,6 @@ const finishes = [
 ]
 
 const hardwareStyles: Record<WindowKind, WindowOptions["hardware"]> = {
-  awning: {
-    styles: [
-      { id: "folding-crank", name: "Folding Crank", description: "Crank folds flat so it stays out of the way of blinds." },
-      { id: "push-out", name: "Push-Out Handle", description: "Crank-free lever for a cleaner, modern sill." },
-    ],
-    finishes,
-  },
   casement: {
     styles: [
       { id: "folding-crank", name: "Folding Crank", description: "Crank folds flat so it stays out of the way of blinds." },
@@ -172,10 +148,6 @@ const hardwareStyles: Record<WindowKind, WindowOptions["hardware"]> = {
       { id: "cam-lock", name: "Cam-Action Lock", description: "Classic lock that pulls the sashes tight." },
       { id: "keyed", name: "Keyed Lock", description: "Adds a key cylinder for extra security." },
     ],
-    finishes,
-  },
-  bay: {
-    styles: [{ id: "folding-crank", name: "Folding Crank", description: "Operates the two venting side units." }],
     finishes,
   },
   picture: null,

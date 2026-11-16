@@ -13,7 +13,7 @@ import { canonicalMeta } from "@/lib/site"
 export const metadata: Metadata = {
   title: "All Windows & Doors | EcoGlass",
   description:
-    "Browse the full EcoGlass catalog of windows and doors. Explore every style — from awning and casement windows to entry, sliding, and patio doors.",
+    "Browse the full EcoGlass catalog of windows and doors. Explore every style — from casement and sliding windows to entry, patio, bi-fold, and retractable screen doors.",
   ...canonicalMeta("/products"),
 }
 
