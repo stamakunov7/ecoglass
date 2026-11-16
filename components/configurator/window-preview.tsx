@@ -131,15 +131,6 @@ export function WindowPreview({
     </g>
   )
 
-  const crank = ({ cx, y }: { cx: number; y: number }) =>
-    hw && (
-      <g>
-        <rect x={cx - 17} y={y} width={34} height={Math.max(6, f * 0.42)} rx={3} fill={hwFill} stroke={hwEdge} strokeWidth={0.6} />
-        <rect x={cx - 2} y={y - 3} width={22} height={5} rx={2.5} fill={hwFill} stroke={hwEdge} strokeWidth={0.6} />
-        <circle cx={cx + 19} cy={y - 0.5} r={3.2} fill={hwFill} stroke={hwEdge} strokeWidth={0.6} />
-      </g>
-    )
-
   const lever = ({ x, cy }: { x: number; cy: number }) =>
     hw && (
       <g>
@@ -166,15 +157,12 @@ export function WindowPreview({
 
   let body: ReactNode
   switch (kind) {
-    case "awning":
     case "casement":
       body = (
         <>
           {frameBox({ x: x0, y: y0, w: W, h: H })}
           {sash({ x: ox, y: oy, w: ow, h: oh, t: t })}
-          {kind === "awning"
-            ? crank({ cx: x0 + W / 2, y: y0 + H - f * 0.72 })
-            : lever({ x: ox + ow - t / 2, cy: oy + oh / 2 })}
+          {lever({ x: ox + ow - t / 2, cy: oy + oh / 2 })}
         </>
       )
       break

@@ -7,12 +7,9 @@ import { ArrowRight } from "lucide-react"
 type Item = { label: string; href: string; icon?: string }
 
 const windows: Item[] = [
-  { label: "Awning", href: "/products/awning", icon: "/product-icons/awning.png" },
-  { label: "Bay & Bow", href: "/products/bay-bow", icon: "/product-icons/bay-bow.png" },
   { label: "Casement", href: "/products/casement", icon: "/product-icons/casement.png" },
   { label: "Double & Single-Hung", href: "/products/double-single-hung", icon: "/product-icons/single-double-hung.png" },
   { label: "Sliding", href: "/products/sliding", icon: "/product-icons/sliding-window.png" },
-  { label: "Pass-Through", href: "/products/pass-through", icon: "/product-icons/pass-through.png" },
   { label: "Picture", href: "/products/picture", icon: "/product-icons/picture-window.png" },
   { label: "Specialty", href: "/products/specialty", icon: "/product-icons/specialty-window.png" },
 ]
@@ -37,7 +34,8 @@ const doors: Item[] = [
     icon: "/product-icons/french-hinged-patio.png",
   },
   { label: "Entry Doors", href: "/products/doors/entry", icon: "/product-icons/entry-door.png" },
-  { label: "Storm & Screen Doors", href: "/products/doors/storm-screen", icon: "/product-icons/storm-screen-door.png" },
+  { label: "Bi-Fold Doors", href: "/products/doors/bi-fold", icon: "/product-icons/french-hinged-patio.png" },
+  { label: "Retractable Screen Doors", href: "/products/doors/retractable-screen", icon: "/product-icons/storm-screen-door.png" },
 ]
 
 const cards = [

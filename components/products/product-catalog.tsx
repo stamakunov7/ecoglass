@@ -101,28 +101,6 @@ type ProductSeed = {
 /** Window styles. Doors have their own lineup in door-catalog.ts. */
 const seeds: ProductSeed[] = [
   {
-    slug: "awning",
-    name: "Awning",
-    category: "Windows",
-    title: "Awning Windows",
-    summary: "Hinged at the top and opens outward, so you can let air in even when it rains.",
-    description:
-      "EcoGlass offers awning windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect awning window for your home.",
-    heroImage: "/images/products/awning.webp",
-    heroAlt: "Close-up of a black-framed awning window cranked open outward on a modern home, with lush greenery outside",
-  },
-  {
-    slug: "bay-bow",
-    name: "Bay & Bow",
-    category: "Windows",
-    title: "Bay & Bow Windows",
-    summary: "Projects out from the wall for more light, more room and a view on three sides.",
-    description:
-      "EcoGlass offers bay & bow windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect bay or bow window for your home.",
-    heroImage: "/images/products/bay-bow.webp",
-    heroAlt: "Bay and bow window projecting outward on a premium Florida home",
-  },
-  {
     slug: "casement",
     name: "Casement",
     category: "Windows",
@@ -154,17 +132,6 @@ const seeds: ProductSeed[] = [
       "EcoGlass offers sliding windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect sliding window for your home.",
     heroImage: "/images/products/sliding.webp",
     heroAlt: "Large horizontal sliding window on a modern Florida home",
-  },
-  {
-    slug: "pass-through",
-    name: "Pass-Through",
-    category: "Windows",
-    title: "Pass-Through Windows",
-    summary: "Opens the kitchen to the patio for easy serving and outdoor living.",
-    description:
-      "EcoGlass offers pass-through windows from several trusted brands, giving you options to match your style, performance needs, and budget. Find the perfect pass-through window for your home.",
-    heroImage: "/images/products/pass-through.webp",
-    heroAlt: "Pass-through kitchen window opening onto an outdoor patio bar",
   },
   {
     slug: "picture",
